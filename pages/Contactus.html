@@ -1,0 +1,338 @@
+<!-- ========================================================= -->
+<!-- index.html — صفحة "تواصل معنا"                            -->
+<!-- ========================================================= -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تواصل معنا</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+  /* =========================================================
+     RESET & BASE
+  ========================================================= */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    line-height: 1.6;
+    background-color: #fff;
+    color: #000;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* =========================================================
+     VARIABLES
+  ========================================================= */
+  :root {
+    --color-primary: #c8161d;
+    --color-dark: #000;
+    --color-gray: #888;
+    --color-border: #ccc;
+    --color-accent: #1f355a;
+    --radius: 0.5rem;
+    --transition: 0.3s ease;
+  }
+
+  /* =========================================================
+     HEADER
+  ========================================================= */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header__profile {
+    border: 1px solid var(--color-dark);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+
+  .nav {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .nav__link {
+    color: var(--color-dark);
+    transition: color var(--transition);
+  }
+
+  .nav__link:hover,
+  .nav__link--active {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .header__logo {
+    width: 55px;
+    opacity: 0.9;
+  }
+
+  /* =========================================================
+     CONTACT SECTION
+  ========================================================= */
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 1.5rem;
+  }
+
+  .contact {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3rem;
+    flex-direction: row; /* السماعة على اليمين والنص على اليسار */
+  }
+
+  .contact__content {
+    flex: 1;
+    text-align: right;
+  }
+
+  .contact__title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+  }
+
+  .contact__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact__fields {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .contact__field {
+    flex: 1;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  .contact__field:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .contact__subject {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-align: right;
+  }
+
+  .contact__subject:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .contact__submit {
+    background-color: var(--color-accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    padding: 0.6rem 2rem;
+    cursor: pointer;
+    align-self: flex-end;
+    font-size: 1rem;
+    transition: background-color var(--transition);
+  }
+
+  .contact__submit:hover {
+    background-color: #14233e;
+  }
+
+  /* =========================================================
+     ICONS & CONTACT INFO
+  ========================================================= */
+  .contact__info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contact__phone {
+    font-size: 0.9rem;
+  }
+
+  .contact__info a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--color-dark);
+    border-radius: 4px;
+    transition: background-color var(--transition);
+  }
+
+  .contact__info a:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* =========================================================
+     IMAGE (HEADSET)
+  ========================================================= */
+  .contact__image {
+    flex: 0 0 220px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .contact__image img {
+    width: 20000px;
+    height: auto;
+  }
+
+  /* =========================================================
+     RESPONSIVE
+  ========================================================= */
+  @media (max-width: 768px) {
+    .contact {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .contact__fields {
+      flex-direction: column;
+    }
+
+    .contact__submit {
+      align-self: center;
+    }
+
+    .contact__info {
+      justify-content: center;
+    }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================
+       HEADER
+  ========================================================= -->
+  <header>
+    <div class="header__profile" aria-label="الحساب الشخصي">M</div>
+
+    <nav class="nav" aria-label="القائمة الرئيسية">
+      <a href="#" class="nav__link">الرئيسية</a>
+      <a href="#" class="nav__link">البحث عن فصيلة</a>
+      <a href="#" class="nav__link">المراكز</a>
+      <a href="#" class="nav__link">حجز موعد</a>
+      <a href="#" class="nav__link nav__link--active">تواصل معنا</a>
+    </nav>
+
+    <img src="#" alt="خريطة سوريا" class="header__logo" />
+  </header>
+
+  <!-- =========================================================
+       MAIN CONTACT SECTION
+  ========================================================= -->
+  <main>
+    <section class="contact" aria-labelledby="contact-title">
+
+      <!-- Right side: Headset image -->
+      <div class="contact__image" aria-hidden="true">
+        <img src="صور المشروع/lovepik-earphone-icon-png-image_400319477_wh860.png" alt="رمز سماعة الدعم الفني" />
+      </div>
+
+      <!-- Left side: Text + form -->
+      <div class="contact__content">
+        <h1 id="contact-title" class="contact__title">تواصل معنا</h1>
+
+        <form class="contact__form" aria-label="نموذج التواصل">
+          <div class="contact__fields">
+            <input type="text" class="contact__field" name="name" placeholder="الاسم" aria-label="الاسم" required>
+            <input type="tel" class="contact__field" name="phone" placeholder="الرقم" aria-label="الرقم" required>
+            <input type="email" class="contact__field" name="email" placeholder="ايميل" aria-label="ايميل" required>
+          </div>
+
+          <input type="text" class="contact__subject" name="subject" placeholder="الموضوع" aria-label="الموضوع">
+
+          <div class="contact__info">
+            <span class="contact__phone">0991547822\27725145</span>
+
+            <!-- Phone icon -->
+            <a href="tel:0991547822" aria-label="اتصال">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 5.18 2 2 0 0 1 5.11 3h3a2 2 0 0 1 2 1.72c.12.81.37 1.6.72 2.34a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 7.29 7.29l1.27-1.27a2 2 0 0 1 2.11-.45 11.36 11.36 0 0 0 2.34.72A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </a>
+
+            <!-- Social icons -->
+            <a href="#" aria-label="فيسبوك"><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12"/></svg></a>
+            <a href="#" aria-label="انستغرام"><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm4.5-.9a1.1 1.1 0 1 0 0-2.2 1.1 1.1 0 0 0 0 2.2z"/></svg></a>
+            <a href="#" aria-label="تليجرام"><svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M9.04 14.64 8.9 18.7c.4 0 .57-.17.78-.38l1.86-1.79 3.86 2.83c.71.4 1.22.19 1.4-.66l2.53-11.91c.26-1.05-.38-1.46-1.07-1.2L3.88 9.83c-1.02.4-1 1-.18 1.27l3.9 1.21 9.06-5.63-7.62 8.06z"/></svg></a>
+          </div>
+
+          <button type="submit" class="contact__submit">ارسال</button>
+        </form>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+  // Simple submit feedback
+  document.querySelector('.contact__form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('تم إرسال النموذج بنجاح!');
+    this.reset();
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>مواقع مراكز بنوك الدم — تجسيد التصميم</title>
+
+  <!-- Google Fonts (approximate Arabic match used in design) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========= Minimal CSS reset / normalize =========
+       Keeps things predictable across browsers but remains tiny. */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
+    img{max-width:100%;display:block;height:auto}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    /* ================================================== */
+
+    /* ========== CSS variables (tokens) ========== */
+    :root{
+      --brand-red:#c62828;         /* title / accent red */
+      --brand-deep:#1f2f46;        /* footer deep blue */
+      --muted:#6b6b6b;             /* gray text */
+      --bg:#fffdfc;               /* page background */
+      --pill-bg:#fff;             /* pill background */
+      --pill-border:#e0e0e0;
+      --pill-active-bg:#5d1f1f;   /* dark red pill active */
+      --pill-active-color:#fff;
+      --card-radius:14px;
+      --container-w:1100px;
+      --gap:18px;
+      --space-sm:8px;
+      --space-md:16px;
+      --space-lg:28px;
+      --type-base:16px;
+      --type-scale-ratio:1.125;
+      --heading-font: 'Cairo', system-ui, sans-serif;
+      --body-font: 'Tajawal', system-ui, sans-serif;
+      --focus-outline: 3px solid #ffca8a;
+    }
+
+    /* ========== Global typography & layout ========== */
+    html { font-size: var(--type-base); }
+    body{
+      font-family: var(--body-font);
+      background:var(--bg);
+      color:#222;
+      line-height:1.45;
+      -webkit-text-size-adjust:100%;
+    }
+
+    /* Utility container to center content */
+    .site__wrap{
+      max-width:var(--container-w);
+      margin: 0 auto;
+      padding: 28px 22px;
+    }
+
+    /* ========== Header ========== */
+    header.page-header{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:var(--gap);
+      padding: 6px 0 18px;
+      position:relative;
+    }
+
+    /* Left circular user / profile placeholder (M) */
+    .header__meta{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .user-btn{
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      border:2px solid #222;
+      display:inline-grid;
+      place-items:center;
+      font-weight:700;
+      background:white;
+      cursor:pointer;
+    }
+    /* Top navigation (right aligned because RTL) */
+    nav.main-nav{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:flex-end;
+      flex:1 1 auto;
+      padding-right:20px;
+    }
+    nav.main-nav a{
+      color:var(--brand-red);
+      font-weight:600;
+      font-family:var(--heading-font);
+    }
+    /* Small map-of-country logo on the right */
+    .logo-map{
+      width:110px;
+      min-width:110px;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+    }
+    .logo-map svg{height:46px;width:auto;opacity:.95}
+
+    /* ========== Main content ========== */
+    main[role="main"]{
+      padding-bottom:36px;
+    }
+
+    /* Title area */
+    .page-title{
+      display:flex;
+      gap:20px;
+      align-items:center;
+      margin-top:6px;
+      margin-bottom:16px;
+      flex-wrap:wrap;
+    }
+    .page-title h1{
+      margin:0;
+      color:var(--brand-red);
+      font-family:var(--heading-font);
+      font-weight:700;
+      font-size:calc(var(--type-base) * 1.9);
+      letter-spacing:.5px;
+    }
+    .meta-label{
+      color:#222;
+      background:var(--pill-active-bg);
+      color:var(--pill-active-color);
+      padding:8px 14px;
+      border-radius:6px;
+      font-weight:600;
+      box-shadow:0 1px 0 rgba(0,0,0,.06);
+    }
+
+    /* Pills / filters row */
+    .filters{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin: 12px 0 20px;
+    }
+    .filter__item{
+      background:var(--pill-bg);
+      border:1px solid var(--pill-border);
+      padding:8px 12px;
+      border-radius:12px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 1px 0 rgba(0,0,0,.03);
+      transition: background .12s, color .12s, transform .08s;
+    }
+    .filter__item:focus{outline:var(--focus-outline); outline-offset:3px}
+    .filter__item:hover{transform:translateY(-2px)}
+    .filter__item[aria-pressed="true"]{
+      background:var(--pill-active-bg);
+      color:var(--pill-active-color);
+      border-color:transparent;
+    }
+
+    /* Map card */
+    .map-card{
+      margin-top:18px;
+      background: #f6f7f9;
+      border-radius:var(--card-radius);
+      padding:18px;
+    }
+    .map-frame{
+      position:relative;
+      border-radius:12px;
+      overflow:hidden;
+      background:#ddd;
+      /* subtle inner padding to match design */
+      padding:18px;
+    }
+    .map-frame img{
+      border-radius:10px;
+      display:block;
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      filter:contrast(.95) saturate(.95);
+    }
+
+    /* Red circular markers (SVG rings) positioned absolutely over the map */
+    .map-marker{
+      position:absolute;
+      width:28px;
+      height:28px;
+      transform:translate(50%,-50%); /* position anchor at center */
+      pointer-events:none; /* purely decorative */
+      filter: drop-shadow(0 2px 0 rgba(0,0,0,.12));
+    }
+
+    /* Example positions (these approximate the sample) */
+    .m-1{ top:18%; right:28%; }
+    .m-2{ top:28%; right:46%; }
+    .m-3{ top:42%; right:62%; }
+    .m-4{ top:64%; right:24%; }
+    .m-5{ top:78%; right:66%; }
+
+    /* ========== Footer ========== */
+    footer.site-footer{
+      margin-top:36px;
+      background:var(--brand-deep);
+      color:#fff;
+      padding:28px 18px;
+    }
+    .footer__wrap{
+      max-width:var(--container-w);
+      margin:0 auto;
+      display:flex;
+      gap:24px;
+      align-items:flex-start;
+      justify-content:space-between;
+      padding:8px 10px;
+      flex-wrap:wrap;
+    }
+    .footer__left, .footer__center, .footer__right{
+      min-width:160px;
+    }
+    .footer__social{
+      display:flex;
+      gap:10px;
+      margin-bottom:18px;
+    }
+    .icon-btn{
+      width:36px;height:36px;border-radius:6px;background:transparent;border:1px solid rgba(255,255,255,.15);display:inline-grid;place-items:center;color:#fff;
+    }
+    .footer__center a{ color:#fff; display:inline-block; margin-bottom:10px; opacity:.95}
+    .footer__legal{font-size:12px; color:rgba(255,255,255,.6); margin-top:18px}
+
+    /* small country map icon in footer (right) */
+    .footer__right svg{width:82px; height:auto; opacity:.95}
+
+    /* ========== Responsive behavior ========== */
+    @media (max-width: 980px){
+      .site__wrap{padding-left:18px;padding-right:18px}
+      .map-frame img{height:360px}
+      .page-title h1{font-size:1.6rem}
+    }
+
+    @media (max-width: 640px){
+      header.page-header{flex-direction:row-reverse; align-items:center}
+      nav.main-nav{display:none} /* hide large nav on small screens, JS will provide toggle */
+      .mobile-nav-toggle{display:inline-flex}
+      .page-title{flex-direction:column; align-items:stretch}
+      .map-frame img{height:280px}
+      .footer__wrap{flex-direction:column; align-items:center;text-align:center}
+      .footer__left,.footer__center,.footer__right{min-width:unset}
+    }
+
+    /* Mobile nav toggle button (hidden on desktop) */
+    .mobile-nav-toggle{
+      display:none;
+      border:1px solid #222;
+      padding:8px 10px;
+      border-radius:8px;
+      font-weight:700;
+      background:white;
+      cursor:pointer;
+    }
+
+    /* Focus styles to ensure keyboard accessibility */
+    a:focus, button:focus, .filter__item:focus{ outline-offset:3px }
+  </style>
+</head>
+<body>
+
+  <!-- Skip link for keyboard users (accessibility) -->
+  <a href="#maincontent" class="sr-only" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">تخطي إلى المحتوى</a>
+
+  <div class="site__wrap" role="document">
+    <!-- Header -->
+    <header class="page-header" role="banner" aria-label="رأس الصفحة">
+      <div class="header__meta" aria-hidden="false">
+        <!-- circular user / menu icon (left on design) -->
+        <button class="user-btn" aria-label="قائمة المستخدم" id="userMenuBtn">M</button>
+
+        <!-- Mobile nav toggle (appears on small screens) -->
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileNav">☰</button>
+      </div>
+
+      <!-- Main nav (right side in RTL) -->
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <a href="#" role="link">الرئيسية</a>
+        <a href="#" role="link">البحث عن فصيلة</a>
+        <a href="#" role="link" style="color:#b22222">المراكز</a>
+        <a href="#" role="link">حجز موعد</a>
+        <a href="#" role="link">تواصل معنا</a>
+      </nav>
+
+      <!-- logo / small country map on the right -->
+      <div class="logo-map" aria-hidden="true">
+        <!-- Simple inline SVG that resembles the small map shape from the design -->
+        <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="خريطة سورية">
+          <g fill="#e9eef6">
+            <path d="M15 12c6-3 20-5 28-4s22 2 30 6 16 14 18 22 1 20-2 26-8 12-16 14-14-1-22 0-20 2-28-6S8 40 10 28 12 18 15 12z" stroke="#b8bfd0" stroke-width="1"/>
+          </g>
+          <text x="85" y="70" font-size="12" fill="#c62828" font-weight="700" font-family="sans-serif">بنـد</text>
+        </svg>
+      </div>
+    </header>
+
+    <!-- Mobile nav area (hidden on desktop) -->
+    <nav id="mobileNav" style="display:none;" aria-hidden="true" aria-label="قائمة الهاتف">
+      <ul style="list-style:none;margin:12px 0;padding:0;display:flex;flex-direction:column;gap:8px">
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#">البحث عن فصيلة</a></li>
+        <li><a href="#">المراكز</a></li>
+        <li><a href="#">حجز موعد</a></li>
+        <li><a href="#">تواصل معنا</a></li>
+      </ul>
+    </nav>
+
+    <!-- Main content -->
+    <main id="maincontent" role="main" aria-labelledby="pageTitle">
+      <!-- Title and province tag -->
+      <div class="page-title">
+        <h1 id="pageTitle">مواقع مراكز بنوك الدم</h1>
+        <!-- active province pill -->
+        <div class="meta-label" aria-hidden="true">ريف دمشق</div>
+      </div>
+
+      <!-- Row of filter pills (extracted from design) -->
+      <div class="filters" role="toolbar" aria-label="قائمة المحافظات">
+        <!-- Each button uses aria-pressed to indicate selection (toggle-like) -->
+        <button class="filter__item" aria-pressed="false">دمشق</button>
+        <button class="filter__item" aria-pressed="true">ريف دمشق</button>
+        <button class="filter__item" aria-pressed="false">حمص</button>
+        <button class="filter__item" aria-pressed="false">حلب</button>
+        <button class="filter__item" aria-pressed="false">ادلب</button>
+        <button class="filter__item" aria-pressed="false">الحسكة</button>
+        <button class="filter__item" aria-pressed="false">درعا</button>
+        <button class="filter__item" aria-pressed="false">طرطوس</button>
+        <button class="filter__item" aria-pressed="false">اللاذقية</button>
+        <button class="filter__item" aria-pressed="false">دير الزور</button>
+        <button class="filter__item" aria-pressed="false">حماه</button>
+        <button class="filter__item" aria-pressed="false">الرقة</button>
+        <button class="filter__item" aria-pressed="false">القنيطرة</button>
+        <button class="filter__item" aria-pressed="false">السويداء</button>
+      </div>
+
+      <!-- Map card with decorative markers -->
+      <section class="map-card" aria-label="خريطة مراكز بنوك الدم">
+        <div class="map-frame" role="img" aria-label="خريطة توضح مواقع المراكز">
+          <!-- Use the uploaded map image file. Replace src if file names differ.
+               In the environment where you paste this HTML, copy the original uploaded
+               image to the same folder and name it "map.png" or adjust the src. -->
+          <img src="/mnt/data/21a0f2cd-0080-4c4d-87ae-b0eca71bdc01.png" alt="خريطة توضيحية بمواقع المراكز">
+
+          <!-- Decorative markers (SVG rings) placed to emulate the design.
+               These are purely presentation — aria-hidden so screen readers skip them. -->
+          <svg class="map-marker m-1" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          </svg>
+
+          <svg class="map-marker m-2" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          </svg>
+
+          <svg class="map-marker m-3" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          </svg>
+
+          <svg class="map-marker m-4" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          </svg>
+
+          <svg class="map-marker m-5" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          </svg>
+
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo" aria-label="تذييل الصفحة">
+      <div class="footer__wrap">
+        <div class="footer__left">
+          <div class="footer__social" aria-hidden="false">
+            <!-- Using generic social icons as inline SVGs (accessible names via aria-label) -->
+            <button class="icon-btn" aria-label="فيسبوك"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M14 3h3v4h-3v2h3v4h-3v9h-4v-9H8v-4h2V7a3 3 0 0 1 3-3h1z" fill="currentColor"/></svg></button>
+            <button class="icon-btn" aria-label="انستغرام"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></button>
+            <button class="icon-btn" aria-label="تلغرام"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M3 11l17-6-6 13-3-5-8-2z" fill="currentColor"/></svg></button>
+          </div>
+
+          <div class="footer__legal">COPYRIGHT © 2025 &nbsp; Blood Bank Syria, ALL RIGHTS RESERVED.</div>
+        </div>
+
+        <div class="footer__center">
+          <a href="#">الرئيسية</a> •
+          <a href="#">البحث عن فصيلة</a> •
+          <a href="#">المراكز</a><br/>
+          <a href="#">حجز موعد</a> •
+          <a href="#">تواصل معنا</a>
+        </div>
+
+        <div class="footer__right" aria-hidden="true">
+          <!-- small map svg echo (purely decorative) -->
+          <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="خريطة سورية صغيرة">
+            <g fill="#e9eef6">
+              <path d="M15 12c6-3 20-5 28-4s22 2 30 6 16 14 18 22 1 20-2 26-8 12-16 14-14-1-22 0-20 2-28-6S8 40 10 28 12 18 15 12z" stroke="#c3d2e6" stroke-width="1"/>
+            </g>
+            <text x="80" y="68" font-size="10" fill="#fff" font-weight="700" font-family="sans-serif">دم</text>
+          </svg>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // ========== script.js (embedded) ==========
+    // Progressive, unobtrusive JS:
+    // - mobile nav toggle
+    // - filter pills keyboard/press state handling (aria-pressed)
+    // - small accessibility focus helpers
+
+    (function(){
+      // Mobile nav toggle
+      const mobileToggle = document.getElementById('mobileNavToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      if(mobileToggle && mobileNav){
+        mobileToggle.addEventListener('click', function(){
+          const expanded = this.getAttribute('aria-expanded') === 'true';
+          this.setAttribute('aria-expanded', String(!expanded));
+          if(expanded){
+            mobileNav.style.display = 'none';
+            mobileNav.setAttribute('aria-hidden','true');
+          } else {
+            mobileNav.style.display = 'block';
+            mobileNav.setAttribute('aria-hidden','false');
+            // Move focus into first link for keyboard users
+            const firstLink = mobileNav.querySelector('a');
+            if(firstLink) firstLink.focus();
+          }
+        });
+      }
+
+      // Filter pill toggle behavior (single selection as in the design)
+      const pills = Array.from(document.querySelectorAll('.filter__item'));
+      function setActivePill(activeButton){
+        // Set all to false
+        pills.forEach(btn=>{
+          btn.setAttribute('aria-pressed','false');
+        });
+        // Set chosen one to true
+        activeButton.setAttribute('aria-pressed','true');
+      }
+      // click & keyboard behavior
+      pills.forEach(btn=>{
+        btn.addEventListener('click', (e)=>{
+          setActivePill(e.currentTarget);
+        });
+        // allow space/enter to toggle when focused
+        btn.addEventListener('keydown', (e)=>{
+          if(e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            setActivePill(e.currentTarget);
+          }
+        });
+      });
+
+      // Small accessibility: enable skip-link visibility on focus
+      const skip = document.querySelector('.sr-only');
+      if(skip){
+        // when focused, move it into view
+        skip.addEventListener('focus', function(){
+          this.style.position = 'static';
+          this.style.left = 'auto';
+          this.style.top = '8px';
+          this.style.width = 'auto';
+          this.style.height = 'auto';
+          this.style.background = '#fff';
+          this.style.padding = '6px 12px';
+          this.style.zIndex = 1000;
+        });
+        skip.addEventListener('blur', function(){
+          this.style.position = 'absolute';
+          this.style.left = '-9999px';
+        });
+      }
+
+      // Ensure all interactive inline buttons are reachable by keyboard in visual order
+      // (No additional code needed; buttons are native focusable elements.)
+    })();
+  </script>
+</body>
+</html>

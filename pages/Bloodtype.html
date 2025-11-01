@@ -1,0 +1,393 @@
+<!-- ========================================================= -->
+<!-- index.html — Blood Type Search Page (Arabic RTL)          -->
+<!-- Enhanced with hover/focus animations                      -->
+<!-- ========================================================= -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>البحث عن فصيلة دم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ========================================================= */
+    /* =============== CSS RESET / NORMALIZE ==================== */
+    /* ========================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Cairo', sans-serif;
+      background-color: #fff;
+      color: #222;
+      line-height: 1.6;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    /* ========================================================= */
+    /* ===================== THEME VARIABLES ==================== */
+    /* ========================================================= */
+    :root {
+      --color-primary: #b10000; /* Red used for titles/buttons */
+      --color-dark: #0a0a0a;
+      --color-accent: #1f3a57; /* Navy blue from footer/button */
+      --color-bg: #ffffff;
+      --color-border: #ccc;
+      --radius: 8px;
+      --space-s: 0.5rem;
+      --space-m: 1rem;
+      --space-l: 2rem;
+      --font-large: 1.25rem;
+      --font-xlarge: 1.5rem;
+      --transition: 0.25s ease-in-out;
+    }
+
+    /* ========================================================= */
+    /* ======================== HEADER ========================== */
+    /* ========================================================= */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-m) var(--space-l);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav {
+      display: flex;
+      gap: var(--space-l);
+      align-items: center;
+      font-size: var(--font-large);
+    }
+    .nav a {
+      color: var(--color-dark);
+      font-weight: 500;
+      position: relative;
+      transition: color var(--transition);
+    }
+    .nav a.active {
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+    .nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-primary);
+      transition: width var(--transition);
+    }
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: background var(--transition);
+    }
+    .nav-toggle:hover {
+      background-color: var(--color-primary);
+      color: #fff;
+    }
+
+    /* ========================================================= */
+    /* ======================== MAIN ============================ */
+    /* ========================================================= */
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-l);
+      padding: var(--space-l);
+    }
+
+    .illustration {
+      flex: 1 1 300px;
+      max-width: 350px;
+    }
+
+    .search-box {
+      flex: 1 1 400px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      padding: var(--space-l);
+      background-color: var(--color-bg);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .search-title {
+      color: var(--color-primary);
+      font-size: var(--font-xlarge);
+      font-weight: 700;
+      margin-bottom: var(--space-l);
+    }
+
+    .search-section {
+      margin-bottom: var(--space-l);
+    }
+
+    .search-section label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: var(--space-s);
+      font-size: var(--font-large);
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-s);
+    }
+
+    .btn-option {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      background-color: #fff;
+      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-option:hover,
+    .btn-option:focus {
+      background-color: #f8f8f8;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      outline: none;
+    }
+
+    .btn-option.active {
+      background-color: var(--color-primary);
+      color: #fff;
+      border-color: var(--color-primary);
+      transform: scale(1.03);
+      box-shadow: 0 3px 10px rgba(177, 0, 0, 0.3);
+    }
+
+    .search-submit {
+      display: block;
+      margin-top: var(--space-l);
+      background-color: var(--color-accent);
+      color: #fff;
+      font-size: var(--font-large);
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border-radius: var(--radius);
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .search-submit:hover,
+    .search-submit:focus {
+      background-color: #2a4a6d;
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    /* ========================================================= */
+    /* ======================== FOOTER ========================== */
+    /* ========================================================= */
+    footer {
+      background-color: var(--color-accent);
+      color: #fff;
+      text-align: center;
+      padding: var(--space-l) var(--space-m);
+      margin-top: var(--space-l);
+    }
+
+    footer .nav-footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-l);
+      margin-bottom: var(--space-m);
+      font-size: var(--font-large);
+    }
+
+    footer .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-m);
+      margin-bottom: var(--space-m);
+    }
+
+    footer .social-icons a img {
+      width: 24px;
+      height: 24px;
+      transition: transform var(--transition);
+    }
+
+    footer .social-icons a:hover img {
+      transform: scale(1.15);
+    }
+
+    footer small {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+
+    /* ========================================================= */
+    /* ===================== RESPONSIVE ======================== */
+    /* ========================================================= */
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+      }
+      .nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #fff;
+        border-top: 1px solid var(--color-border);
+        padding: var(--space-m) 0;
+      }
+      .nav.active {
+        display: flex;
+      }
+      .nav-toggle {
+        display: flex;
+      }
+      main {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ========================================================= -->
+  <!-- ======================== HEADER ========================== -->
+  <!-- ========================================================= -->
+  <header>
+    <button class="nav-toggle" aria-label="فتح القائمة">M</button>
+    <nav class="nav" aria-label="التنقل الرئيسي">
+      <a href="#">الرئيسية</a>
+      <a href="#" class="active">البحث عن فصيلة</a>
+      <a href="#">المراكز</a>
+      <a href="#">حجز موعد</a>
+      <a href="#">تواصل معنا</a>
+    </nav>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Syria_location_map.svg" alt="خريطة سوريا" style="width:50px; height:auto;">
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- ========================= MAIN =========================== -->
+  <!-- ========================================================= -->
+  <main>
+    <section class="illustration">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="تبرع بالدم">
+    </section>
+
+    <section class="search-box" aria-labelledby="search-title">
+      <h1 id="search-title" class="search-title">البحث عن فصيلة دم</h1>
+
+      <div class="search-section">
+        <label for="rh">ما هي الـ Rh؟</label>
+        <div class="btn-group" id="rh">
+          <button class="btn-option">زمرة دم سالبة</button>
+          <button class="btn-option active">زمرة دم موجبة</button>
+        </div>
+      </div>
+
+      <div class="search-section">
+        <label for="blood-type">ما هي فصيلة الدم؟</label>
+        <div class="btn-group" id="blood-type">
+          <button class="btn-option">AB</button>
+          <button class="btn-option">O</button>
+          <button class="btn-option active">B</button>
+          <button class="btn-option">A</button>
+        </div>
+      </div>
+
+      <div class="search-section">
+        <label for="province">المحافظة</label>
+        <div class="btn-group" id="province">
+          <button class="btn-option">دمشق</button>
+          <button class="btn-option">ريف دمشق</button>
+          <button class="btn-option">حمص</button>
+          <button class="btn-option">حلب</button>
+          <button class="btn-option">ادلب</button>
+          <button class="btn-option">دير الزور</button>
+          <button class="btn-option">درعا</button>
+          <button class="btn-option">اللاذقية</button>
+          <button class="btn-option">طرطوس</button>
+          <button class="btn-option">الحسكة</button>
+          <button class="btn-option">السويداء</button>
+          <button class="btn-option">القنيطرة</button>
+          <button class="btn-option">الرقة</button>
+          <button class="btn-option">حماه</button>
+        </div>
+      </div>
+
+      <button class="search-submit">بحث</button>
+    </section>
+  </main>
+
+  <!-- ========================================================= -->
+  <!-- ======================== FOOTER ========================== -->
+  <!-- ========================================================= -->
+  <footer>
+    <nav class="nav-footer" aria-label="روابط تذييل الصفحة">
+      <a href="#">الرئيسية</a>
+      <a href="#">البحث عن فصيلة</a>
+      <a href="#">المراكز</a>
+      <a href="#">حجز موعد</a>
+      <a href="#">تواصل معنا</a>
+    </nav>
+
+    <div class="social-icons">
+      <a href="#" aria-label="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="فيسبوك"></a>
+      <a href="#" aria-label="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="انستغرام"></a>
+      <a href="#" aria-label="Telegram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111644.png" alt="تليغرام"></a>
+    </div>
+
+    <small>COPYRIGHT © 2025 Boold Bank Syria, ALL RIGHTS RESERVED.</small>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- ======================== SCRIPT ========================== -->
+  <!-- ========================================================= -->
+  <script>
+    // Toggle active state on option buttons (accessible selection)
+    document.querySelectorAll('.btn-group').forEach(group => {
+      group.addEventListener('click', e => {
+        if (e.target.classList.contains('btn-option')) {
+          group.querySelectorAll('.btn-option').forEach(btn => btn.classList.remove('active'));
+          e.target.classList.add('active');
+        }
+      });
+    });
+
+    // Mobile navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav');
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
