@@ -1,393 +1,405 @@
-<!-- ========================================================= -->
-<!-- index.html — Blood Type Search Page (Arabic RTL)          -->
-<!-- Enhanced with hover/focus animations                      -->
-<!-- ========================================================= -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>البحث عن فصيلة دم</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    /* ========================================================= */
-    /* =============== CSS RESET / NORMALIZE ==================== */
-    /* ========================================================= */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    html, body {
-      height: 100%;
-      font-family: 'Cairo', sans-serif;
-      background-color: #fff;
-      color: #222;
-      line-height: 1.6;
-    }
-    img {
-      max-width: 100%;
-      display: block;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    button {
-      font-family: inherit;
-      cursor: pointer;
-      border: none;
-      background: none;
-    }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>البحث عن فصيلة دم — بنك الدم السوري</title>
 
-    /* ========================================================= */
-    /* ===================== THEME VARIABLES ==================== */
-    /* ========================================================= */
-    :root {
-      --color-primary: #b10000; /* Red used for titles/buttons */
-      --color-dark: #0a0a0a;
-      --color-accent: #1f3a57; /* Navy blue from footer/button */
-      --color-bg: #ffffff;
-      --color-border: #ccc;
-      --radius: 8px;
-      --space-s: 0.5rem;
-      --space-m: 1rem;
-      --space-l: 2rem;
-      --font-large: 1.25rem;
-      --font-xlarge: 1.5rem;
-      --transition: 0.25s ease-in-out;
-    }
+    <link rel="icon" type="image/x-icon" href="../images/logo 1.png">
 
-    /* ========================================================= */
-    /* ======================== HEADER ========================== */
-    /* ========================================================= */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--space-m) var(--space-l);
-      border-bottom: 1px solid var(--color-border);
-    }
+    <!-- Google font for Arabic readability -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet">
 
-    .nav {
-      display: flex;
-      gap: var(--space-l);
-      align-items: center;
-      font-size: var(--font-large);
-    }
-    .nav a {
-      color: var(--color-dark);
-      font-weight: 500;
-      position: relative;
-      transition: color var(--transition);
-    }
-    .nav a.active {
-      color: var(--color-primary);
-      font-weight: 700;
-    }
-    .nav a::after {
-      content: "";
-      position: absolute;
-      bottom: -4px;
-      right: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--color-primary);
-      transition: width var(--transition);
-    }
-    .nav a:hover::after {
-      width: 100%;
-    }
+    <!-- main css -->
+    <link rel="stylesheet" href="../styles/main.css">
+    
+    <!-- bloodtype css -->
+    <link rel="stylesheet" href="../styles/bloodtype.css">
+    
+  </head>
+  <body class="page">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header__inner container">
+        <div class="logo_with_nav">
+          <div class="header__brand">
+            <img src="../images/logo 1.png" alt="شعار بنك الدم السوري">
+          </div>
 
-    .nav-toggle {
-      display: none;
-      border: 1px solid var(--color-border);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      font-size: 1rem;
-      transition: background var(--transition);
-    }
-    .nav-toggle:hover {
-      background-color: var(--color-primary);
-      color: #fff;
-    }
+          <!-- القائمة الرئيسية للشاشات الكبيرة -->
+          <nav class="nav nav--desktop" aria-label="القائمة الرئيسية">
+            <ul class="nav__list">
+              <li><a class="nav__link" href="../index.html">الرئيسية</a></li>
+              <li><a class="nav__link nav__link--active" href="Bloodtype.html">البحث عن فصيلة</a></li>
+              <li><a class="nav__link" href="Map.html">المراكز</a></li>
+              <li><a class="nav__link" href="Contactus.html">حجز موعد</a></li>
+              <li><a class="nav__link" href="Contactus.html">تواصل معنا</a></li>
+            </ul>
+          </nav>
+        </div>
 
-    /* ========================================================= */
-    /* ======================== MAIN ============================ */
-    /* ========================================================= */
-    main {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: var(--space-l);
-      padding: var(--space-l);
-    }
+        <!-- عناصر المستخدم -->
+        <div class="user-actions">
+          <!-- حالة عدم تسجيل الدخول -->
+          <div class="auth-buttons" id="authButtons">
+            <a href="#" class="btn btn--login">تسجيل الدخول</a>
+            <a href="#" class="btn btn--signup">إنشاء حساب</a>
+          </div>
 
-    .illustration {
-      flex: 1 1 300px;
-      max-width: 350px;
-    }
+          <!-- حالة تسجيل الدخول -->
+          <div class="user-profile" id="userProfile">
+            <div class="user-avatar">
+              <span class="user-initial">م</span>
+              <div class="user-dropdown">
+                <a href="#" class="dropdown-item">الملف الشخصي</a>
+                <a href="#" class="dropdown-item">التبرعات السابقة</a>
+                <a href="#" class="dropdown-item">الإعدادات</a>
+                <a href="#" class="dropdown-item dropdown-item--logout">تسجيل
+                  الخروج</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    .search-box {
-      flex: 1 1 400px;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      padding: var(--space-l);
-      background-color: var(--color-bg);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
+        <!-- زر القائمة للشاشات الصغيرة -->
+        <button class="header__menu" id="mobileMenuBtn" aria-label="menu"
+          aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
 
-    .search-title {
-      color: var(--color-primary);
-      font-size: var(--font-xlarge);
-      font-weight: 700;
-      margin-bottom: var(--space-l);
-    }
+      <!-- القائمة المنزلقة للشاشات الصغيرة -->
+      <nav class="nav nav--mobile" id="mobileNav"
+        aria-label="القائمة الرئيسية للجوال">
+        <ul class="nav__list nav__list--mobile">
+          <li><a class="nav__link" href="../index.html">الرئيسية</a></li>
+          <li><a class="nav__link nav__link--active" href="Bloodtype.html">البحث عن فصيلة</a></li>
+          <li><a class="nav__link" href="Map.html">المراكز</a></li>
+          <li><a class="nav__link" href="Contactus.html">حجز موعد</a></li>
+          <li><a class="nav__link" href="Contactus.html">تواصل معنا</a></li>
+          <li class="nav__auth-mobile">
+            <a href="#" class="btn btn--login btn--block">تسجيل الدخول</a>
+            <a href="#" class="btn btn--signup btn--block">إنشاء حساب</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-    .search-section {
-      margin-bottom: var(--space-l);
-    }
+    <!-- MAIN -->
+    <main class="main container blood-type-page">
+      <h1 class="page-title">البحث عن فصيلة دم</h1>
+      
+      <div class="search-container">
+        <div class="search-illustration">
+          <img src="../images/bloodtype.png" alt="تبرع بالدم">
+        </div>
+        
+        <div class="search-box">
+          <div class="search-section">
+            <label class="search-label">ما هي الـ Rh؟</label>
+            <div class="btn-group" id="rh">
+              <button class="btn-option">زمرة دم سالبة</button>
+              <button class="btn-option active">زمرة دم موجبة</button>
+            </div>
+          </div>
 
-    .search-section label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: var(--space-s);
-      font-size: var(--font-large);
-    }
+          <div class="search-section">
+            <label class="search-label">ما هي فصيلة الدم؟</label>
+            <div class="btn-group" id="blood-type">
+              <button class="btn-option">AB</button>
+              <button class="btn-option">O</button>
+              <button class="btn-option active">B</button>
+              <button class="btn-option">A</button>
+            </div>
+          </div>
 
-    .btn-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-s);
-    }
+          <div class="search-section">
+            <label class="search-label">المحافظة</label>
+            <div class="btn-group" id="province">
+              <button class="btn-option">دمشق</button>
+              <button class="btn-option">ريف دمشق</button>
+              <button class="btn-option">حمص</button>
+              <button class="btn-option">حلب</button>
+              <button class="btn-option">ادلب</button>
+              <button class="btn-option">دير الزور</button>
+              <button class="btn-option">درعا</button>
+              <button class="btn-option">اللاذقية</button>
+              <button class="btn-option">طرطوس</button>
+              <button class="btn-option">الحسكة</button>
+              <button class="btn-option">السويداء</button>
+              <button class="btn-option">القنيطرة</button>
+              <button class="btn-option">الرقة</button>
+              <button class="btn-option">حماه</button>
+            </div>
+          </div>
 
-    .btn-option {
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      background-color: #fff;
-      transition: background var(--transition), color var(--transition), transform var(--transition), box-shadow var(--transition);
-    }
+          <button class="search-submit">بحث</button>
+        </div>
+      </div>
+      
+      <div class="results-section">
+        <h2 class="results-title">نتائج البحث</h2>
+        <div class="results-grid">
+          <div class="result-card">
+            <h3 class="center-name">مركز دمشق للتبرع بالدم</h3>
+            <p class="center-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              دمشق، شارع العابد
+            </p>
+            <span class="center-status status-available">متوفر</span>
+          </div>
+          
+          <div class="result-card">
+            <h3 class="center-name">مستشفى المواساة</h3>
+            <p class="center-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              دمشق، المزة
+            </p>
+            <span class="center-status status-limited">كمية محدودة</span>
+          </div>
+          
+          <div class="result-card">
+            <h3 class="center-name">مشفى الأسد الجامعي</h3>
+            <p class="center-location">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              </svg>
+              دمشق، البرامكة
+            </p>
+            <span class="center-status status-available">متوفر</span>
+          </div>
+        </div>
+      </div>
+    </main>
 
-    .btn-option:hover,
-    .btn-option:focus {
-      background-color: #f8f8f8;
-      transform: translateY(-2px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      outline: none;
-    }
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer__wave">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path
+            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+            opacity=".25" class="shape-fill"></path>
+          <path
+            d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+            opacity=".5" class="shape-fill"></path>
+          <path
+            d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+            class="shape-fill"></path>
+        </svg>
+      </div>
 
-    .btn-option.active {
-      background-color: var(--color-primary);
-      color: #fff;
-      border-color: var(--color-primary);
-      transform: scale(1.03);
-      box-shadow: 0 3px 10px rgba(177, 0, 0, 0.3);
-    }
+      <div class="footer__main">
+        <div class="container">
+          <div class="footer__grid">
+            <!-- قسم المعلومات -->
+            <div class="footer__info">
+              <div class="footer__brand">
+                <img src="../images/logo 1.png" alt="بنك الدم السوري"
+                  class="footer__logo">
+                <h3 class="footer__title">بنك الدم السوري</h3>
+              </div>
+              <p class="footer__description">
+                نسعى لإنقاذ الأرواح من خلال توفير الدم الآمن للمحتاجين.
+                انضم إلينا في رحلة العطاء والإنسانية.
+              </p>
+              <div class="footer__contact">
+                <div class="contact__item">
+                  <svg class="contact__icon" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  </svg>
+                  <span>info@bloodbank.sy</span>
+                </div>
+                <div class="contact__item">
+                  <svg class="contact__icon" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path
+                      d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                  </svg>
+                  <span>+963 11 123 4567</span>
+                </div>
+              </div>
+            </div>
 
-    .search-submit {
-      display: block;
-      margin-top: var(--space-l);
-      background-color: var(--color-accent);
-      color: #fff;
-      font-size: var(--font-large);
-      font-weight: 600;
-      padding: 0.75rem 2rem;
-      border-radius: var(--radius);
-      transition: background var(--transition), transform var(--transition);
-    }
+            <!-- روابط سريعة -->
+            <div class="footer__links">
+              <h4 class="footer__heading">روابط سريعة</h4>
+              <ul class="footer__list">
+                <li><a href="index.html" class="footer__link">الرئيسية</a></li>
+                <li><a href="pages/Bloodtype.html" class="footer__link">البحث عن فصيلة</a></li>
+                <li><a href="pages/Map.html" class="footer__link">مراكز التبرع</a></li>
+                <li><a href="#" class="footer__link">حجز موعد</a></li>
+                <li><a href="pages/Contactus.html" class="footer__link">تواصل معنا</a></li>
+              </ul>
+            </div>
 
-    .search-submit:hover,
-    .search-submit:focus {
-      background-color: #2a4a6d;
-      transform: translateY(-2px);
-      outline: none;
-    }
-
-    /* ========================================================= */
-    /* ======================== FOOTER ========================== */
-    /* ========================================================= */
-    footer {
-      background-color: var(--color-accent);
-      color: #fff;
-      text-align: center;
-      padding: var(--space-l) var(--space-m);
-      margin-top: var(--space-l);
-    }
-
-    footer .nav-footer {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: var(--space-l);
-      margin-bottom: var(--space-m);
-      font-size: var(--font-large);
-    }
-
-    footer .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-m);
-      margin-bottom: var(--space-m);
-    }
-
-    footer .social-icons a img {
-      width: 24px;
-      height: 24px;
-      transition: transform var(--transition);
-    }
-
-    footer .social-icons a:hover img {
-      transform: scale(1.15);
-    }
-
-    footer small {
-      font-size: 0.875rem;
-      opacity: 0.8;
-    }
-
-    /* ========================================================= */
-    /* ===================== RESPONSIVE ======================== */
-    /* ========================================================= */
-    @media (max-width: 768px) {
-      header {
-        flex-wrap: wrap;
-      }
-      .nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        background-color: #fff;
-        border-top: 1px solid var(--color-border);
-        padding: var(--space-m) 0;
-      }
-      .nav.active {
-        display: flex;
-      }
-      .nav-toggle {
-        display: flex;
-      }
-      main {
-        flex-direction: column;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- ========================================================= -->
-  <!-- ======================== HEADER ========================== -->
-  <!-- ========================================================= -->
-  <header>
-    <button class="nav-toggle" aria-label="فتح القائمة">M</button>
-    <nav class="nav" aria-label="التنقل الرئيسي">
-      <a href="#">الرئيسية</a>
-      <a href="#" class="active">البحث عن فصيلة</a>
-      <a href="#">المراكز</a>
-      <a href="#">حجز موعد</a>
-      <a href="#">تواصل معنا</a>
-    </nav>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Syria_location_map.svg" alt="خريطة سوريا" style="width:50px; height:auto;">
-  </header>
-
-  <!-- ========================================================= -->
-  <!-- ========================= MAIN =========================== -->
-  <!-- ========================================================= -->
-  <main>
-    <section class="illustration">
-      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="تبرع بالدم">
-    </section>
-
-    <section class="search-box" aria-labelledby="search-title">
-      <h1 id="search-title" class="search-title">البحث عن فصيلة دم</h1>
-
-      <div class="search-section">
-        <label for="rh">ما هي الـ Rh؟</label>
-        <div class="btn-group" id="rh">
-          <button class="btn-option">زمرة دم سالبة</button>
-          <button class="btn-option active">زمرة دم موجبة</button>
+            <!-- اشتراك في النشرة البريدية -->
+            <div class="footer__newsletter">
+              <h4 class="footer__heading">النشرة البريدية</h4>
+              <p class="footer__text">اشترك لتصلك آخر الأخبار والعروض</p>
+              <form class="newsletter__form">
+                <div class="input__group">
+                  <input type="email" class="newsletter__input"
+                    placeholder="بريدك الإلكتروني" required>
+                  <button type="submit" class="newsletter__btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="search-section">
-        <label for="blood-type">ما هي فصيلة الدم؟</label>
-        <div class="btn-group" id="blood-type">
-          <button class="btn-option">AB</button>
-          <button class="btn-option">O</button>
-          <button class="btn-option active">B</button>
-          <button class="btn-option">A</button>
+      <!-- القسم السفلي -->
+      <div class="footer__bottom">
+        <div class="container">
+          <div class="footer__bottom-content">
+            <div class="footer__social">
+              <a href="#" class="social__link" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+              <a href="#" class="social__link" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                </svg>
+              </a>
+              <a href="#" class="social__link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.014 5.367 18.647.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.208 14.806 3.718 13.655 3.718 12.36s.49-2.448 1.408-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.918.875 1.408 2.026 1.408 3.323s-.49 2.448-1.408 3.323c-.875.807-2.026 1.297-3.323 1.297z" />
+                </svg>
+              </a>
+              <a href="#" class="social__link" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="footer__copyright">
+              <p>&copy; 2026 بنك الدم السوري. جميع الحقوق محفوظة.</p>
+              <div class="footer__legal">
+                <a href="#" class="legal__link">سياسة الخصوصية</a>
+                <span class="separator">|</span>
+                <a href="#" class="legal__link">شروط الاستخدام</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </footer>
 
-      <div class="search-section">
-        <label for="province">المحافظة</label>
-        <div class="btn-group" id="province">
-          <button class="btn-option">دمشق</button>
-          <button class="btn-option">ريف دمشق</button>
-          <button class="btn-option">حمص</button>
-          <button class="btn-option">حلب</button>
-          <button class="btn-option">ادلب</button>
-          <button class="btn-option">دير الزور</button>
-          <button class="btn-option">درعا</button>
-          <button class="btn-option">اللاذقية</button>
-          <button class="btn-option">طرطوس</button>
-          <button class="btn-option">الحسكة</button>
-          <button class="btn-option">السويداء</button>
-          <button class="btn-option">القنيطرة</button>
-          <button class="btn-option">الرقة</button>
-          <button class="btn-option">حماه</button>
-        </div>
-      </div>
-
-      <button class="search-submit">بحث</button>
-    </section>
-  </main>
-
-  <!-- ========================================================= -->
-  <!-- ======================== FOOTER ========================== -->
-  <!-- ========================================================= -->
-  <footer>
-    <nav class="nav-footer" aria-label="روابط تذييل الصفحة">
-      <a href="#">الرئيسية</a>
-      <a href="#">البحث عن فصيلة</a>
-      <a href="#">المراكز</a>
-      <a href="#">حجز موعد</a>
-      <a href="#">تواصل معنا</a>
-    </nav>
-
-    <div class="social-icons">
-      <a href="#" aria-label="Facebook"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="فيسبوك"></a>
-      <a href="#" aria-label="Instagram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="انستغرام"></a>
-      <a href="#" aria-label="Telegram"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111644.png" alt="تليغرام"></a>
-    </div>
-
-    <small>COPYRIGHT © 2025 Boold Bank Syria, ALL RIGHTS RESERVED.</small>
-  </footer>
-
-  <!-- ========================================================= -->
-  <!-- ======================== SCRIPT ========================== -->
-  <!-- ========================================================= -->
-  <script>
-    // Toggle active state on option buttons (accessible selection)
-    document.querySelectorAll('.btn-group').forEach(group => {
-      group.addEventListener('click', e => {
-        if (e.target.classList.contains('btn-option')) {
-          group.querySelectorAll('.btn-option').forEach(btn => btn.classList.remove('active'));
-          e.target.classList.add('active');
+    <script>
+        // إدارة حالة تسجيل الدخول
+        function toggleLoginState(isLoggedIn) {
+            const authButtons = document.getElementById('authButtons');
+            const userProfile = document.getElementById('userProfile');
+            
+            if (isLoggedIn) {
+                authButtons.style.display = 'none';
+                userProfile.style.display = 'block';
+            } else {
+                authButtons.style.display = 'flex';
+                userProfile.style.display = 'none';
+            }
         }
-      });
-    });
 
-    // Mobile navigation toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav');
-    navToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-  </script>
-</body>
+        // إدارة القائمة المنزلقة للجوال
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        if (mobileMenuBtn && mobileNav) {
+            mobileMenuBtn.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                mobileNav.classList.toggle('nav--mobile-open');
+                this.classList.toggle('header__menu--active');
+                document.body.style.overflow = !isExpanded ? 'hidden' : '';
+            });
+
+            // إغلاق القائمة عند النقر على رابط
+            document.querySelectorAll('.nav__link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('nav--mobile-open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.classList.remove('header__menu--active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // إغلاق القائمة عند النقر خارجها
+            document.addEventListener('click', (e) => {
+                if (!mobileNav.contains(e.target) && 
+                    !mobileMenuBtn.contains(e.target) && 
+                    mobileNav.classList.contains('nav--mobile-open')) {
+                    mobileNav.classList.remove('nav--mobile-open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.classList.remove('header__menu--active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // تجربة: تسجيل الدخول عند النقر على الأزرار
+        document.querySelectorAll('.btn--login, .btn--signup').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleLoginState(true);
+                if (mobileNav) {
+                    mobileNav.classList.remove('nav--mobile-open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.classList.remove('header__menu--active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // تجربة: تسجيل الخروج
+        document.querySelector('.dropdown-item--logout')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleLoginState(false);
+        });
+
+        // إغلاق القائمة عند تغيير حجم النافذة
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024 && mobileNav && mobileNav.classList.contains('nav--mobile-open')) {
+                mobileNav.classList.remove('nav--mobile-open');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.classList.remove('header__menu--active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // تهيئة الحالة الأولية
+        toggleLoginState(false);
+        
+        // إدارة اختيار خيارات البحث
+        document.querySelectorAll('.btn-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const group = this.parentElement;
+                group.querySelectorAll('.btn-option').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+  </body>
 </html>
