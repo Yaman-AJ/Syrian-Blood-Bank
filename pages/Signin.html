@@ -3,248 +3,240 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>إنشاء حساب</title>
+  <title>تسجيل الدخول — بنك الدم السوري</title>
+
+  <!-- Google font for Arabic readability -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
+    rel="stylesheet">
+
   <style>
-    /* ----------------------------
-       CSS VARIABLES
-    ----------------------------- */
+    /* استيراد المتغيرات والأساسيات من التصميم الرئيسي */
     :root {
+      --font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --color-primary: #D62828;
+      --color-primary-dark: #6B1B1B;
+      --color-secondary: #457B9D;
+      --color-secondary-dark: #1D3557;
       --color-bg: #ffffff;
-      --color-card-bg: #f8f9ff;
-      --color-primary: #122143;
-      --color-secondary: #e63946;
-      --color-border: #cfd4e0;
-      --color-border-focus: #122143;
-      --color-text: #333333;
-      --color-placeholder: #b0b3bb;
-      --font-family: 'Tahoma', sans-serif;
-      --radius: 10px;
-      --shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      --spacing-sm: 0.5rem;
-      --spacing-md: 1rem;
-      --spacing-lg: 1.5rem;
-      --transition: all 0.25s ease;
+      --color-muted: #f8f9fa;
+      --color-text: #1a1a1a;
+      --color-text-light: #6c757d;
+      --color-outline: #e9ecef;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --radius-sm: 0.5rem;
+      --radius-md: 0.75rem;
+      --radius-lg: 1rem;
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s ease;
     }
 
-    /* ----------------------------
-       GLOBAL STYLES
-    ----------------------------- */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: var(--font-family);
-      background-color: var(--color-bg);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-size: 1rem;
+      direction: rtl;
+      overflow-x: hidden;
       display: flex;
-      align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      align-items: center;
+      background: linear-gradient(135deg, var(--color-muted) 0%, var(--color-bg) 100%);
     }
 
-    /* ----------------------------
-       CARD CONTAINER
-    ----------------------------- */
-    .signup {
-      background-color: var(--color-card-bg);
-      padding: var(--spacing-lg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+    .auth-container {
+      background: var(--color-bg);
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
       width: 100%;
-      max-width: 360px;
+      max-width: 400px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .auth-title {
       text-align: center;
+      margin-bottom: var(--space-lg);
+      color: var(--color-primary);
+      font-size: 1.5rem;
+      font-weight: 800;
     }
 
-    .signup__title {
-      color: var(--color-secondary);
-      font-weight: bold;
-      margin-bottom: var(--spacing-md);
-      font-size: 1.2rem;
-    }
-
-    /* ----------------------------
-       SOCIAL BUTTONS
-    ----------------------------- */
-    .signup__social {
+    .auth-social {
       display: flex;
-      justify-content: space-between;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-sm);
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
     }
 
-    .signup__btn {
+    .auth-social-btn {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.4rem;
-      background-color: var(--color-primary);
-      color: #fff;
+      gap: var(--space-xs);
+      background: var(--color-secondary-dark);
+      color: white;
       border: none;
-      border-radius: 6px;
-      padding: 0.6rem 0;
-      font-size: 0.9rem;
+      border-radius: var(--radius-md);
+      padding: 0.75rem;
+      font-weight: 600;
       cursor: pointer;
       transition: var(--transition);
     }
 
-    .signup__btn img {
-      pointer-events: none;
+    .auth-social-btn:hover {
+      background: var(--color-secondary);
+      transform: translateY(-2px);
     }
 
-    .signup__btn:hover,
-    .signup__btn:focus {
-      opacity: 0.9;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(18, 33, 67, 0.2);
+    .auth-divider {
+      text-align: center;
+      margin: var(--space-md) 0;
+      color: var(--color-text-light);
+      position: relative;
     }
 
-    .signup__btn:active {
-      transform: scale(0.97);
+    .auth-divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 40%;
+      height: 1px;
+      background: var(--color-outline);
     }
 
-    .signup__divider {
-      margin: var(--spacing-sm) 0;
-      color: var(--color-text);
-      font-size: 0.9rem;
+    .auth-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 40%;
+      height: 1px;
+      background: var(--color-outline);
     }
 
-    /* ----------------------------
-       INPUT FIELDS
-    ----------------------------- */
-    .signup__form {
+    .auth-form {
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-md);
+      gap: var(--space-md);
     }
 
-    .signup__input {
-      padding: 0.7rem;
-      border: 1px solid var(--color-border);
-      border-radius: 6px;
-      font-size: 0.9rem;
-      text-align: right;
-      color: var(--color-text);
+    .auth-input {
+      padding: 0.75rem;
+      border: 2px solid var(--color-outline);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
       transition: var(--transition);
     }
 
-    .signup__input::placeholder {
-      color: var(--color-placeholder);
-    }
-
-    .signup__input:focus {
-      border-color: var(--color-border-focus);
+    .auth-input:focus {
+      border-color: var(--color-secondary);
       outline: none;
-      box-shadow: 0 0 0 3px rgba(18, 33, 67, 0.15);
+      box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.1);
     }
 
-    /* ----------------------------
-       MAIN SUBMIT BUTTON
-    ----------------------------- */
-    .signup__submit {
-      background-color: var(--color-primary);
-      color: #fff;
+    .auth-submit {
+      background: var(--color-primary);
+      color: white;
       border: none;
-      border-radius: 6px;
-      padding: 0.7rem 0;
+      border-radius: var(--radius-md);
+      padding: 0.75rem;
       font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
     }
 
-    .signup__submit:hover,
-    .signup__submit:focus {
-      background-color: #1d2e57;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(18, 33, 67, 0.2);
+    .auth-submit:hover {
+      background: var(--color-primary-dark);
+      transform: translateY(-2px);
     }
 
-    .signup__submit:active {
-      transform: scale(0.98);
+    .auth-footer {
+      text-align: center;
+      margin-top: var(--space-md);
+      color: var(--color-text-light);
     }
 
-    /* ----------------------------
-       FOOTER LINK
-    ----------------------------- */
-    .signup__footer {
-      font-size: 0.85rem;
-      color: var(--color-text);
-    }
-
-    .signup__footer a {
+    .auth-link {
       color: var(--color-primary);
       text-decoration: none;
-      font-weight: bold;
-      transition: var(--transition);
+      font-weight: 600;
     }
 
-    .signup__footer a:hover,
-    .signup__footer a:focus {
-      color: var(--color-secondary);
+    .auth-link:hover {
       text-decoration: underline;
-      outline: none;
-    }
-
-    /* ----------------------------
-       RESPONSIVENESS
-    ----------------------------- */
-    @media (max-width: 480px) {
-      .signup {
-        padding: var(--spacing-md);
-        margin: var(--spacing-md);
-      }
-
-      .signup__btn {
-        font-size: 0.8rem;
-      }
-
-      .signup__title {
-        font-size: 1.1rem;
-      }
     }
   </style>
 </head>
 <body>
-  <main class="signup">
-    <h1 class="signup__title">إنشاء حساب</h1>
-
-    <div class="signup__social">
-      <button class="signup__btn" aria-label="التسجيل باستخدام Google">
+  <div class="auth-container">
+    <h1 class="auth-title">إنشاء حساب</h1>
+    
+    <div class="auth-social">
+      <button class="auth-social-btn">
         <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="" width="18" />
         Google
       </button>
-      <button class="signup__btn" aria-label="التسجيل باستخدام Facebook">
+      <button class="auth-social-btn">
         <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="" width="18" />
         Facebook
       </button>
     </div>
-
-    <p class="signup__divider">أو</p>
-
-    <form class="signup__form">
+    
+    <div class="auth-divider">أو</div>
+    
+    <form class="auth-form">
       <input
         type="email"
-        class="signup__input"
-        placeholder="b.alamia@gmail.com"
+        class="auth-input"
+        placeholder="البريد الإلكتروني"
         aria-label="البريد الإلكتروني"
         required
       />
       <input
         type="password"
-        class="signup__input"
-        placeholder="********"
+        class="auth-input"
+        placeholder="كلمة المرور"
         aria-label="كلمة المرور"
         required
       />
-      <button type="submit" class="signup__submit">إنشاء حساب</button>
+      <button type="submit" class="auth-submit">إنشاء حساب</button>
     </form>
-
-    <p class="signup__footer">
-      هل لديك حساب بالفعل؟ <a href="#">سجّل الدخول</a>
+    
+    <p class="auth-footer">
+      هل لديك حساب بالفعل؟ <a href="#" class="auth-link">سجّل الدخول</a>
     </p>
-  </main>
+  </div>
 </body>
 </html>
