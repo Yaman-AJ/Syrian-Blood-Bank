@@ -1,506 +1,424 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>مواقع مراكز بنوك الدم — تجسيد التصميم</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>المراكز — بنك الدم السوري</title>
 
-  <!-- Google Fonts (approximate Arabic match used in design) -->
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../images/logo 1.png">
 
-  <style>
-    /* ========= Minimal CSS reset / normalize =========
-       Keeps things predictable across browsers but remains tiny. */
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
-    img{max-width:100%;display:block;height:auto}
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
-    /* ================================================== */
+    <!-- Google font for Arabic readability -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet">
 
-    /* ========== CSS variables (tokens) ========== */
-    :root{
-      --brand-red:#c62828;         /* title / accent red */
-      --brand-deep:#1f2f46;        /* footer deep blue */
-      --muted:#6b6b6b;             /* gray text */
-      --bg:#fffdfc;               /* page background */
-      --pill-bg:#fff;             /* pill background */
-      --pill-border:#e0e0e0;
-      --pill-active-bg:#5d1f1f;   /* dark red pill active */
-      --pill-active-color:#fff;
-      --card-radius:14px;
-      --container-w:1100px;
-      --gap:18px;
-      --space-sm:8px;
-      --space-md:16px;
-      --space-lg:28px;
-      --type-base:16px;
-      --type-scale-ratio:1.125;
-      --heading-font: 'Cairo', system-ui, sans-serif;
-      --body-font: 'Tajawal', system-ui, sans-serif;
-      --focus-outline: 3px solid #ffca8a;
-    }
+    <!-- main css -->
+    <link rel="stylesheet" href="../styles/main.css">
+    
+    <!-- map css -->
+    <link rel="stylesheet" href="../styles/map.css">
 
-    /* ========== Global typography & layout ========== */
-    html { font-size: var(--type-base); }
-    body{
-      font-family: var(--body-font);
-      background:var(--bg);
-      color:#222;
-      line-height:1.45;
-      -webkit-text-size-adjust:100%;
-    }
-
-    /* Utility container to center content */
-    .site__wrap{
-      max-width:var(--container-w);
-      margin: 0 auto;
-      padding: 28px 22px;
-    }
-
-    /* ========== Header ========== */
-    header.page-header{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:var(--gap);
-      padding: 6px 0 18px;
-      position:relative;
-    }
-
-    /* Left circular user / profile placeholder (M) */
-    .header__meta{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .user-btn{
-      width:44px;
-      height:44px;
-      border-radius:50%;
-      border:2px solid #222;
-      display:inline-grid;
-      place-items:center;
-      font-weight:700;
-      background:white;
-      cursor:pointer;
-    }
-    /* Top navigation (right aligned because RTL) */
-    nav.main-nav{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      justify-content:flex-end;
-      flex:1 1 auto;
-      padding-right:20px;
-    }
-    nav.main-nav a{
-      color:var(--brand-red);
-      font-weight:600;
-      font-family:var(--heading-font);
-    }
-    /* Small map-of-country logo on the right */
-    .logo-map{
-      width:110px;
-      min-width:110px;
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-    }
-    .logo-map svg{height:46px;width:auto;opacity:.95}
-
-    /* ========== Main content ========== */
-    main[role="main"]{
-      padding-bottom:36px;
-    }
-
-    /* Title area */
-    .page-title{
-      display:flex;
-      gap:20px;
-      align-items:center;
-      margin-top:6px;
-      margin-bottom:16px;
-      flex-wrap:wrap;
-    }
-    .page-title h1{
-      margin:0;
-      color:var(--brand-red);
-      font-family:var(--heading-font);
-      font-weight:700;
-      font-size:calc(var(--type-base) * 1.9);
-      letter-spacing:.5px;
-    }
-    .meta-label{
-      color:#222;
-      background:var(--pill-active-bg);
-      color:var(--pill-active-color);
-      padding:8px 14px;
-      border-radius:6px;
-      font-weight:600;
-      box-shadow:0 1px 0 rgba(0,0,0,.06);
-    }
-
-    /* Pills / filters row */
-    .filters{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin: 12px 0 20px;
-    }
-    .filter__item{
-      background:var(--pill-bg);
-      border:1px solid var(--pill-border);
-      padding:8px 12px;
-      border-radius:12px;
-      font-weight:600;
-      cursor:pointer;
-      box-shadow:0 1px 0 rgba(0,0,0,.03);
-      transition: background .12s, color .12s, transform .08s;
-    }
-    .filter__item:focus{outline:var(--focus-outline); outline-offset:3px}
-    .filter__item:hover{transform:translateY(-2px)}
-    .filter__item[aria-pressed="true"]{
-      background:var(--pill-active-bg);
-      color:var(--pill-active-color);
-      border-color:transparent;
-    }
-
-    /* Map card */
-    .map-card{
-      margin-top:18px;
-      background: #f6f7f9;
-      border-radius:var(--card-radius);
-      padding:18px;
-    }
-    .map-frame{
-      position:relative;
-      border-radius:12px;
-      overflow:hidden;
-      background:#ddd;
-      /* subtle inner padding to match design */
-      padding:18px;
-    }
-    .map-frame img{
-      border-radius:10px;
-      display:block;
-      width:100%;
-      height:420px;
-      object-fit:cover;
-      filter:contrast(.95) saturate(.95);
-    }
-
-    /* Red circular markers (SVG rings) positioned absolutely over the map */
-    .map-marker{
-      position:absolute;
-      width:28px;
-      height:28px;
-      transform:translate(50%,-50%); /* position anchor at center */
-      pointer-events:none; /* purely decorative */
-      filter: drop-shadow(0 2px 0 rgba(0,0,0,.12));
-    }
-
-    /* Example positions (these approximate the sample) */
-    .m-1{ top:18%; right:28%; }
-    .m-2{ top:28%; right:46%; }
-    .m-3{ top:42%; right:62%; }
-    .m-4{ top:64%; right:24%; }
-    .m-5{ top:78%; right:66%; }
-
-    /* ========== Footer ========== */
-    footer.site-footer{
-      margin-top:36px;
-      background:var(--brand-deep);
-      color:#fff;
-      padding:28px 18px;
-    }
-    .footer__wrap{
-      max-width:var(--container-w);
-      margin:0 auto;
-      display:flex;
-      gap:24px;
-      align-items:flex-start;
-      justify-content:space-between;
-      padding:8px 10px;
-      flex-wrap:wrap;
-    }
-    .footer__left, .footer__center, .footer__right{
-      min-width:160px;
-    }
-    .footer__social{
-      display:flex;
-      gap:10px;
-      margin-bottom:18px;
-    }
-    .icon-btn{
-      width:36px;height:36px;border-radius:6px;background:transparent;border:1px solid rgba(255,255,255,.15);display:inline-grid;place-items:center;color:#fff;
-    }
-    .footer__center a{ color:#fff; display:inline-block; margin-bottom:10px; opacity:.95}
-    .footer__legal{font-size:12px; color:rgba(255,255,255,.6); margin-top:18px}
-
-    /* small country map icon in footer (right) */
-    .footer__right svg{width:82px; height:auto; opacity:.95}
-
-    /* ========== Responsive behavior ========== */
-    @media (max-width: 980px){
-      .site__wrap{padding-left:18px;padding-right:18px}
-      .map-frame img{height:360px}
-      .page-title h1{font-size:1.6rem}
-    }
-
-    @media (max-width: 640px){
-      header.page-header{flex-direction:row-reverse; align-items:center}
-      nav.main-nav{display:none} /* hide large nav on small screens, JS will provide toggle */
-      .mobile-nav-toggle{display:inline-flex}
-      .page-title{flex-direction:column; align-items:stretch}
-      .map-frame img{height:280px}
-      .footer__wrap{flex-direction:column; align-items:center;text-align:center}
-      .footer__left,.footer__center,.footer__right{min-width:unset}
-    }
-
-    /* Mobile nav toggle button (hidden on desktop) */
-    .mobile-nav-toggle{
-      display:none;
-      border:1px solid #222;
-      padding:8px 10px;
-      border-radius:8px;
-      font-weight:700;
-      background:white;
-      cursor:pointer;
-    }
-
-    /* Focus styles to ensure keyboard accessibility */
-    a:focus, button:focus, .filter__item:focus{ outline-offset:3px }
-  </style>
-</head>
-<body>
-
-  <!-- Skip link for keyboard users (accessibility) -->
-  <a href="#maincontent" class="sr-only" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">تخطي إلى المحتوى</a>
-
-  <div class="site__wrap" role="document">
-    <!-- Header -->
-    <header class="page-header" role="banner" aria-label="رأس الصفحة">
-      <div class="header__meta" aria-hidden="false">
-        <!-- circular user / menu icon (left on design) -->
-        <button class="user-btn" aria-label="قائمة المستخدم" id="userMenuBtn">M</button>
-
-        <!-- Mobile nav toggle (appears on small screens) -->
-        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-expanded="false" aria-controls="mobileNav">☰</button>
-      </div>
-
-      <!-- Main nav (right side in RTL) -->
-      <nav class="main-nav" aria-label="التنقل الرئيسي">
-        <a href="#" role="link">الرئيسية</a>
-        <a href="#" role="link">البحث عن فصيلة</a>
-        <a href="#" role="link" style="color:#b22222">المراكز</a>
-        <a href="#" role="link">حجز موعد</a>
-        <a href="#" role="link">تواصل معنا</a>
-      </nav>
-
-      <!-- logo / small country map on the right -->
-      <div class="logo-map" aria-hidden="true">
-        <!-- Simple inline SVG that resembles the small map shape from the design -->
-        <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="خريطة سورية">
-          <g fill="#e9eef6">
-            <path d="M15 12c6-3 20-5 28-4s22 2 30 6 16 14 18 22 1 20-2 26-8 12-16 14-14-1-22 0-20 2-28-6S8 40 10 28 12 18 15 12z" stroke="#b8bfd0" stroke-width="1"/>
-          </g>
-          <text x="85" y="70" font-size="12" fill="#c62828" font-weight="700" font-family="sans-serif">بنـد</text>
-        </svg>
-      </div>
-    </header>
-
-    <!-- Mobile nav area (hidden on desktop) -->
-    <nav id="mobileNav" style="display:none;" aria-hidden="true" aria-label="قائمة الهاتف">
-      <ul style="list-style:none;margin:12px 0;padding:0;display:flex;flex-direction:column;gap:8px">
-        <li><a href="#">الرئيسية</a></li>
-        <li><a href="#">البحث عن فصيلة</a></li>
-        <li><a href="#">المراكز</a></li>
-        <li><a href="#">حجز موعد</a></li>
-        <li><a href="#">تواصل معنا</a></li>
-      </ul>
-    </nav>
-
-    <!-- Main content -->
-    <main id="maincontent" role="main" aria-labelledby="pageTitle">
-      <!-- Title and province tag -->
-      <div class="page-title">
-        <h1 id="pageTitle">مواقع مراكز بنوك الدم</h1>
-        <!-- active province pill -->
-        <div class="meta-label" aria-hidden="true">ريف دمشق</div>
-      </div>
-
-      <!-- Row of filter pills (extracted from design) -->
-      <div class="filters" role="toolbar" aria-label="قائمة المحافظات">
-        <!-- Each button uses aria-pressed to indicate selection (toggle-like) -->
-        <button class="filter__item" aria-pressed="false">دمشق</button>
-        <button class="filter__item" aria-pressed="true">ريف دمشق</button>
-        <button class="filter__item" aria-pressed="false">حمص</button>
-        <button class="filter__item" aria-pressed="false">حلب</button>
-        <button class="filter__item" aria-pressed="false">ادلب</button>
-        <button class="filter__item" aria-pressed="false">الحسكة</button>
-        <button class="filter__item" aria-pressed="false">درعا</button>
-        <button class="filter__item" aria-pressed="false">طرطوس</button>
-        <button class="filter__item" aria-pressed="false">اللاذقية</button>
-        <button class="filter__item" aria-pressed="false">دير الزور</button>
-        <button class="filter__item" aria-pressed="false">حماه</button>
-        <button class="filter__item" aria-pressed="false">الرقة</button>
-        <button class="filter__item" aria-pressed="false">القنيطرة</button>
-        <button class="filter__item" aria-pressed="false">السويداء</button>
-      </div>
-
-      <!-- Map card with decorative markers -->
-      <section class="map-card" aria-label="خريطة مراكز بنوك الدم">
-        <div class="map-frame" role="img" aria-label="خريطة توضح مواقع المراكز">
-          <!-- Use the uploaded map image file. Replace src if file names differ.
-               In the environment where you paste this HTML, copy the original uploaded
-               image to the same folder and name it "map.png" or adjust the src. -->
-          <img src="/mnt/data/21a0f2cd-0080-4c4d-87ae-b0eca71bdc01.png" alt="خريطة توضيحية بمواقع المراكز">
-
-          <!-- Decorative markers (SVG rings) placed to emulate the design.
-               These are purely presentation — aria-hidden so screen readers skip them. -->
-          <svg class="map-marker m-1" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
-            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
-          </svg>
-
-          <svg class="map-marker m-2" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
-            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
-          </svg>
-
-          <svg class="map-marker m-3" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
-            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
-          </svg>
-
-          <svg class="map-marker m-4" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
-            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
-          </svg>
-
-          <svg class="map-marker m-5" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
-            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
-          </svg>
-
-        </div>
-      </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="site-footer" role="contentinfo" aria-label="تذييل الصفحة">
-      <div class="footer__wrap">
-        <div class="footer__left">
-          <div class="footer__social" aria-hidden="false">
-            <!-- Using generic social icons as inline SVGs (accessible names via aria-label) -->
-            <button class="icon-btn" aria-label="فيسبوك"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M14 3h3v4h-3v2h3v4h-3v9h-4v-9H8v-4h2V7a3 3 0 0 1 3-3h1z" fill="currentColor"/></svg></button>
-            <button class="icon-btn" aria-label="انستغرام"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></button>
-            <button class="icon-btn" aria-label="تلغرام"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M3 11l17-6-6 13-3-5-8-2z" fill="currentColor"/></svg></button>
+  </head>
+  <body class="page">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header__inner container">
+        <div class="logo_with_nav">
+          <div class="header__brand">
+            <img src="../images/logo 1.png" alt="شعار بنك الدم السوري">
           </div>
 
-          <div class="footer__legal">COPYRIGHT © 2025 &nbsp; Blood Bank Syria, ALL RIGHTS RESERVED.</div>
+          <!-- القائمة الرئيسية للشاشات الكبيرة -->
+          <nav class="nav nav--desktop" aria-label="القائمة الرئيسية">
+            <ul class="nav__list">
+              <li><a class="nav__link" href="../index.html">الرئيسية</a></li>
+              <li><a class="nav__link" href="Bloodtype.html">البحث عن فصيلة</a></li>
+              <li><a class="nav__link nav__link--active" href="Map.html">المراكز</a></li>
+              <li><a class="nav__link" href="Contactus.html">حجز موعد</a></li>
+              <li><a class="nav__link" href="Contactus.html">تواصل معنا</a></li>
+            </ul>
+          </nav>
         </div>
 
-        <div class="footer__center">
-          <a href="#">الرئيسية</a> •
-          <a href="#">البحث عن فصيلة</a> •
-          <a href="#">المراكز</a><br/>
-          <a href="#">حجز موعد</a> •
-          <a href="#">تواصل معنا</a>
+        <!-- عناصر المستخدم -->
+        <div class="user-actions">
+          <!-- حالة عدم تسجيل الدخول -->
+          <div class="auth-buttons" id="authButtons">
+            <a href="Signin.html" class="btn btn--login">تسجيل الدخول</a>
+            <a href="Signin.html" class="btn btn--signup">إنشاء حساب</a>
+          </div>
+
+          <!-- حالة تسجيل الدخول -->
+          <div class="user-profile" id="userProfile">
+            <div class="user-avatar">
+              <span class="user-initial">م</span>
+              <div class="user-dropdown">
+                <a href="#" class="dropdown-item">الملف الشخصي</a>
+                <a href="#" class="dropdown-item">التبرعات السابقة</a>
+                <a href="#" class="dropdown-item">الإعدادات</a>
+                <a href="#" class="dropdown-item dropdown-item--logout">تسجيل
+                  الخروج</a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="footer__right" aria-hidden="true">
-          <!-- small map svg echo (purely decorative) -->
-          <svg viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="خريطة سورية صغيرة">
-            <g fill="#e9eef6">
-              <path d="M15 12c6-3 20-5 28-4s22 2 30 6 16 14 18 22 1 20-2 26-8 12-16 14-14-1-22 0-20 2-28-6S8 40 10 28 12 18 15 12z" stroke="#c3d2e6" stroke-width="1"/>
-            </g>
-            <text x="80" y="68" font-size="10" fill="#fff" font-weight="700" font-family="sans-serif">دم</text>
+        <!-- زر القائمة للشاشات الصغيرة -->
+        <button class="header__menu" id="mobileMenuBtn" aria-label="menu"
+          aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- القائمة المنزلقة للشاشات الصغيرة -->
+      <nav class="nav nav--mobile" id="mobileNav"
+        aria-label="القائمة الرئيسية للجوال">
+        <ul class="nav__list nav__list--mobile">
+          <li><a class="nav__link" href="../index.html">الرئيسية</a></li>
+          <li><a class="nav__link" href="Bloodtype.html">البحث عن فصيلة</a></li>
+          <li><a class="nav__link nav__link--active" href="Map.html">المراكز</a></li>
+          <li><a class="nav__link" href="Contactus.html">حجز موعد</a></li>
+          <li><a class="nav__link" href="Contactus.html">تواصل معنا</a></li>
+          <li class="nav__auth-mobile">
+            <a href="Signin.html" class="btn btn--login btn--block">تسجيل الدخول</a>
+            <a href="Signin.html" class="btn btn--signup btn--block">إنشاء حساب</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main container map-page">
+      <h1 class="page-title">مواقع مراكز بنوك الدم</h1>
+      
+      <div class="filters" role="toolbar" aria-label="قائمة المحافظات">
+        <button class="filter__item">دمشق</button>
+        <button class="filter__item active">ريف دمشق</button>
+        <button class="filter__item">حمص</button>
+        <button class="filter__item">حلب</button>
+        <button class="filter__item">ادلب</button>
+        <button class="filter__item">الحسكة</button>
+        <button class="filter__item">درعا</button>
+        <button class="filter__item">طرطوس</button>
+        <button class="filter__item">اللاذقية</button>
+        <button class="filter__item">دير الزور</button>
+        <button class="filter__item">حماه</button>
+        <button class="filter__item">الرقة</button>
+        <button class="filter__item">القنيطرة</button>
+        <button class="filter__item">السويداء</button>
+      </div>
+
+      <section class="map-container" aria-label="خريطة مراكز بنوك الدم">
+        <div class="map-frame" role="img" aria-label="خريطة توضح مواقع المراكز">
+          <img src="/mnt/data/21a0f2cd-0080-4c4d-87ae-b0eca71bdc01.png" alt="خريطة توضيحية بمواقع المراكز">
+          
+          <!-- Markers on the map -->
+          <svg class="map-marker" style="top: 18%; right: 28%;" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
           </svg>
+
+          <svg class="map-marker" style="top: 28%; right: 46%;" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          </svg>
+
+          <svg class="map-marker" style="top: 42%; right: 62%;" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          </svg>
+
+          <svg class="map-marker" style="top: 64%; right: 24%;" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          </svg>
+
+          <svg class="map-marker" style="top: 78%; right: 66%;" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          </svg>
+        </div>
+      </section>
+      
+      <div class="centers-list">
+        <div class="center-card">
+          <h3 class="center-name">مركز دمشق للتبرع بالدم</h3>
+          <p class="center-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            دمشق، شارع العابد
+          </p>
+          <span class="center-status status-available">متوفر</span>
+        </div>
+        
+        <div class="center-card">
+          <h3 class="center-name">مستشفى المواساة</h3>
+          <p class="center-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            دمشق، المزة
+          </p>
+          <span class="center-status status-limited">كمية محدودة</span>
+        </div>
+        
+        <div class="center-card">
+          <h3 class="center-name">مشفى الأسد الجامعي</h3>
+          <p class="center-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            دمشق، البرامكة
+          </p>
+          <span class="center-status status-available">متوفر</span>
+        </div>
+        
+        <div class="center-card">
+          <h3 class="center-name">مستشفى البيروني</h3>
+          <p class="center-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            دمشق، المالكي
+          </p>
+          <span class="center-status status-unavailable">غير متوفر</span>
+        </div>
+        
+        <div class="center-card">
+          <h3 class="center-name">مشفى الأطفال</h3>
+          <p class="center-location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            دمشق، القصاع
+          </p>
+          <span class="center-status status-available">متوفر</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer__wave">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path
+            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+            opacity=".25" class="shape-fill"></path>
+          <path
+            d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+            opacity=".5" class="shape-fill"></path>
+          <path
+            d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+            class="shape-fill"></path>
+        </svg>
+      </div>
+
+      <div class="footer__main">
+        <div class="container">
+          <div class="footer__grid">
+            <!-- قسم المعلومات -->
+            <div class="footer__info">
+              <div class="footer__brand">
+                <img src="../images/logo 1.png" alt="بنك الدم السوري"
+                  class="footer__logo">
+                <h3 class="footer__title">بنك الدم السوري</h3>
+              </div>
+              <p class="footer__description">
+                نسعى لإنقاذ الأرواح من خلال توفير الدم الآمن للمحتاجين.
+                انضم إلينا في رحلة العطاء والإنسانية.
+              </p>
+              <div class="footer__contact">
+                <div class="contact__item">
+                  <svg class="contact__icon" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  </svg>
+                  <span>info@bloodbank.sy</span>
+                </div>
+                <div class="contact__item">
+                  <svg class="contact__icon" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path
+                      d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                  </svg>
+                  <span>+963 11 123 4567</span>
+                </div>
+              </div>
+            </div>
+
+           <!-- روابط سريعة -->
+            <div class="footer__links">
+              <h4 class="footer__heading">روابط سريعة</h4>
+              <ul class="footer__list">
+                <li><a href="index.html" class="footer__link">الرئيسية</a></li>
+                <li><a href="pages/Bloodtype.html" class="footer__link">البحث عن فصيلة</a></li>
+                <li><a href="pages/Map.html" class="footer__link">مراكز التبرع</a></li>
+                <li><a href="#" class="footer__link">حجز موعد</a></li>
+                <li><a href="pages/Contactus.html" class="footer__link">تواصل معنا</a></li>
+              </ul>
+            </div>
+
+            <!-- اشتراك في النشرة البريدية -->
+            <div class="footer__newsletter">
+              <h4 class="footer__heading">النشرة البريدية</h4>
+              <p class="footer__text">اشترك لتصلك آخر الأخبار والعروض</p>
+              <form class="newsletter__form">
+                <div class="input__group">
+                  <input type="email" class="newsletter__input"
+                    placeholder="بريدك الإلكتروني" required>
+                  <button type="submit" class="newsletter__btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- القسم السفلي -->
+      <div class="footer__bottom">
+        <div class="container">
+          <div class="footer__bottom-content">
+            <div class="footer__social">
+              <a href="#" class="social__link" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+              <a href="#" class="social__link" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                </svg>
+              </a>
+              <a href="#" class="social__link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.014 5.367 18.647.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.208 14.806 3.718 13.655 3.718 12.36s.49-2.448 1.408-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.918.875 1.408 2.026 1.408 3.323s-.49 2.448-1.408 3.323c-.875.807-2.026 1.297-3.323 1.297z" />
+                </svg>
+              </a>
+              <a href="#" class="social__link" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="footer__copyright">
+              <p>&copy; 2026 بنك الدم السوري. جميع الحقوق محفوظة.</p>
+              <div class="footer__legal">
+                <a href="#" class="legal__link">سياسة الخصوصية</a>
+                <span class="separator">|</span>
+                <a href="#" class="legal__link">شروط الاستخدام</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
 
-  </div>
+    <script>
+        // إدارة حالة تسجيل الدخول
+        function toggleLoginState(isLoggedIn) {
+            const authButtons = document.getElementById('authButtons');
+            const userProfile = document.getElementById('userProfile');
+            
+            if (isLoggedIn) {
+                authButtons.style.display = 'none';
+                userProfile.style.display = 'block';
+            } else {
+                authButtons.style.display = 'flex';
+                userProfile.style.display = 'none';
+            }
+        }
 
-  <script>
-    // ========== script.js (embedded) ==========
-    // Progressive, unobtrusive JS:
-    // - mobile nav toggle
-    // - filter pills keyboard/press state handling (aria-pressed)
-    // - small accessibility focus helpers
+        // إدارة القائمة المنزلقة للجوال
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
 
-    (function(){
-      // Mobile nav toggle
-      const mobileToggle = document.getElementById('mobileNavToggle');
-      const mobileNav = document.getElementById('mobileNav');
-      if(mobileToggle && mobileNav){
-        mobileToggle.addEventListener('click', function(){
-          const expanded = this.getAttribute('aria-expanded') === 'true';
-          this.setAttribute('aria-expanded', String(!expanded));
-          if(expanded){
-            mobileNav.style.display = 'none';
-            mobileNav.setAttribute('aria-hidden','true');
-          } else {
-            mobileNav.style.display = 'block';
-            mobileNav.setAttribute('aria-hidden','false');
-            // Move focus into first link for keyboard users
-            const firstLink = mobileNav.querySelector('a');
-            if(firstLink) firstLink.focus();
-          }
-        });
-      }
+        if (mobileMenuBtn && mobileNav) {
+            mobileMenuBtn.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !isExpanded);
+                mobileNav.classList.toggle('nav--mobile-open');
+                this.classList.toggle('header__menu--active');
+                document.body.style.overflow = !isExpanded ? 'hidden' : '';
+            });
 
-      // Filter pill toggle behavior (single selection as in the design)
-      const pills = Array.from(document.querySelectorAll('.filter__item'));
-      function setActivePill(activeButton){
-        // Set all to false
-        pills.forEach(btn=>{
-          btn.setAttribute('aria-pressed','false');
+            // إغلاق القائمة عند النقر على رابط
+            document.querySelectorAll('.nav__link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('nav--mobile-open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.classList.remove('header__menu--active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // إغلاق القائمة عند النقر خارجها
+            document.addEventListener('click', (e) => {
+                if (!mobileNav.contains(e.target) && 
+                    !mobileMenuBtn.contains(e.target) && 
+                    mobileNav.classList.contains('nav--mobile-open')) {
+                    mobileNav.classList.remove('nav--mobile-open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.classList.remove('header__menu--active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // تجربة: تسجيل الدخول عند النقر على الأزرار
+        document.querySelectorAll('.btn--login, .btn--signup').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleLoginState(true);
+                if (mobileNav) {
+                    mobileNav.classList.remove('nav--mobile-open');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    mobileMenuBtn.classList.remove('header__menu--active');
+                    document.body.style.overflow = '';
+                }
+            });
         });
-        // Set chosen one to true
-        activeButton.setAttribute('aria-pressed','true');
-      }
-      // click & keyboard behavior
-      pills.forEach(btn=>{
-        btn.addEventListener('click', (e)=>{
-          setActivePill(e.currentTarget);
-        });
-        // allow space/enter to toggle when focused
-        btn.addEventListener('keydown', (e)=>{
-          if(e.key === 'Enter' || e.key === ' '){
+
+        // تجربة: تسجيل الخروج
+        document.querySelector('.dropdown-item--logout')?.addEventListener('click', (e) => {
             e.preventDefault();
-            setActivePill(e.currentTarget);
-          }
+            toggleLoginState(false);
         });
-      });
 
-      // Small accessibility: enable skip-link visibility on focus
-      const skip = document.querySelector('.sr-only');
-      if(skip){
-        // when focused, move it into view
-        skip.addEventListener('focus', function(){
-          this.style.position = 'static';
-          this.style.left = 'auto';
-          this.style.top = '8px';
-          this.style.width = 'auto';
-          this.style.height = 'auto';
-          this.style.background = '#fff';
-          this.style.padding = '6px 12px';
-          this.style.zIndex = 1000;
+        // إغلاق القائمة عند تغيير حجم النافذة
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024 && mobileNav && mobileNav.classList.contains('nav--mobile-open')) {
+                mobileNav.classList.remove('nav--mobile-open');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                mobileMenuBtn.classList.remove('header__menu--active');
+                document.body.style.overflow = '';
+            }
         });
-        skip.addEventListener('blur', function(){
-          this.style.position = 'absolute';
-          this.style.left = '-9999px';
-        });
-      }
 
-      // Ensure all interactive inline buttons are reachable by keyboard in visual order
-      // (No additional code needed; buttons are native focusable elements.)
-    })();
-  </script>
-</body>
+        // تهيئة الحالة الأولية
+        toggleLoginState(false);
+        
+        // إدارة اختيار المحافظات
+        document.querySelectorAll('.filter__item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.filter__item').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    </script>
+  </body>
 </html>
