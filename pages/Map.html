@@ -14,7 +14,7 @@
 
     <!-- main css -->
     <link rel="stylesheet" href="../styles/main.css">
-    
+
     <!-- map css -->
     <link rel="stylesheet" href="../styles/map.css">
 
@@ -32,9 +32,11 @@
           <nav class="nav nav--desktop" aria-label="القائمة الرئيسية">
             <ul class="nav__list">
               <li><a class="nav__link" href="../index.html">الرئيسية</a></li>
-              <li><a class="nav__link" href="Bloodtype.html">البحث عن فصيلة</a></li>
-              <li><a class="nav__link nav__link--active" href="Map.html">المراكز</a></li>
-              <li><a class="nav__link" href="Contactus.html">حجز موعد</a></li>
+              <li><a class="nav__link" href="Bloodtype.html">البحث عن
+                  فصيلة</a></li>
+              <li><a class="nav__link nav__link--active"
+                  href="Map.html">المراكز</a></li>
+              <li><a class="nav__link" href="Date.html">حجز موعد</a></li>
               <li><a class="nav__link" href="Contactus.html">تواصل معنا</a></li>
             </ul>
           </nav>
@@ -78,12 +80,15 @@
         <ul class="nav__list nav__list--mobile">
           <li><a class="nav__link" href="../index.html">الرئيسية</a></li>
           <li><a class="nav__link" href="Bloodtype.html">البحث عن فصيلة</a></li>
-          <li><a class="nav__link nav__link--active" href="Map.html">المراكز</a></li>
-          <li><a class="nav__link" href="Contactus.html">حجز موعد</a></li>
+          <li><a class="nav__link nav__link--active"
+              href="Map.html">المراكز</a></li>
+          <li><a class="nav__link" href="Date.html">حجز موعد</a></li>
           <li><a class="nav__link" href="Contactus.html">تواصل معنا</a></li>
           <li class="nav__auth-mobile">
-            <a href="Signin.html" class="btn btn--login btn--block">تسجيل الدخول</a>
-            <a href="Signin.html" class="btn btn--signup btn--block">إنشاء حساب</a>
+            <a href="Signin.html" class="btn btn--login btn--block">تسجيل
+              الدخول</a>
+            <a href="Signin.html" class="btn btn--signup btn--block">إنشاء
+              حساب</a>
           </li>
         </ul>
       </nav>
@@ -92,7 +97,7 @@
     <!-- MAIN -->
     <main class="main container map-page">
       <h1 class="page-title">مواقع مراكز بنوك الدم</h1>
-      
+
       <div class="filters" role="toolbar" aria-label="قائمة المحافظات">
         <button class="filter__item">دمشق</button>
         <button class="filter__item active">ريف دمشق</button>
@@ -112,86 +117,107 @@
 
       <section class="map-container" aria-label="خريطة مراكز بنوك الدم">
         <div class="map-frame" role="img" aria-label="خريطة توضح مواقع المراكز">
-          <img src="/mnt/data/21a0f2cd-0080-4c4d-87ae-b0eca71bdc01.png" alt="خريطة توضيحية بمواقع المراكز">
-          
+          <img src="/mnt/data/21a0f2cd-0080-4c4d-87ae-b0eca71bdc01.png"
+            alt="خريطة توضيحية بمواقع المراكز">
+
           <!-- Markers on the map -->
-          <svg class="map-marker" style="top: 18%; right: 28%;" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
-            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          <svg class="map-marker" style="top: 18%; right: 28%;"
+            viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a"
+              stroke-width="2.2" />
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a"
+              stroke-width="1.2" />
           </svg>
 
-          <svg class="map-marker" style="top: 28%; right: 46%;" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
-            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          <svg class="map-marker" style="top: 28%; right: 46%;"
+            viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a"
+              stroke-width="2.2" />
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a"
+              stroke-width="1.2" />
           </svg>
 
-          <svg class="map-marker" style="top: 42%; right: 62%;" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
-            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          <svg class="map-marker" style="top: 42%; right: 62%;"
+            viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a"
+              stroke-width="2.2" />
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a"
+              stroke-width="1.2" />
           </svg>
 
-          <svg class="map-marker" style="top: 64%; right: 24%;" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
-            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          <svg class="map-marker" style="top: 64%; right: 24%;"
+            viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a"
+              stroke-width="2.2" />
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a"
+              stroke-width="1.2" />
           </svg>
 
-          <svg class="map-marker" style="top: 78%; right: 66%;" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a" stroke-width="2.2"/>
-            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a" stroke-width="1.2"/>
+          <svg class="map-marker" style="top: 78%; right: 66%;"
+            viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="none" stroke="#bf2a2a"
+              stroke-width="2.2" />
+            <circle cx="12" cy="12" r="5" fill="#fff" stroke="#bf2a2a"
+              stroke-width="1.2" />
           </svg>
         </div>
       </section>
-      
+
       <div class="centers-list">
         <div class="center-card">
           <h3 class="center-name">مركز دمشق للتبرع بالدم</h3>
           <p class="center-location">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
             </svg>
             دمشق، شارع العابد
           </p>
           <span class="center-status status-available">متوفر</span>
         </div>
-        
+
         <div class="center-card">
           <h3 class="center-name">مستشفى المواساة</h3>
           <p class="center-location">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
             </svg>
             دمشق، المزة
           </p>
           <span class="center-status status-limited">كمية محدودة</span>
         </div>
-        
+
         <div class="center-card">
           <h3 class="center-name">مشفى الأسد الجامعي</h3>
           <p class="center-location">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
             </svg>
             دمشق، البرامكة
           </p>
           <span class="center-status status-available">متوفر</span>
         </div>
-        
+
         <div class="center-card">
           <h3 class="center-name">مستشفى البيروني</h3>
           <p class="center-location">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
             </svg>
             دمشق، المالكي
           </p>
           <span class="center-status status-unavailable">غير متوفر</span>
         </div>
-        
+
         <div class="center-card">
           <h3 class="center-name">مشفى الأطفال</h3>
           <p class="center-location">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
             </svg>
             دمشق، القصاع
           </p>
@@ -250,15 +276,19 @@
               </div>
             </div>
 
-           <!-- روابط سريعة -->
+            <!-- روابط سريعة -->
             <div class="footer__links">
               <h4 class="footer__heading">روابط سريعة</h4>
               <ul class="footer__list">
-                <li><a href="../index.html" class="footer__link">الرئيسية</a></li>
-                <li><a href="Bloodtype.html" class="footer__link">البحث عن فصيلة</a></li>
-                <li><a href="Map.html" class="footer__link">مراكز التبرع</a></li>
+                <li><a href="../index.html"
+                    class="footer__link">الرئيسية</a></li>
+                <li><a href="Bloodtype.html" class="footer__link">البحث عن
+                    فصيلة</a></li>
+                <li><a href="Map.html" class="footer__link">مراكز
+                    التبرع</a></li>
                 <li><a href="Date.html" class="footer__link">حجز موعد</a></li>
-                <li><a href="Contactus.html" class="footer__link">تواصل معنا</a></li>
+                <li><a href="Contactus.html" class="footer__link">تواصل
+                    معنا</a></li>
               </ul>
             </div>
 
