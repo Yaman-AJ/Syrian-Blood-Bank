@@ -741,7 +741,7 @@ body {
 
 .footer__grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    grid-template-columns: 2fr 1fr 1.5fr;
     gap: var(--space-lg);
     align-items: start;
 }
