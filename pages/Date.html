@@ -83,7 +83,7 @@
           <li><a class="nav__link" href="Map.html">المراكز</a></li>
           <li><a class="nav__link nav__link--active" href="Date.html">حجز
               موعد</a></li>
-          <li><a class="nav__link" href="../images/logo 1.png">تواصل
+          <li><a class="nav__link" href="Contactus.html">تواصل
               معنا</a></li>
           <li class="nav__auth-mobile">
             <a href="#" class="btn btn--login btn--block">تسجيل الدخول</a>
@@ -224,7 +224,8 @@
             <div class="footer__links">
               <h4 class="footer__heading">روابط سريعة</h4>
               <ul class="footer__list">
-                <li><a href="../index.html" class="footer__link">الرئيسية</a></li>
+                <li><a href="../index.html"
+                    class="footer__link">الرئيسية</a></li>
                 <li><a href="Bloodtype.html" class="footer__link">البحث عن
                     فصيلة</a></li>
                 <li><a href="Map.html" class="footer__link">مراكز
@@ -300,89 +301,7 @@
       </div>
     </footer>
 
-    <script>
-    // إدارة حالة تسجيل الدخول
-    function toggleLoginState(isLoggedIn) {
-        const authButtons = document.getElementById('authButtons');
-        const userProfile = document.getElementById('userProfile');
-        
-        if (isLoggedIn) {
-            authButtons.style.display = 'none';
-            userProfile.style.display = 'block';
-        } else {
-            authButtons.style.display = 'flex';
-            userProfile.style.display = 'none';
-        }
-    }
+    <script src="../scripts/main.js"></script>
 
-    // إدارة القائمة المنزلقة للجوال
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileNav = document.getElementById('mobileNav');
-
-    if (mobileMenuBtn && mobileNav) {
-        mobileMenuBtn.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            this.setAttribute('aria-expanded', !isExpanded);
-            mobileNav.classList.toggle('nav--mobile-open');
-            this.classList.toggle('header__menu--active');
-            document.body.style.overflow = !isExpanded ? 'hidden' : '';
-        });
-
-        // إغلاق القائمة عند النقر على رابط
-        document.querySelectorAll('.nav__link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('nav--mobile-open');
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileMenuBtn.classList.remove('header__menu--active');
-                document.body.style.overflow = '';
-            });
-        });
-
-        // إغلاق القائمة عند النقر خارجها
-        document.addEventListener('click', (e) => {
-            if (!mobileNav.contains(e.target) && 
-                !mobileMenuBtn.contains(e.target) && 
-                mobileNav.classList.contains('nav--mobile-open')) {
-                mobileNav.classList.remove('nav--mobile-open');
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileMenuBtn.classList.remove('header__menu--active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
-
-    // تجربة: تسجيل الدخول عند النقر على الأزرار
-    document.querySelectorAll('.btn--login, .btn--signup').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            toggleLoginState(true);
-            if (mobileNav) {
-                mobileNav.classList.remove('nav--mobile-open');
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileMenuBtn.classList.remove('header__menu--active');
-                document.body.style.overflow = '';
-            }
-        });
-    });
-
-    // تجربة: تسجيل الخروج
-    document.querySelector('.dropdown-item--logout')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        toggleLoginState(false);
-    });
-
-    // إغلاق القائمة عند تغيير حجم النافذة
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 1024 && mobileNav && mobileNav.classList.contains('nav--mobile-open')) {
-            mobileNav.classList.remove('nav--mobile-open');
-            mobileMenuBtn.setAttribute('aria-expanded', 'false');
-            mobileMenuBtn.classList.remove('header__menu--active');
-            document.body.style.overflow = '';
-        }
-    });
-
-    // تهيئة الحالة الأولية
-    toggleLoginState(false);
-  </script>
   </body>
 </html>

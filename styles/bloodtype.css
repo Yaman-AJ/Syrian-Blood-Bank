@@ -212,3 +212,294 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* قسم تفاصيل فصيلة الدم */
+.blood-details-section {
+    background: var(--color-muted);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    margin-top: var(--space-xl);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.blood-details-card {
+    background: #fff;
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.blood-details-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.detail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) 0;
+    border-bottom: 1px solid var(--color-outline);
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: var(--color-text-light);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.detail-value {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.map-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    width: 100%;
+    background-color: var(--color-secondary-dark);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+
+.map-button:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* تجاوبية قسم التفاصيل */
+@media (max-width: 768px) {
+    .blood-details-card {
+        padding: var(--space-md);
+    }
+
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+
+    .detail-label, .detail-value {
+        font-size: 0.95rem;
+    }
+
+    .map-button {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* ملخص البحث */
+.blood-summary {
+    margin-bottom: var(--space-xl);
+    text-align: center;
+}
+
+.summary-card {
+    background: #fff;
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.summary-label {
+    color: var(--color-text-light);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.summary-value {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* حاوية المراكز */
+.centers-container {
+    margin-top: var(--space-lg);
+}
+
+.centers-title {
+    color: var(--color-secondary-dark);
+    margin-bottom: var(--space-md);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.centers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--space-md);
+}
+
+/* بطاقة المركز */
+.center-card {
+    background: #fff;
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.center-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-secondary);
+}
+
+.center-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+}
+
+.center-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-md);
+}
+
+.center-name {
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin: 0;
+    flex: 1;
+}
+
+.center-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-outline);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    color: var(--color-text-light);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.detail-value {
+    color: var(--color-text);
+    font-weight: 500;
+    text-align: left;
+}
+
+/* حالة عدم وجود نتائج */
+.no-results {
+    text-align: center;
+    padding: var(--space-xl);
+    color: var(--color-text-light);
+    grid-column: 1 / -1;
+}
+
+.no-results svg {
+    color: var(--color-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.no-results h3 {
+    color: var(--color-secondary-dark);
+    margin-bottom: var(--space-sm);
+}
+
+.no-results p {
+    margin-bottom: var(--space-xs);
+}
+
+/* تجاوبية قسم المراكز */
+@media (max-width: 768px) {
+    .centers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .center-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+
+    .center-status {
+        align-self: flex-start;
+    }
+
+    .summary-card {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .center-card {
+        padding: var(--space-md);
+    }
+
+    .detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+
+    .detail-value {
+        text-align: right;
+    }
+}

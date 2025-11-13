@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تسجيل الدخول — بنك الدم السوري</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تسجيل الدخول — بنك الدم السوري</title>
 
-  <!-- Google font for Arabic readability -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
-    rel="stylesheet">
+    <!-- Google font for Arabic readability -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet">
 
-  <style>
+    <style>
     /* استيراد المتغيرات والأساسيات من التصميم الرئيسي */
     :root {
       --font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -198,45 +198,47 @@
       text-decoration: underline;
     }
   </style>
-</head>
-<body>
-  <div class="auth-container">
-    <h1 class="auth-title">إنشاء حساب</h1>
-    
-    <div class="auth-social">
-      <button class="auth-social-btn">
-        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="" width="18" />
-        Google
-      </button>
-      <button class="auth-social-btn">
-        <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt="" width="18" />
-        Facebook
-      </button>
+  </head>
+  <body>
+    <div class="auth-container">
+      <h1 class="auth-title">إنشاء حساب</h1>
+
+      <div class="auth-social">
+        <button class="auth-social-btn">
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt
+            width="18" />
+          Google
+        </button>
+        <button class="auth-social-btn">
+          <img src="https://www.svgrepo.com/show/475647/facebook-color.svg" alt
+            width="18" />
+          Facebook
+        </button>
+      </div>
+
+      <div class="auth-divider">أو</div>
+
+      <form class="auth-form">
+        <input
+          type="email"
+          class="auth-input"
+          placeholder="البريد الإلكتروني"
+          aria-label="البريد الإلكتروني"
+          required />
+        <input
+          type="password"
+          class="auth-input"
+          placeholder="كلمة المرور"
+          aria-label="كلمة المرور"
+          required />
+        <button type="submit" class="auth-submit">إنشاء حساب</button>
+      </form>
+
+      <p class="auth-footer">
+        هل لديك حساب بالفعل؟ <a href="#" class="auth-link">سجّل الدخول</a>
+      </p>
     </div>
-    
-    <div class="auth-divider">أو</div>
-    
-    <form class="auth-form">
-      <input
-        type="email"
-        class="auth-input"
-        placeholder="البريد الإلكتروني"
-        aria-label="البريد الإلكتروني"
-        required
-      />
-      <input
-        type="password"
-        class="auth-input"
-        placeholder="كلمة المرور"
-        aria-label="كلمة المرور"
-        required
-      />
-      <button type="submit" class="auth-submit">إنشاء حساب</button>
-    </form>
-    
-    <p class="auth-footer">
-      هل لديك حساب بالفعل؟ <a href="#" class="auth-link">سجّل الدخول</a>
-    </p>
-  </div>
-</body>
+    <script src="scripts/main.js"></script>
+
+  </body>
 </html>
