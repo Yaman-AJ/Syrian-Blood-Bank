@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>إنشاء حساب — بنك الدم السوري</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>إنشاء حساب — بنك الدم السوري</title>
 
-    <!-- Google font for Arabic readability -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
-      rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="../images/logo 1.png">
 
-    <!-- main css -->
-    <link rel="stylesheet" href="../styles/main.css">
+        <!-- Google font for Arabic readability -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
+            rel="stylesheet">
 
-    <style>
+        <!-- main css -->
+        <link rel="stylesheet" href="../styles/main.css">
+
+        <style>
       /* تخصيصات إضافية لصفحة إنشاء حساب */
       .auth-page {
         min-height: 100vh;
@@ -165,63 +167,69 @@
         transform: translateX(-5px);
       }
     </style>
-  </head>
-  <body>
+    </head>
+    <body>
 
-    <!-- MAIN CONTENT -->
-    <main class="auth-page">
-      <div class="auth-container">
-        <a href="../index.html" class="back-home">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-          </svg>
-          العودة إلى الرئيسية
-        </a>
-        
-        <h1 class="auth-title">إنشاء حساب</h1>
-        
-        <form class="auth-form">
-          <input
-            type="text"
-            class="auth-input"
-            placeholder="الاسم الكامل"
-            aria-label="الاسم الكامل"
-            required />
-          <input
-            type="email"
-            class="auth-input"
-            placeholder="البريد الإلكتروني"
-            aria-label="البريد الإلكتروني"
-            required />
-          <input
-            type="password"
-            class="auth-input"
-            placeholder="كلمة المرور"
-            aria-label="كلمة المرور"
-            required />
-          <input
-            type="password"
-            class="auth-input"
-            placeholder="تأكيد كلمة المرور"
-            aria-label="تأكيد كلمة المرور"
-            required />
-          <div class="auth-agreement">
-            <label class="auth-checkbox">
-              <input type="checkbox" required />
-              <span>أوافق على <a href="#" class="auth-link">شروط الاستخدام</a> و <a href="#" class="auth-link">سياسة الخصوصية</a></span>
-            </label>
-          </div>
-          <button type="submit" class="auth-submit">إنشاء حساب</button>
-        </form>
+        <!-- MAIN CONTENT -->
+        <main class="auth-page">
+            <div class="auth-container">
+                <a href="../index.html" class="back-home">
+                    <svg width="16" height="16" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path
+                            d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg>
+                    العودة إلى الرئيسية
+                </a>
 
-        <p class="auth-footer">
-          هل لديك حساب بالفعل؟ <a href="login.html" class="auth-link">سجّل الدخول</a>
-        </p>
-      </div>
-    </main>
+                <h1 class="auth-title">إنشاء حساب</h1>
 
-    <script src="../scripts/main.js"></script>
-    <script>
+                <form class="auth-form">
+                    <input
+                        type="text"
+                        class="auth-input"
+                        placeholder="الاسم الكامل"
+                        aria-label="الاسم الكامل"
+                        required />
+                    <input
+                        type="email"
+                        class="auth-input"
+                        placeholder="البريد الإلكتروني"
+                        aria-label="البريد الإلكتروني"
+                        required />
+                    <input
+                        type="password"
+                        class="auth-input"
+                        placeholder="كلمة المرور"
+                        aria-label="كلمة المرور"
+                        required />
+                    <input
+                        type="password"
+                        class="auth-input"
+                        placeholder="تأكيد كلمة المرور"
+                        aria-label="تأكيد كلمة المرور"
+                        required />
+                    <div class="auth-agreement">
+                        <label class="auth-checkbox">
+                            <input type="checkbox" required />
+                            <span>أوافق على <a href="#" class="auth-link">شروط
+                                    الاستخدام</a> و <a href="#"
+                                    class="auth-link">سياسة الخصوصية</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-submit">إنشاء
+                        حساب</button>
+                </form>
+
+                <p class="auth-footer">
+                    هل لديك حساب بالفعل؟ <a href="login.html"
+                        class="auth-link">سجّل الدخول</a>
+                </p>
+            </div>
+        </main>
+
+        <script src="../scripts/main.js"></script>
+        <script>
       // إضافة بعض التنسيقات الإضافية
       const style = document.createElement('style');
       style.textContent = `
@@ -254,5 +262,5 @@
       `;
       document.head.appendChild(style);
     </script>
-  </body>
+    </body>
 </html>
