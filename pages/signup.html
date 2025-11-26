@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إنشاء حساب — بنك الدم السوري</title>
+
+    <!-- Google font for Arabic readability -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet">
+
+    <!-- main css -->
+    <link rel="stylesheet" href="../styles/main.css">
+
+    <style>
+      /* تخصيصات إضافية لصفحة إنشاء حساب */
+      .auth-page {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, var(--color-muted) 0%, var(--color-bg) 100%);
+        padding: var(--space-md);
+      }
+
+      .auth-container {
+        background: var(--color-bg);
+        padding: var(--space-lg);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        width: 100%;
+        max-width: 400px;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .auth-title {
+        text-align: center;
+        margin-bottom: var(--space-lg);
+        color: var(--color-primary);
+        font-size: 1.5rem;
+        font-weight: 800;
+      }
+
+      .auth-social {
+        display: flex;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-md);
+      }
+
+      .auth-social-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xs);
+        background: var(--color-secondary-dark);
+        color: white;
+        border: none;
+        border-radius: var(--radius-md);
+        padding: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .auth-social-btn:hover {
+        background: var(--color-secondary);
+        transform: translateY(-2px);
+      }
+
+      .auth-divider {
+        text-align: center;
+        margin: var(--space-md) 0;
+        color: var(--color-text-light);
+        position: relative;
+      }
+
+      .auth-divider::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 40%;
+        height: 1px;
+        background: var(--color-outline);
+      }
+
+      .auth-divider::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 40%;
+        height: 1px;
+        background: var(--color-outline);
+      }
+
+      .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+
+      .auth-input {
+        padding: 0.75rem;
+        border: 2px solid var(--color-outline);
+        border-radius: var(--radius-md);
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .auth-input:focus {
+        border-color: var(--color-secondary);
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.1);
+      }
+
+      .auth-submit {
+        background: var(--color-primary);
+        color: white;
+        border: none;
+        border-radius: var(--radius-md);
+        padding: 0.75rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .auth-submit:hover {
+        background: var(--color-primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .auth-footer {
+        text-align: center;
+        margin-top: var(--space-md);
+        color: var(--color-text-light);
+      }
+
+      .auth-link {
+        color: var(--color-primary);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .auth-link:hover {
+        text-decoration: underline;
+      }
+
+      .back-home {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-xs);
+        margin-bottom: var(--space-md);
+        color: var(--color-secondary-dark);
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .back-home:hover {
+        color: var(--color-primary);
+        transform: translateX(-5px);
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- MAIN CONTENT -->
+    <main class="auth-page">
+      <div class="auth-container">
+        <a href="../index.html" class="back-home">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+          </svg>
+          العودة إلى الرئيسية
+        </a>
+        
+        <h1 class="auth-title">إنشاء حساب</h1>
+        
+        <form class="auth-form">
+          <input
+            type="text"
+            class="auth-input"
+            placeholder="الاسم الكامل"
+            aria-label="الاسم الكامل"
+            required />
+          <input
+            type="email"
+            class="auth-input"
+            placeholder="البريد الإلكتروني"
+            aria-label="البريد الإلكتروني"
+            required />
+          <input
+            type="password"
+            class="auth-input"
+            placeholder="كلمة المرور"
+            aria-label="كلمة المرور"
+            required />
+          <input
+            type="password"
+            class="auth-input"
+            placeholder="تأكيد كلمة المرور"
+            aria-label="تأكيد كلمة المرور"
+            required />
+          <div class="auth-agreement">
+            <label class="auth-checkbox">
+              <input type="checkbox" required />
+              <span>أوافق على <a href="#" class="auth-link">شروط الاستخدام</a> و <a href="#" class="auth-link">سياسة الخصوصية</a></span>
+            </label>
+          </div>
+          <button type="submit" class="auth-submit">إنشاء حساب</button>
+        </form>
+
+        <p class="auth-footer">
+          هل لديك حساب بالفعل؟ <a href="login.html" class="auth-link">سجّل الدخول</a>
+        </p>
+      </div>
+    </main>
+
+    <script src="../scripts/main.js"></script>
+    <script>
+      // إضافة بعض التنسيقات الإضافية
+      const style = document.createElement('style');
+      style.textContent = `
+        .auth-agreement {
+          margin-bottom: var(--space-sm);
+        }
+        
+        .auth-checkbox {
+          display: flex;
+          align-items: center;
+          gap: var(--space-xs);
+          cursor: pointer;
+          font-size: 0.9rem;
+        }
+        
+        .auth-checkbox input {
+          margin: 0;
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
