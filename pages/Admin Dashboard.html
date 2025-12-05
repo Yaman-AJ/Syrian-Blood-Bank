@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>لوحة تحكم بنك الدم السوري</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Fonts  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet">
+
+    <!-- استيراد CSS الرئيسي -->
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+
+  </head>
+  <body class="page">
+
+    <!-- MAIN CONTENT -->
+    <main class="main container">
+      <div class="dashboard-container">
+        <h1 class="dashboard-title">لوحة تحكم بنك الدم</h1>
+        <p class="dashboard-subtitle">مرحباً بك محمد، إليك نظرة عامة على
+          إحصائيات بنك الدم</p>
+
+        <!-- إحصائيات سريعة -->
+        <section class="stats-grid">
+          <div class="stat-card stat-card--success">
+            <div class="stat-card__icon">🩸</div>
+            <div class="stat-card__value">1,245</div>
+            <div class="stat-card__label">إجمالي التبرعات</div>
+            <span class="stat-card__change stat-card__change--positive">+12% هذا
+              الشهر</span>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card__icon">👥</div>
+            <div class="stat-card__value">856</div>
+            <div class="stat-card__label">متبرع نشط</div>
+            <span class="stat-card__change stat-card__change--positive">+8% هذا
+              الشهر</span>
+          </div>
+
+          <div class="stat-card stat-card--warning">
+            <div class="stat-card__icon">⚠️</div>
+            <div class="stat-card__value">18</div>
+            <div class="stat-card__label">فصيلة AB- المتبقية</div>
+            <span class="stat-card__change stat-card__change--negative">-5% هذا
+              الأسبوع</span>
+          </div>
+
+          <div class="stat-card stat-card--danger">
+            <div class="stat-card__icon">🚨</div>
+            <div class="stat-card__value">42</div>
+            <div class="stat-card__label">طلبات مستعجلة</div>
+            <span class="stat-card__change stat-card__change--positive">+15% هذا
+              اليوم</span>
+          </div>
+        </section>
+
+        <!-- الأقسام الرئيسية -->
+        <div class="dashboard-sections">
+          <!-- قسم المخططات والتبرعات -->
+          <div class="chart-section">
+            <h2 class="chart-title">إحصائيات التبرعات خلال 6 أشهر</h2>
+            <div class="chart-container">
+              <div class="simple-chart">
+                <div class="chart-bar" style="height: 70%">
+                  <div class="chart-label">يناير</div>
+                </div>
+                <div class="chart-bar" style="height: 85%">
+                  <div class="chart-label">فبراير</div>
+                </div>
+                <div class="chart-bar" style="height: 60%">
+                  <div class="chart-label">مارس</div>
+                </div>
+                <div class="chart-bar" style="height: 90%">
+                  <div class="chart-label">أبريل</div>
+                </div>
+                <div class="chart-bar" style="height: 75%">
+                  <div class="chart-label">مايو</div>
+                </div>
+                <div class="chart-bar" style="height: 95%">
+                  <div class="chart-label">يونيو</div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="chart-title" style="margin-top: 2rem;">حالة فصائل
+              الدم</h3>
+            <div class="blood-types-grid">
+              <div class="blood-type-card blood-type-card--a-plus">
+                <div class="blood-type">A+</div>
+                <div class="blood-count">153 كيس</div>
+                <div class="blood-status blood-status--good">ممتازة</div>
+              </div>
+              <div class="blood-type-card blood-type-card--b-plus">
+                <div class="blood-type">B+</div>
+                <div class="blood-count">142 كيس</div>
+                <div class="blood-status blood-status--good">جيدة</div>
+              </div>
+              <div class="blood-type-card blood-type-card--o-plus">
+                <div class="blood-type">O+</div>
+                <div class="blood-count">187 كيس</div>
+                <div class="blood-status blood-status--good">ممتازة</div>
+              </div>
+              <div class="blood-type-card blood-type-card--ab-plus">
+                <div class="blood-type">AB+</div>
+                <div class="blood-count">89 كيس</div>
+                <div class="blood-status blood-status--low">منخفضة</div>
+              </div>
+              <div class="blood-type-card">
+                <div class="blood-type">A-</div>
+                <div class="blood-count">45 كيس</div>
+                <div class="blood-status blood-status--low">منخفضة</div>
+              </div>
+              <div class="blood-type-card">
+                <div class="blood-type">B-</div>
+                <div class="blood-count">38 كيس</div>
+                <div class="blood-status blood-status--critical">حرجة</div>
+              </div>
+              <div class="blood-type-card">
+                <div class="blood-type">O-</div>
+                <div class="blood-count">52 كيس</div>
+                <div class="blood-status blood-status--low">منخفضة</div>
+              </div>
+              <div class="blood-type-card">
+                <div class="blood-type">AB-</div>
+                <div class="blood-count">18 كيس</div>
+                <div class="blood-status blood-status--critical">حرجة</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- قسم التبرعات الحديثة -->
+          <div class="recent-donations">
+            <h2 class="chart-title">آخر التبرعات</h2>
+            <div class="donation-list">
+              <div class="donation-item">
+                <div class="donor-avatar">أ</div>
+                <div class="donation-info">
+                  <div class="donor-name">أحمد محمد</div>
+                  <div class="donation-details">
+                    <span class="donation-type">A+</span>
+                    <span class="donation-time">قبل ٢ ساعة</span>
+                  </div>
+                </div>
+              </div>
+              <div class="donation-item">
+                <div class="donor-avatar">س</div>
+                <div class="donation-info">
+                  <div class="donor-name">سارة خالد</div>
+                  <div class="donation-details">
+                    <span class="donation-type">O-</span>
+                    <span class="donation-time">قبل ٣ ساعات</span>
+                  </div>
+                </div>
+              </div>
+              <div class="donation-item">
+                <div class="donor-avatar">م</div>
+                <div class="donation-info">
+                  <div class="donor-name">محمد علي</div>
+                  <div class="donation-details">
+                    <span class="donation-type">B+</span>
+                    <span class="donation-time">قبل ٥ ساعات</span>
+                  </div>
+                </div>
+              </div>
+              <div class="donation-item">
+                <div class="donor-avatar">ف</div>
+                <div class="donation-info">
+                  <div class="donor-name">فاطمة حسن</div>
+                  <div class="donation-details">
+                    <span class="donation-type">AB+</span>
+                    <span class="donation-time">قبل ٦ ساعات</span>
+                  </div>
+                </div>
+              </div>
+              <div class="donation-item">
+                <div class="donor-avatar">ي</div>
+                <div class="donation-info">
+                  <div class="donor-name">ياسر عبدالله</div>
+                  <div class="donation-details">
+                    <span class="donation-type">A-</span>
+                    <span class="donation-time">قبل ٨ ساعات</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- قسم التحذيرات -->
+        <section class="alerts-section">
+          <h2 class="chart-title">تنبيهات وتحذيرات</h2>
+          <div class="alert-item alert-item--critical">
+            <div class="alert-icon">⚠️</div>
+            <div class="alert-content">
+              <div class="alert-title">مستوى حرج: فصيلة AB-</div>
+              <div class="alert-message">عدد أكياس فصيلة AB- وصل إلى الحد الأدنى
+                (١٨ كيس فقط). يرجى التحرك العاجل.</div>
+            </div>
+          </div>
+
+          <div class="alert-item alert-item--warning">
+            <div class="alert-icon">📅</div>
+            <div class="alert-content">
+              <div class="alert-title">حملة تبرع قريبة</div>
+              <div class="alert-message">حملة التبرع في الجامعة السورية تبدأ بعد
+                ٣ أيام. تأكد من تجهيز المعدات.</div>
+            </div>
+          </div>
+
+          <div class="alert-item alert-item--info">
+            <div class="alert-icon">🔄</div>
+            <div class="alert-content">
+              <div class="alert-title">تحديث النظام</div>
+              <div class="alert-message">مخطط لعمل صيانة للنظام يوم السبت القادم
+                من الساعة ٢ إلى ٤ صباحاً.</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="../scripts/main.js"></script>
+
+    <script>
+    // كود JavaScript خاص بالداشبورد
+    document.addEventListener('DOMContentLoaded', function() {
+      // إضافة تأثيرات تفاعلية للبطاقات
+      const statCards = document.querySelectorAll('.stat-card');
+      statCards.forEach(card => {
+        card.addEventListener('click', function() {
+          this.style.transform = 'translateY(-10px) scale(1.02)';
+          setTimeout(() => {
+            this.style.transform = 'translateY(-5px)';
+          }, 150);
+        });
+      });
+      
+      // تفاعلية مع مخطط الأعمدة
+      const chartBars = document.querySelectorAll('.chart-bar');
+      chartBars.forEach(bar => {
+        bar.addEventListener('mouseenter', function() {
+          this.style.opacity = '0.8';
+        });
+        bar.addEventListener('mouseleave', function() {
+          this.style.opacity = '1';
+        });
+      });
+    });
+  </script>
+  </body>
+</html>
