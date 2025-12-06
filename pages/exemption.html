@@ -33,7 +33,9 @@
               <li><a class="nav__link" href="Bloodtype.html">البحث عن
                   فصيلة</a></li>
               <li><a class="nav__link" href="Map.html">المراكز</a></li>
-              <li><a class="nav__link" href="Date.html">حجز موعد</a></li>
+              <!-- <li><a class="nav__link" href="Date.html">حجز موعد</a></li> -->
+              <li><a class="nav__link nav__link--active"
+                  href="exemption.html">الحصول على إعفاء</a></li>
               <li><a class="nav__link" href="Contactus.html">تواصل معنا</a></li>
             </ul>
           </nav>
@@ -79,6 +81,8 @@
           <li><a class="nav__link" href="Bloodtype.html">البحث عن فصيلة</a></li>
           <li><a class="nav__link" href="Map.html">المراكز</a></li>
           <li><a class="nav__link" href="Date.html">حجز موعد</a></li>
+          <li><a class="nav__link nav__link--active"
+              href="exemption.html">الحصول على إعفاء</a></li>
           <li><a class="nav__link" href="Contactus.html">تواصل معنا</a></li>
           <li class="nav__auth-mobile">
             <a href="login.html" class="btn btn--login btn--block">تسجيل
@@ -100,8 +104,21 @@
 
       <section class="exemption-content">
         <div class="card exemption-card">
-          <form class="exemption-form" action="#" method="post"
-            enctype="multipart/form-data" novalidate>
+          <!-- Success Message (Initially Hidden) -->
+          <div id="exemptionSuccess" class="success-message"
+            style="display: none;">
+            <div class="success-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+              </svg>
+            </div>
+            <h3>تم تقديم طلب الإعفاء بنجاح!</h3>
+            <p>تم استلام طلبك وسيتم مراجعته من قبل الفريق المختص. سنقوم بالتواصل
+              معك عبر البريد الإلكتروني.</p>
+          </div>
+
+          <!-- Exemption Form -->
+          <form id="exemptionForm" class="exemption-form" novalidate>
             <!-- معلومات المستخدم -->
             <div class="user-info">
               <h3 class="user-info__title">معلومات المستخدم</h3>
@@ -124,6 +141,12 @@
                   <input id="email" name="email" type="email" class="form-input"
                     placeholder="example@email.com" required />
                 </div>
+
+                <div class="form-group">
+                  <label for="phone" class="form-label">رقم الهاتف:</label>
+                  <input id="phone" name="phone" type="tel" class="form-input"
+                    placeholder="09XXXXXXXX" required />
+                </div>
               </div>
             </div>
 
@@ -137,31 +160,47 @@
                     <label class="form-label" for="province">اختر
                       المحافظة</label>
                     <select id="province" class="form-select" name="province"
-                      aria-required="true">
+                      aria-required="true" required>
                       <option value>--اختر--</option>
-                      <option>دمشق</option>
-                      <option>ريف دمشق</option>
-                      <option>حمص</option>
-                      <option>حلب</option>
-                      <option>حماه</option>
-                      <option>ادلب</option>
-                      <option>الحسكة</option>
-                      <option>درعا</option>
-                      <option>طرطوس</option>
-                      <option>اللاذقية</option>
-                      <option>دير الزور</option>
-                      <option>الرقة</option>
-                      <option>القنيطرة</option>
-                      <option>السويداء</option>
+                      <option value="دمشق">دمشق</option>
+                      <option value="ريف دمشق">ريف دمشق</option>
+                      <option value="حمص">حمص</option>
+                      <option value="حلب">حلب</option>
+                      <option value="حماه">حماه</option>
+                      <option value="ادلب">ادلب</option>
+                      <option value="الحسكة">الحسكة</option>
+                      <option value="درعا">درعا</option>
+                      <option value="طرطوس">طرطوس</option>
+                      <option value="اللاذقية">اللاذقية</option>
+                      <option value="دير الزور">دير الزور</option>
+                      <option value="الرقة">الرقة</option>
+                      <option value="القنيطرة">القنيطرة</option>
+                      <option value="السويداء">السويداء</option>
                     </select>
                   </div>
 
                   <div class="form-group">
                     <label class="form-label" for="center">اختر المركز</label>
                     <select id="center" class="form-select" name="center"
-                      aria-required="true">
+                      aria-required="true" required>
                       <option value>--اختر--</option>
-                      <option>المركز الوطني</option>
+                      <option value="المركز الوطني">المركز الوطني</option>
+                      <option value="مشفى المواساة">مشفى المواساة</option>
+                      <option value="مشفى الأسد الجامعي">مشفى الأسد
+                        الجامعي</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="reason" class="form-label">سبب الإعفاء:</label>
+                    <select id="reason" class="form-select" name="reason"
+                      required>
+                      <option value>--اختر السبب--</option>
+                      <option value="حالة صحية">حالة صحية</option>
+                      <option value="سفر">سفر</option>
+                      <option value="عمل">ظروف عمل</option>
+                      <option value="دراسة">ظروف دراسية</option>
+                      <option value="أخرى">سبب آخر</option>
                     </select>
                   </div>
                 </div>
@@ -175,7 +214,8 @@
                         <path
                           d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z" />
                       </svg>
-                      <span class="upload-text">يجب رفع وثيقة تثبت إعفائك</span>
+                      <span id="uploadText" class="upload-text">يجب رفع وثيقة
+                        تثبت إعفائك</span>
                       <span class="upload-hint">(PDF, JPG, PNG - الحد الأقصى
                         5MB)</span>
                     </div>
@@ -183,6 +223,14 @@
                       accept=".pdf,.jpg,.jpeg,.png" name="proof" />
                   </label>
                 </div>
+              </div>
+
+              <div class="form-group">
+                <label for="additionalNotes" class="form-label">ملاحظات إضافية
+                  (اختياري):</label>
+                <textarea id="additionalNotes" name="additionalNotes"
+                  class="form-textarea" rows="3"
+                  placeholder="أي ملاحظات إضافية تود إضافتها..."></textarea>
               </div>
             </div>
 
@@ -192,6 +240,88 @@
                 طلب الإعفاء</button>
             </div>
           </form>
+        </div>
+      </section>
+
+      <!-- Exemption Details (Initially Hidden) -->
+      <section id="exemptionDetails" class="exemption-details-section"
+        style="display: none;">
+        <div class="card">
+          <h2 class="card__title">تفاصيل طلب الإعفاء</h2>
+
+          <div class="exemption-info">
+            <div class="info-grid">
+              <div class="info-item">
+                <span class="info-label">رقم الطلب:</span>
+                <span id="requestNumber" class="info-value">EX-2023-001</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">حالة الطلب:</span>
+                <span class="info-value status-pending">قيد المراجعة</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">الاسم الكامل:</span>
+                <span id="detailName" class="info-value">محمد أحمد</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">البريد الإلكتروني:</span>
+                <span id="detailEmail"
+                  class="info-value">mohamed@email.com</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المحافظة:</span>
+                <span id="detailProvince" class="info-value">دمشق</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المركز:</span>
+                <span id="detailCenter" class="info-value">المركز الوطني</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">سبب الإعفاء:</span>
+                <span id="detailReason" class="info-value">حالة صحية</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">تاريخ التقديم:</span>
+                <span id="detailDate" class="info-value">2023-12-15</span>
+              </div>
+            </div>
+
+            <div class="exemption-actions">
+              <button id="printExemption" class="btn btn--outline">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" />
+                </svg>
+                طباعة الطلب
+              </button>
+              <button id="trackExemption" class="btn btn--primary">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg>
+                تتبع حالة الطلب
+              </button>
+              <!-- إضافة زر إلغاء الطلب -->
+              <button id="cancelExemption" class="btn btn--danger">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                </svg>
+                إلغاء الطلب
+              </button>
+            </div>
+
+            <div class="exemption-instructions">
+              <h4>معلومات مهمة:</h4>
+              <ul>
+                <li>سيتم مراجعة طلبك خلال 3-5 أيام عمل</li>
+                <li>سيتم إعلامك بنتيجة المراجعة عبر البريد الإلكتروني</li>
+                <li>في حالة الموافقة، سيتم إصدار إعفاء لمدة 6 أشهر</li>
+                <li>يمكنك تتبع حالة الطلب في أي وقت</li>
+                <li>للاستفسار، يمكنك التواصل على info@bloodbank.sy</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -257,6 +387,8 @@
                 <li><a href="Map.html" class="footer__link">مراكز
                     التبرع</a></li>
                 <li><a href="Date.html" class="footer__link">حجز موعد</a></li>
+                <li><a href="exemption.html" class="footer__link">الحصول على
+                    إعفاء</a></li>
                 <li><a href="Contactus.html" class="footer__link">تواصل
                     معنا</a></li>
               </ul>

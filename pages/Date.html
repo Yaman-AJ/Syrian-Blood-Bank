@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>حجز دور للتبرع — بنك الدم السوري</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>حجز موعد تبرع — بنك الدم السوري</title>
 
     <link rel="icon" type="image/x-icon" href="../images/logo 1.png">
 
-    <!-- Google Font: Tajawal -->
+    <!-- Google font for Arabic readability -->
     <link
       href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
       rel="stylesheet">
@@ -33,8 +33,7 @@
               <li><a class="nav__link" href="Bloodtype.html">البحث عن
                   فصيلة</a></li>
               <li><a class="nav__link" href="Map.html">المراكز</a></li>
-              <li><a class="nav__link nav__link--active"
-                  href="Date.html">حجز موعد</a></li>
+              <li><a class="nav__link nav__link--active" href="Date.html">حجز موعد</a></li>
               <li><a class="nav__link" href="Contactus.html">تواصل
                   معنا</a></li>
             </ul>
@@ -81,13 +80,14 @@
           <li><a class="nav__link" href="Bloodtype.html">البحث عن
               فصيلة</a></li>
           <li><a class="nav__link" href="Map.html">المراكز</a></li>
-          <li><a class="nav__link nav__link--active" href="Date.html">حجز
-              موعد</a></li>
+          <li><a class="nav__link nav__link--active" href="Date.html">حجز موعد</a></li>
           <li><a class="nav__link" href="Contactus.html">تواصل
               معنا</a></li>
           <li class="nav__auth-mobile">
-            <a href="login.html" class="btn btn--login btn--block">تسجيل الدخول</a>
-            <a href="signup.html" class="btn btn--signup btn--block">إنشاء حساب</a>
+            <a href="login.html" class="btn btn--login btn--block">تسجيل
+              الدخول</a>
+            <a href="signup.html" class="btn btn--signup btn--block">إنشاء
+              حساب</a>
           </li>
         </ul>
       </nav>
@@ -95,76 +95,175 @@
 
     <!-- MAIN -->
     <main class="main container">
+      <!-- Page Hero -->
       <section class="page-hero">
-        <h1 class="page-hero__title">حجز دور للتبرع</h1>
-        <p class="page-hero__subtitle">ساهم في إنقاذ حياة من خلال التبرع بالدم.
-          اختر المركز والتاريخ المناسبين لحجز موعدك.</p>
+        <h1 class="page-hero__title">حجز موعد للتبرع بالدم</h1>
+        <p class="page-hero__subtitle">
+          ساهم في إنقاذ الأرواح من خلال التبرع بالدم. احجز موعدك الآن وساعدنا في توفير الدم للمحتاجين.
+        </p>
       </section>
 
+      <!-- Donation Content -->
       <section class="donation-content">
         <div class="donation__grid">
-          <!-- نموذج الحجز -->
-          <div class="donation__form-container">
-            <div class="card">
-              <h2 class="card__title">نموذج حجز موعد</h2>
-              <form class="donation-form">
-                <div class="form-group">
-                  <label for="province" class="form-label">اختر المحافظة</label>
-                  <select id="province" class="form-select" required>
-                    <option value>اختر المحافظة</option>
-                    <option>دمشق</option>
-                    <option>ريف دمشق</option>
-                    <option>حمص</option>
-                    <option>حلب</option>
-                    <option>حماه</option>
-                    <option>ادلب</option>
-                    <option>الحسكة</option>
-                    <option>درعا</option>
-                    <option>طرطوس</option>
-                    <option>اللاذقية</option>
-                    <option>دير الزور</option>
-                    <option>الرقة</option>
-                    <option>القنيطرة</option>
-                    <option>السويداء</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="center" class="form-label">اختر المركز</label>
-                  <select id="center" class="form-select" required>
-                    <option value>اختر المركز</option>
-                    <option value="المركز_الوطني">المركز الوطني</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label for="date" class="form-label">اختيار التاريخ</label>
-                  <input type="date" id="date" class="form-input" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="notes" class="form-label">هل لديك ملاحظات:</label>
-                  <textarea id="notes" class="form-textarea" rows="3"
-                    placeholder="أدخل ملاحظاتك هنا..."></textarea>
-                </div>
-
-                <button type="submit" class="btn btn--primary btn--block">حجز
-                  تبرع</button>
-              </form>
+          <!-- Form Card -->
+          <div class="card">
+            <h2 class="card__title">حجز موعد جديد</h2>
+            
+            <!-- Success Message (Initially Hidden) -->
+            <div id="bookingSuccess" class="success-message" style="display: none;">
+              <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                </svg>
+              </div>
+              <h3>تم حجز الموعد بنجاح!</h3>
+              <p>شكراً لك على تبرعك. لقد تم حجز موعدك بنجاح.</p>
             </div>
+
+            <!-- Booking Form -->
+            <form id="bookingForm" class="donation-form">
+              <div class="form-group">
+                <label for="governorate" class="form-label">المحافظة</label>
+                <select id="governorate" class="form-select" required>
+                  <option value="">اختر المحافظة</option>
+                  <option value="دمشق">دمشق</option>
+                  <option value="ريف دمشق">ريف دمشق</option>
+                  <option value="حلب">حلب</option>
+                  <option value="حمص">حمص</option>
+                  <option value="حماه">حماه</option>
+                  <option value="اللاذقية">اللاذقية</option>
+                  <option value="طرطوس">طرطوس</option>
+                  <option value="حماة">حماة</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="center" class="form-label">مركز التبرع</label>
+                <select id="center" class="form-select" required>
+                  <option value="">اختر المركز</option>
+                  <!-- Centers will be populated based on governorate selection -->
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="bloodType" class="form-label">فصيلة الدم</label>
+                <select id="bloodType" class="form-select" required>
+                  <option value="">اختر فصيلة الدم</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="date" class="form-label">التاريخ</label>
+                <input type="date" id="date" class="form-input" required>
+              </div>
+
+              <div class="form-group">
+                <label for="time" class="form-label">الوقت</label>
+                <select id="time" class="form-select" required>
+                  <option value="">اختر الوقت</option>
+                  <option value="08:00">08:00 صباحاً</option>
+                  <option value="09:00">09:00 صباحاً</option>
+                  <option value="10:00">10:00 صباحاً</option>
+                  <option value="11:00">11:00 صباحاً</option>
+                  <option value="12:00">12:00 ظهراً</option>
+                  <option value="13:00">01:00 بعد الظهر</option>
+                  <option value="14:00">02:00 بعد الظهر</option>
+                  <option value="15:00">03:00 بعد الظهر</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="notes" class="form-label">ملاحظات (اختياري)</label>
+                <textarea id="notes" class="form-textarea" placeholder="أي ملاحظات أو احتياجات خاصة..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--block">حجز الموعد</button>
+            </form>
           </div>
 
-          <!-- الصورة والرابط للإعفاء -->
+          <!-- Visual Section -->
           <div class="donation__visual">
             <div class="donation-image">
-              <img src="../images/R3.png" alt="رجل يتبرع بالدم">
+              <img src="../images/donation-hero.png" alt="التبرع بالدم">
             </div>
             <a href="exemption.html" class="exemption-link">
-              <span>الحصول على إعفاء من التبرع</span>
+              <span>الحصول على إعفاء</span>
               <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/>
               </svg>
             </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Booking Details (Initially Hidden) -->
+      <section id="bookingDetails" class="booking-details" style="display: none;">
+        <div class="card">
+          <h2 class="card__title">تفاصيل الحجز</h2>
+          
+          <div class="booking-info">
+            <div class="info-grid">
+              <div class="info-item">
+                <span class="info-label">رقم الحجز:</span>
+                <span id="bookingNumber" class="info-value">BD-2023-001</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">الحالة:</span>
+                <span class="info-value status-confirmed">تم التأكيد</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">المحافظة:</span>
+                <span id="detailGovernorate" class="info-value">دمشق</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">مركز التبرع:</span>
+                <span id="detailCenter" class="info-value">مشفى المواساة</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">التاريخ:</span>
+                <span id="detailDate" class="info-value">2023-12-15</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">الوقت:</span>
+                <span id="detailTime" class="info-value">10:00 صباحاً</span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">فصيلة الدم:</span>
+                <span id="detailBloodType" class="info-value">O+</span>
+              </div>
+            </div>
+
+            <div class="booking-actions">
+              <button id="printBooking" class="btn btn--outline">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/>
+                </svg>
+                طباعة التأكيد
+              </button>
+              <button id="cancelBooking" class="btn btn--primary">
+                إلغاء الحجز
+              </button>
+            </div>
+
+            <div class="booking-instructions">
+              <h4>تعليمات مهمة قبل التبرع:</h4>
+              <ul>
+                <li>احضر بطاقة الهوية الشخصية</li>
+                <li>تناول وجبة خفيفة قبل التبرع بساعتين</li>
+                <li>اشرب كمية كافية من الماء قبل التبرع</li>
+                <li>تجنب التدخين قبل التبرع بساعتين</li>
+                <li>احصل على قسط كافٍ من النوم ليلة التبرع</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -224,8 +323,7 @@
             <div class="footer__links">
               <h4 class="footer__heading">روابط سريعة</h4>
               <ul class="footer__list">
-                <li><a href="../index.html"
-                    class="footer__link">الرئيسية</a></li>
+                <li><a href="../index.html" class="footer__link">الرئيسية</a></li>
                 <li><a href="Bloodtype.html" class="footer__link">البحث عن
                     فصيلة</a></li>
                 <li><a href="Map.html" class="footer__link">مراكز
@@ -302,6 +400,111 @@
     </footer>
 
     <script src="../scripts/main.js"></script>
+    <script>
+      // مكتبة بيانات المراكز حسب المحافظة
+      const centersByGovernorate = {
+        'دمشق': ['مشفى المواساة', 'مشفى الأسد الجامعي', 'مشفى الأطفال'],
+        'ريف دمشق': ['مشفى الهلال', 'مركز دمشق للتبرع'],
+        'حلب': ['مشفى الحلب الجامعي', 'مشفى الإسعاف'],
+        'حمص': ['مشفى الوطني', 'مشفى الباسل'],
+        'حماه': ['مشفى حماة الوطني'],
+        'اللاذقية': ['مشفى التوليد الجامعي'],
+        'طرطوس': ['مشفى طرطوس'],
+        'حماة': ['مشفى حماة الجراحي']
+      };
 
+      // تحديث قائمة المراكز عند تغيير المحافظة
+      document.getElementById('governorate').addEventListener('change', function() {
+        const governorate = this.value;
+        const centerSelect = document.getElementById('center');
+        
+        // مسح الخيارات الحالية
+        centerSelect.innerHTML = '<option value="">اختر المركز</option>';
+        
+        // إضافة المراكز المناسبة
+        if (governorate && centersByGovernorate[governorate]) {
+          centersByGovernorate[governorate].forEach(center => {
+            const option = document.createElement('option');
+            option.value = center;
+            option.textContent = center;
+            centerSelect.appendChild(option);
+          });
+        }
+      });
+
+      // التعامل مع إرسال النموذج
+      document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // جمع بيانات النموذج
+        const formData = {
+          governorate: document.getElementById('governorate').value,
+          center: document.getElementById('center').value,
+          bloodType: document.getElementById('bloodType').value,
+          date: document.getElementById('date').value,
+          time: document.getElementById('time').value,
+          notes: document.getElementById('notes').value,
+          bookingNumber: 'BD-' + new Date().getFullYear() + '-' + 
+            Math.floor(1000 + Math.random() * 9000)
+        };
+
+        // حفظ البيانات في localStorage
+        localStorage.setItem('lastBooking', JSON.stringify(formData));
+
+        // تحديث تفاصيل الحجز
+        document.getElementById('detailGovernorate').textContent = formData.governorate;
+        document.getElementById('detailCenter').textContent = formData.center;
+        document.getElementById('detailDate').textContent = formData.date;
+        document.getElementById('detailTime').textContent = formData.time;
+        document.getElementById('detailBloodType').textContent = formData.bloodType;
+        document.getElementById('bookingNumber').textContent = formData.bookingNumber;
+
+        // إظهار رسالة النجاح وإخفاء النموذج
+        document.getElementById('bookingSuccess').style.display = 'block';
+        document.getElementById('bookingForm').style.display = 'none';
+        
+        // إظهار تفاصيل الحجز
+        setTimeout(() => {
+          document.getElementById('bookingDetails').style.display = 'block';
+          // التمرير إلى تفاصيل الحجز
+          document.getElementById('bookingDetails').scrollIntoView({ 
+            behavior: 'smooth' 
+          });
+        }, 1500);
+      });
+
+      // طباعة تأكيد الحجز
+      document.getElementById('printBooking').addEventListener('click', function() {
+        window.print();
+      });
+
+      // إلغاء الحجز
+      document.getElementById('cancelBooking').addEventListener('click', function() {
+        if (confirm('هل أنت متأكد من إلغاء هذا الحجز؟')) {
+          localStorage.removeItem('lastBooking');
+          alert('تم إلغاء الحجز بنجاح');
+          location.reload();
+        }
+      });
+
+      // تحميل بيانات الحجز السابق إذا وجدت
+      document.addEventListener('DOMContentLoaded', function() {
+        const lastBooking = localStorage.getItem('lastBooking');
+        if (lastBooking) {
+          const booking = JSON.parse(lastBooking);
+          document.getElementById('detailGovernorate').textContent = booking.governorate;
+          document.getElementById('detailCenter').textContent = booking.center;
+          document.getElementById('detailDate').textContent = booking.date;
+          document.getElementById('detailTime').textContent = booking.time;
+          document.getElementById('detailBloodType').textContent = booking.bloodType;
+          document.getElementById('bookingNumber').textContent = booking.bookingNumber;
+          
+          // إظهار تفاصيل الحجز وإخفاء النموذج
+          document.getElementById('bookingForm').style.display = 'none';
+          document.getElementById('bookingSuccess').style.display = 'block';
+          document.getElementById('bookingDetails').style.display = 'block';
+        }
+      });
+    </script>
   </body>
 </html>
