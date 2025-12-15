@@ -1,4 +1,3 @@
-// scripts/main.js
 // إدارة حالة تسجيل الدخول
 function toggleLoginState(isLoggedIn) {
   const authButtons = document.getElementById("authButtons");
