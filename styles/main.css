@@ -836,8 +836,6 @@ body {
     border-radius: var(--radius-sm);
 }
 
-
-
 .footer__list {
     list-style: none;
     margin: 0;
@@ -1369,8 +1367,6 @@ body {
         width: 4rem;
         height: 4rem;
     }
-
-    
 }
 
 /* تحسينات للشاشات الكبيرة */

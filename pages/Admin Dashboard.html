@@ -17,7 +17,6 @@
         <!-- استيراد CSS -->
         <link rel="stylesheet" href="../styles/main.css">
         <link rel="stylesheet" href="../styles/dashboard.css">
-        >
     </head>
     <body class="page">
         <div class="admin-dashboard">
@@ -71,21 +70,6 @@
                         <i class="fas fa-hospital"></i>
                         <span>المراكز</span>
                     </a>
-                    <a href="javascript:void(0)" class="menu-item"
-                        data-tab="reports-management">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>التقارير</span>
-                    </a>
-                    <a href="javascript:void(0)" class="menu-item"
-                        data-tab="staff-management">
-                        <i class="fas fa-user-md"></i>
-                        <span>الموظفون</span>
-                    </a>
-                    <a href="javascript:void(0)" class="menu-item"
-                        data-tab="settings-management">
-                        <i class="fas fa-cog"></i>
-                        <span>الإعدادات</span>
-                    </a>
                 </nav>
             </aside>
 
@@ -113,19 +97,7 @@
                     </div>
                 </header>
 
-                <!-- محتوى لوحة التحكم -->
-                <div class="admin-tabs" id="pageTabs">
-    <button class="tab-btn active" data-tab="overview">نظرة عامة</button>
-    <button class="tab-btn" data-tab="blood-management">إدارة مخزون الدم</button>
-    <button class="tab-btn" data-tab="appointments-management">إدارة المواعيد</button>
-    <button    class="tab-btn" data-tab="exemptions-management">إدارة الإعفاءات</button>
-    <button class="tab-btn" data-tab="donors-management">إدارة المتبرعين</button>
-    <button class="tab-btn" data-tab="centers-management">إدارة المراكز</button>
-    <button class="tab-btn" data-tab="reports-management">التقارير</button>
-    <button class="tab-btn" data-tab="staff-management">إدارة الموظفين</button>
-    <button class="tab-btn" data-tab="settings-management">الإعدادات</button>
-</div>
-
+                <div class="admin-content">
                     <!-- تبويب النظرة العامة (المحتوى الافتراضي) -->
                     <div class="tab-content active" id="overview">
                         <!-- إحصائيات سريعة -->
@@ -175,40 +147,6 @@
                             </div>
                         </div>
 
-                        <!-- رسوم بيانية -->
-                        <div class="charts-container">
-                            <div class="chart-card">
-                                <div class="chart-header">
-                                    <h3>إحصائيات التبرعات الشهرية</h3>
-                                    <select class="form-control"
-                                        style="width: auto;">
-                                        <option>آخر 6 أشهر</option>
-                                        <option>آخر سنة</option>
-                                    </select>
-                                </div>
-                                <div class="chart-placeholder">
-                                    <div style="text-align: center;">
-                                        <i class="fas fa-chart-line fa-3x"
-                                            style="margin-bottom: 1rem;"></i>
-                                        <p>مخطط التبرعات الشهرية</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="chart-card">
-                                <div class="chart-header">
-                                    <h3>توزيع فصائل الدم</h3>
-                                </div>
-                                <div class="chart-placeholder">
-                                    <div style="text-align: center;">
-                                        <i class="fas fa-chart-pie fa-3x"
-                                            style="margin-bottom: 1rem;"></i>
-                                        <p>مخطط فصائل الدم</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- المواعيد القادمة -->
                         <div class="data-table">
                             <div class="table-header">
@@ -245,15 +183,9 @@
                                                     الانتظار</span></td>
                                             <td>
                                                 <div class="action-buttons">
-                                                    <button
-                                                        class="btn-icon btn-view"><i
-                                                            class="fas fa-eye"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-edit"><i
-                                                            class="fas fa-edit"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-delete"><i
-                                                            class="fas fa-trash"></i></button>
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -267,12 +199,9 @@
                                                     class="status-badge status-approved">مؤكد</span></td>
                                             <td>
                                                 <div class="action-buttons">
-                                                    <button
-                                                        class="btn-icon btn-view"><i
-                                                            class="fas fa-eye"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-edit"><i
-                                                            class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -287,15 +216,9 @@
                                                     الانتظار</span></td>
                                             <td>
                                                 <div class="action-buttons">
-                                                    <button
-                                                        class="btn-icon btn-view"><i
-                                                            class="fas fa-eye"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-edit"><i
-                                                            class="fas fa-edit"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-delete"><i
-                                                            class="fas fa-trash"></i></button>
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -347,15 +270,9 @@
                                                     class="status-badge status-approved">متاح</span></td>
                                             <td>
                                                 <div class="action-buttons">
-                                                    <button
-                                                        class="btn-icon btn-view"><i
-                                                            class="fas fa-eye"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-edit"><i
-                                                            class="fas fa-edit"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-delete"><i
-                                                            class="fas fa-trash"></i></button>
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -370,12 +287,9 @@
                                                     class="status-badge status-approved">متاح</span></td>
                                             <td>
                                                 <div class="action-buttons">
-                                                    <button
-                                                        class="btn-icon btn-view"><i
-                                                            class="fas fa-eye"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-edit"><i
-                                                            class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -390,12 +304,9 @@
                                                     class="status-badge status-rejected">مستخدم</span></td>
                                             <td>
                                                 <div class="action-buttons">
-                                                    <button
-                                                        class="btn-icon btn-view"><i
-                                                            class="fas fa-eye"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-delete"><i
-                                                            class="fas fa-trash"></i></button>
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -454,7 +365,38 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- سيتم ملؤها ديناميكياً -->
+                                        <tr>
+                                            <td>APT-20231219</td>
+                                            <td>فاطمة حسن</td>
+                                            <td>AB+</td>
+                                            <td>مشفى المواساة</td>
+                                            <td>2023-12-22</td>
+                                            <td>02:30 م</td>
+                                            <td><span class="status-badge status-pending">قيد الانتظار</span></td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>APT-20231218</td>
+                                            <td>خالد إبراهيم</td>
+                                            <td>O-</td>
+                                            <td>مشفى الأسد الجامعي</td>
+                                            <td>2023-12-21</td>
+                                            <td>03:00 م</td>
+                                            <td><span class="status-badge status-approved">مؤكد</span></td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -507,15 +449,9 @@
                                                     المراجعة</span></td>
                                             <td>
                                                 <div class="action-buttons">
-                                                    <button
-                                                        class="btn-icon btn-view"><i
-                                                            class="fas fa-eye"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-edit"><i
-                                                            class="fas fa-check"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-delete"><i
-                                                            class="fas fa-times"></i></button>
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-check"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-times"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -530,12 +466,9 @@
                                                     class="status-badge status-approved">مقبول</span></td>
                                             <td>
                                                 <div class="action-buttons">
-                                                    <button
-                                                        class="btn-icon btn-view"><i
-                                                            class="fas fa-eye"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-edit"><i
-                                                            class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -550,12 +483,9 @@
                                                     class="status-badge status-rejected">مرفوض</span></td>
                                             <td>
                                                 <div class="action-buttons">
-                                                    <button
-                                                        class="btn-icon btn-view"><i
-                                                            class="fas fa-eye"></i></button>
-                                                    <button
-                                                        class="btn-icon btn-edit"><i
-                                                            class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -564,272 +494,166 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- تبويب إدارة المتبرعين -->
-<div class="tab-content" id="donors-management">
-    <div class="data-table">
-        <div class="table-header">
-            <h3>إدارة المتبرعين</h3>
-            <div class="table-actions">
-                <div class="table-search">
-                    <input type="text" placeholder="بحث عن متبرع...">
-                    <i class="fas fa-search"></i>
-                </div>
-                <button class="btn btn--primary" id="addDonorBtn">
-                    <i class="fas fa-plus"></i> إضافة متبرع
-                </button>
-            </div>
-        </div>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>الاسم</th>
-                        <th>فصيلة الدم</th>
-                        <th>الهاتف</th>
-                        <th>آخر تبرع</th>
-                        <th>عدد التبرعات</th>
-                        <th>الحالة</th>
-                        <th>الإجراءات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>أحمد محمد</td>
-                        <td>O+</td>
-                        <td>0912345678</td>
-                        <td>2023-12-10</td>
-                        <td>5</td>
-                        <td><span class="status-badge status-approved">نشط</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                    <div class="tab-content" id="donors-management">
+                        <div class="data-table">
+                            <div class="table-header">
+                                <h3>إدارة المتبرعين</h3>
+                                <div class="table-actions">
+                                    <div class="table-search">
+                                        <input type="text" placeholder="بحث عن متبرع...">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <button class="btn btn--primary" id="addDonorBtn">
+                                        <i class="fas fa-plus"></i> إضافة متبرع
+                                    </button>
+                                </div>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>سارة خالد</td>
-                        <td>A-</td>
-                        <td>0934567890</td>
-                        <td>2023-12-11</td>
-                        <td>3</td>
-                        <td><span class="status-badge status-approved">نشط</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>الاسم</th>
+                                            <th>فصيلة الدم</th>
+                                            <th>الهاتف</th>
+                                            <th>آخر تبرع</th>
+                                            <th>عدد التبرعات</th>
+                                            <th>الحالة</th>
+                                            <th>الإجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>أحمد محمد</td>
+                                            <td>O+</td>
+                                            <td>0912345678</td>
+                                            <td>2023-12-10</td>
+                                            <td>5</td>
+                                            <td><span class="status-badge status-approved">نشط</span></td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>سارة خالد</td>
+                                            <td>A-</td>
+                                            <td>0934567890</td>
+                                            <td>2023-12-11</td>
+                                            <td>3</td>
+                                            <td><span class="status-badge status-approved">نشط</span></td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>علي محمود</td>
+                                            <td>B+</td>
+                                            <td>0945678901</td>
+                                            <td>2023-12-05</td>
+                                            <td>7</td>
+                                            <td><span class="status-badge status-approved">نشط</span></td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<!-- تبويب إدارة المراكز -->
-<div class="tab-content" id="centers-management">
-    <div class="data-table">
-        <div class="table-header">
-            <h3>إدارة مراكز التبرع</h3>
-            <div class="table-actions">
-                <div class="table-search">
-                    <input type="text" placeholder="بحث عن مركز...">
-                    <i class="fas fa-search"></i>
-                </div>
-                <button class="btn btn--primary" id="addCenterBtn">
-                    <i class="fas fa-plus"></i> إضافة مركز
-                </button>
-            </div>
-        </div>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>اسم المركز</th>
-                        <th>المحافظة</th>
-                        <th>العنوان</th>
-                        <th>الهاتف</th>
-                        <th>ساعات العمل</th>
-                        <th>الحالة</th>
-                        <th>الإجراءات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>مشفى المواساة</td>
-                        <td>دمشق</td>
-                        <td>شارع الثورة</td>
-                        <td>011-1234567</td>
-                        <td>8 صباحاً - 4 مساءً</td>
-                        <td><span class="status-badge status-approved">نشط</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<!-- تبويب التقارير -->
-<div class="tab-content" id="reports-management">
-    <div class="chart-card">
-        <div class="chart-header">
-            <h3>التقارير الإحصائية</h3>
-            <select class="form-control" style="width: auto;">
-                <option>آخر 7 أيام</option>
-                <option>آخر شهر</option>
-                <option>آخر سنة</option>
-            </select>
-        </div>
-        <div class="chart-placeholder">
-            <div style="text-align: center;">
-                <i class="fas fa-chart-bar fa-3x" style="margin-bottom: 1rem;"></i>
-                <p>التقارير الإحصائية</p>
-                <small>تحليل البيانات والإحصائيات</small>
-            </div>
-        </div>
-    </div>
-    
-    <div class="data-table" style="margin-top: 2rem;">
-        <div class="table-header">
-            <h3>تقارير التبرعات</h3>
-            <div class="table-actions">
-                <button class="btn btn--primary">
-                    <i class="fas fa-download"></i> تصدير PDF
-                </button>
-            </div>
-        </div>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>الشهر</th>
-                        <th>عدد التبرعات</th>
-                        <th>فصيلة الأكثر تبرعاً</th>
-                        <th>أعلى مركز</th>
-                        <th>معدل النمو</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ديسمبر 2023</td>
-                        <td>245</td>
-                        <td>O+</td>
-                        <td>مشفى المواساة</td>
-                        <td><span class="status-badge status-approved">+15%</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<!-- تبويب إدارة الموظفين -->
-<div class="tab-content" id="staff-management">
-    <div class="data-table">
-        <div class="table-header">
-            <h3>إدارة الموظفين</h3>
-            <div class="table-actions">
-                <div class="table-search">
-                    <input type="text" placeholder="بحث عن موظف...">
-                    <i class="fas fa-search"></i>
-                </div>
-                <button class="btn btn--primary" id="addStaffBtn">
-                    <i class="fas fa-plus"></i> إضافة موظف
-                </button>
-            </div>
-        </div>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>الاسم</th>
-                        <th>الدور</th>
-                        <th>البريد الإلكتروني</th>
-                        <th>الهاتف</th>
-                        <th>تاريخ التعيين</th>
-                        <th>الحالة</th>
-                        <th>الإجراءات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>يمان الجاويش</td>
-                        <td>مدير النظام</td>
-                        <td>admin@bloodbank.sy</td>
-                        <td>0934567890</td>
-                        <td>2022-01-15</td>
-                        <td><span class="status-badge status-approved">نشط</span></td>
-                        <td>
-                            <div class="action-buttons">
-                                <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
-                                <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<!-- تبويب الإعدادات -->
-<div class="tab-content" id="settings-management">
-    <div class="chart-card">
-        <div class="chart-header">
-            <h3>الإعدادات العامة</h3>
-        </div>
-        <div style="padding: 2rem;">
-            <form>
-                <div class="form-group">
-                    <label>اسم المؤسسة</label>
-                    <input type="text" class="form-control" value="بنك الدم السوري">
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>البريد الإلكتروني للدعم</label>
-                        <input type="email" class="form-control" value="support@bloodbank.sy">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>رقم الهاتف</label>
-                        <input type="text" class="form-control" value="+963 11 123 4567">
+
+                    <!-- تبويب إدارة المراكز -->
+                    <div class="tab-content" id="centers-management">
+                        <div class="data-table">
+                            <div class="table-header">
+                                <h3>إدارة مراكز التبرع</h3>
+                                <div class="table-actions">
+                                    <div class="table-search">
+                                        <input type="text" placeholder="بحث عن مركز...">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <button class="btn btn--primary" id="addCenterBtn">
+                                        <i class="fas fa-plus"></i> إضافة مركز
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>اسم المركز</th>
+                                            <th>المحافظة</th>
+                                            <th>العنوان</th>
+                                            <th>الهاتف</th>
+                                            <th>ساعات العمل</th>
+                                            <th>الحالة</th>
+                                            <th>الإجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>مشفى المواساة</td>
+                                            <td>دمشق</td>
+                                            <td>شارع الثورة</td>
+                                            <td>011-1234567</td>
+                                            <td>8 صباحاً - 4 مساءً</td>
+                                            <td><span class="status-badge status-approved">نشط</span></td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>مشفى الأسد الجامعي</td>
+                                            <td>دمشق</td>
+                                            <td>المزة</td>
+                                            <td>011-7654321</td>
+                                            <td>24 ساعة</td>
+                                            <td><span class="status-badge status-approved">نشط</span></td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>مشفى الأطفال</td>
+                                            <td>دمشق</td>
+                                            <td>أبو رمانة</td>
+                                            <td>011-9876543</td>
+                                            <td>8 صباحاً - 8 مساءً</td>
+                                            <td><span class="status-badge status-approved">نشط</span></td>
+                                            <td>
+                                                <div class="action-buttons">
+                                                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                                                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                                                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>العنوان الرئيسي</label>
-                    <input type="text" class="form-control" value="دمشق، سوريا">
-                </div>
-                
-                <div class="form-group">
-                    <label>وقت تنبيه المخزون المنخفض (أيام)</label>
-                    <input type="number" class="form-control" value="7" min="1" max="30">
-                </div>
-                
-                <div class="form-group">
-                    <label>تذكير المتبرعين (أيام قبل الموعد)</label>
-                    <input type="number" class="form-control" value="2" min="0" max="7">
-                </div>
-                
-                <div class="form-group">
-                    <button type="button" class="btn btn--primary">
-                        <i class="fas fa-save"></i> حفظ التغييرات
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
                 </div>
             </main>
         </div>
@@ -1008,6 +832,231 @@
                         id="cancelAppointmentBtn">إلغاء</button>
                     <button class="btn btn--primary"
                         id="saveAppointmentBtn">حفظ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- نافذة إضافة متبرع -->
+        <div class="modal" id="addDonorModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>إضافة متبرع جديد</h3>
+                    <button class="close-modal" id="closeDonorModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="donorForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donorName">الاسم الكامل</label>
+                                <input type="text" id="donorName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="donorId">رقم الهوية</label>
+                                <input type="text" id="donorId" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donorBloodType">فصيلة الدم</label>
+                                <select id="donorBloodType" class="form-control" required>
+                                    <option value="">اختر فصيلة الدم</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="donorPhone">رقم الهاتف</label>
+                                <input type="tel" id="donorPhone" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donorEmail">البريد الإلكتروني</label>
+                                <input type="email" id="donorEmail" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="donorBirthDate">تاريخ الميلاد</label>
+                                <input type="date" id="donorBirthDate" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donorGender">الجنس</label>
+                                <select id="donorGender" class="form-control" required>
+                                    <option value="">اختر الجنس</option>
+                                    <option value="male">ذكر</option>
+                                    <option value="female">أنثى</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="donorWeight">الوزن (كجم)</label>
+                                <input type="number" id="donorWeight" class="form-control" min="50" max="150" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donorAddress">العنوان</label>
+                                <input type="text" id="donorAddress" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="donorCity">المدينة</label>
+                                <input type="text" id="donorCity" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="donorMedicalHistory">التاريخ الطبي (إن وجد)</label>
+                            <textarea id="donorMedicalHistory" class="form-control" rows="3" placeholder="أي أمراض مزمنة أو أدوية يتناولها..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="donorConsent" required>
+                                <span>أوافق على الشروط والأحكام الخاصة بالتبرع بالدم</span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn--outline" id="cancelDonorBtn">إلغاء</button>
+                    <button class="btn btn--primary" id="saveDonorBtn">حفظ المتبرع</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- نافذة إضافة مركز -->
+        <div class="modal" id="addCenterModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>إضافة مركز جديد</h3>
+                    <button class="close-modal" id="closeCenterModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="centerForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="centerName">اسم المركز</label>
+                                <input type="text" id="centerName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="centerType">نوع المركز</label>
+                                <select id="centerType" class="form-control" required>
+                                    <option value="">اختر النوع</option>
+                                    <option value="hospital">مستشفى</option>
+                                    <option value="blood_bank">بنك دم</option>
+                                    <option value="clinic">عيادة</option>
+                                    <option value="mobile">وحدة متنقلة</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="centerGovernorate">المحافظة</label>
+                                <select id="centerGovernorate" class="form-control" required>
+                                    <option value="">اختر المحافظة</option>
+                                    <option value="damascus">دمشق</option>
+                                    <option value="aleppo">حلب</option>
+                                    <option value="homs">حمص</option>
+                                    <option value="latakia">اللاذقية</option>
+                                    <option value="hama">حماة</option>
+                                    <option value="tartus">طرطوس</option>
+                                    <option value="daraa">درعا</option>
+                                    <option value="hasakeh">الحسكة</option>
+                                    <option value="raqqa">الرقة</option>
+                                    <option value="deir_ezzor">دير الزور</option>
+                                    <option value="sweida">السويداء</option>
+                                    <option value="quneitra">القنيطرة</option>
+                                    <option value="idlib">إدلب</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="centerPhone">رقم الهاتف</label>
+                                <input type="tel" id="centerPhone" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="centerAddress">العنوان التفصيلي</label>
+                                <input type="text" id="centerAddress" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="centerEmail">البريد الإلكتروني</label>
+                                <input type="email" id="centerEmail" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="centerOpeningHours">ساعات العمل</label>
+                                <div class="hours-input">
+                                    <div class="hours-row">
+                                        <select class="form-control" style="flex: 1;">
+                                            <option>08:00 صباحاً</option>
+                                            <option>09:00 صباحاً</option>
+                                            <option>10:00 صباحاً</option>
+                                        </select>
+                                        <span style="margin: 0 0.5rem;">إلى</span>
+                                        <select class="form-control" style="flex: 1;">
+                                            <option>04:00 مساءً</option>
+                                            <option>05:00 مساءً</option>
+                                            <option>06:00 مساءً</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="centerStatus">حالة المركز</label>
+                                <select id="centerStatus" class="form-control" required>
+                                    <option value="active">نشط</option>
+                                    <option value="inactive">غير نشط</option>
+                                    <option value="maintenance">قيد الصيانة</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="centerDescription">وصف المركز</label>
+                            <textarea id="centerDescription" class="form-control" rows="3" placeholder="وصف مختصر عن المركز وخدماته..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="centerFacilities">المرافق المتاحة</label>
+                            <div class="facilities-checkboxes">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="parking">
+                                    <span>موقف سيارات</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="waiting_area">
+                                    <span>غرفة انتظار</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="cafeteria">
+                                    <span>كافيتيريا</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="wifi">
+                                    <span>إنترنت لاسلكي</span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn--outline" id="cancelCenterBtn">إلغاء</button>
+                    <button class="btn btn--primary" id="saveCenterBtn">حفظ المركز</button>
                 </div>
             </div>
         </div>

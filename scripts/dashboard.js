@@ -1,5 +1,7 @@
 // كود JavaScript للداشبورد الإداري
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("لوحة التحكم جاهزة!");
+
   // ========== إدارة الشريط الجانبي للجوال ==========
   const sidebarToggle = document.getElementById("sidebarToggle");
   const sidebar = document.getElementById("sidebar");
@@ -20,45 +22,51 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // إغلاق الشريط الجانبي عند النقر خارجها (للجوال فقط)
+    // إغلاق الشريط الجانبي عند النقر خارجها
     document.addEventListener("click", function (e) {
       if (
-        window.innerWidth <= 1024 &&
         sidebar.classList.contains("active") &&
         !sidebar.contains(e.target) &&
-        !sidebarToggle.contains(e.target)
+        !sidebarToggle.contains(e.target) &&
+        window.innerWidth <= 1024
       ) {
         sidebar.classList.remove("active");
         sidebarToggle.classList.remove("active");
         const icon = sidebarToggle.querySelector("i");
-        icon.classList.remove("fa-times");
-        icon.classList.add("fa-bars");
+        if (icon) {
+          icon.classList.remove("fa-times");
+          icon.classList.add("fa-bars");
+        }
       }
     });
   }
 
   // ========== إدارة تبويبات الصفحة ==========
-  const tabBtns = document.querySelectorAll(".tab-btn");
+  const menuItems = document.querySelectorAll(".menu-item");
   const tabContents = document.querySelectorAll(".tab-content");
 
   // دالة لتبديل التبويب
   function switchTab(tabId) {
-    // إزالة النشاط من جميع الأزرار والمحتويات
-    tabBtns.forEach((b) => b.classList.remove("active"));
+    // إخفاء جميع المحتويات
     tabContents.forEach((c) => c.classList.remove("active"));
 
-    // إضافة النشاط للزر والمحتوى المحدد
-    const targetBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-    const targetContent = document.getElementById(tabId);
+    // إزالة النشاط من جميع عناصر القائمة
+    menuItems.forEach((m) => m.classList.remove("active"));
 
-    if (targetBtn && targetContent) {
-      targetBtn.classList.add("active");
+    // إظهار المحتوى المحدد
+    const targetContent = document.getElementById(tabId);
+    if (targetContent) {
       targetContent.classList.add("active");
 
-      // تحديث القائمة الجانبية
-      updateSidebarMenu(tabId);
+      // إضافة النشاط للقائمة الجانبية
+      const targetMenu = document.querySelector(
+        `.menu-item[data-tab="${tabId}"]`
+      );
+      if (targetMenu) {
+        targetMenu.classList.add("active");
+      }
 
-      // إغلاق الشريط الجانبي على الجوال إذا كان مفتوحًا
+      // إغلاق الشريط الجانبي على الجوال
       if (
         window.innerWidth <= 1024 &&
         sidebar &&
@@ -78,56 +86,25 @@ document.addEventListener("DOMContentLoaded", function () {
     return false;
   }
 
-  // إضافة مستمعي الأحداث لأزرار التبويبات
-  tabBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const tabId = this.getAttribute("data-tab");
-      switchTab(tabId);
-    });
-  });
-
-  // ========== إدارة القائمة الجانبية ==========
-  const menuItems = document.querySelectorAll(".menu-item");
-
-  // تحديث القائمة الجانبية بناءً على التبويب النشط
-  function updateSidebarMenu(activeTab) {
-    menuItems.forEach((item) => item.classList.remove("active"));
-
-    // خريطة التبويبات للقائمة الجانبية
-    const menuMapping = {
-      overview: "overview",
-      "blood-management": "blood-management",
-      "appointments-management": "appointments-management",
-      "exemptions-management": "exemptions-management",
-      "donors-management": "donors-management",
-      "centers-management": "centers-management",
-      "reports-management": "reports-management",
-      "staff-management": "staff-management",
-      "settings-management": "settings-management",
-    };
-
-    const targetMenu = document.querySelector(
-      `.menu-item[data-tab="${activeTab}"]`
-    );
-    if (targetMenu) {
-      targetMenu.classList.add("active");
-    }
-  }
-
-  // إضافة مستمعي الأحداث لعناصر القائمة الجانبية
+  // إضافة مستمعي الأحداث لعناصر القائمة
   menuItems.forEach((item) => {
     item.addEventListener("click", function (e) {
       e.preventDefault();
       const tabId = this.getAttribute("data-tab");
-      if (tabId && switchTab(tabId)) {
-        // تحديث القائمة الجانبية
-        menuItems.forEach((i) => i.classList.remove("active"));
-        this.classList.add("active");
+      if (tabId) {
+        switchTab(tabId);
       }
     });
   });
 
-  // ========== إدارة نافذة إضافة كيس دم ==========
+  // تهيئة التبويب الأول
+  if (menuItems.length > 0) {
+    const firstTab = menuItems[0].getAttribute("data-tab");
+    switchTab(firstTab);
+  }
+
+  // ========== إدارة النوافذ المنبثقة ==========
+  // نافذة إضافة كيس دم
   const addBloodBtn = document.getElementById("addBloodBtn");
   const addBloodModal = document.getElementById("addBloodModal");
   const closeBloodModal = document.getElementById("closeBloodModal");
@@ -140,34 +117,40 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.style.overflow = "hidden";
     });
 
-    // دالة لإغلاق النافذة
     function closeBloodModalFunc() {
       addBloodModal.classList.remove("active");
       document.body.style.overflow = "";
+      document.getElementById("bloodForm").reset();
     }
 
-    closeBloodModal.addEventListener("click", closeBloodModalFunc);
-    cancelBloodBtn.addEventListener("click", closeBloodModalFunc);
+    if (closeBloodModal)
+      closeBloodModal.addEventListener("click", closeBloodModalFunc);
+    if (cancelBloodBtn)
+      cancelBloodBtn.addEventListener("click", closeBloodModalFunc);
 
-    saveBloodBtn.addEventListener("click", function () {
-      // التحقق من صحة النموذج
-      const bloodForm = document.getElementById("bloodForm");
-      if (!bloodForm.checkValidity()) {
-        alert("يرجى ملء جميع الحقول المطلوبة");
-        return;
-      }
-
-      // محاكاة حفظ البيانات
-      showNotification("تم إضافة كيس الدم بنجاح", "success");
-      closeBloodModalFunc();
-      bloodForm.reset();
-
-      // تحديث الجدول (محاكاة)
-      updateBloodTable();
-    });
+    if (saveBloodBtn) {
+      saveBloodBtn.addEventListener("click", function () {
+        const form = document.getElementById("bloodForm");
+        if (form.checkValidity()) {
+          showNotification("تم إضافة كيس الدم بنجاح", "success");
+          closeBloodModalFunc();
+          // إضافة الصف إلى الجدول
+          addBloodToTable({
+            bagNumber: document.getElementById("bagNumber").value,
+            bloodType: document.getElementById("bloodType").value,
+            donationDate: document.getElementById("donationDate").value,
+            expiryDate: document.getElementById("expiryDate").value,
+            center: document.getElementById("center").value,
+            donor: document.getElementById("donor").value,
+          });
+        } else {
+          showNotification("يرجى ملء جميع الحقول المطلوبة", "error");
+        }
+      });
+    }
   }
 
-  // ========== إدارة نافذة إضافة موعد ==========
+  // نافذة إضافة موعد
   const addAppointmentBtn = document.getElementById("addAppointmentBtn");
   const addAppointmentModal = document.getElementById("addAppointmentModal");
   const closeAppointmentModal = document.getElementById(
@@ -182,36 +165,139 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.style.overflow = "hidden";
     });
 
-    // دالة لإغلاق النافذة
     function closeAppointmentModalFunc() {
       addAppointmentModal.classList.remove("active");
       document.body.style.overflow = "";
+      document.getElementById("appointmentForm").reset();
     }
 
-    closeAppointmentModal.addEventListener("click", closeAppointmentModalFunc);
-    cancelAppointmentBtn.addEventListener("click", closeAppointmentModalFunc);
+    if (closeAppointmentModal)
+      closeAppointmentModal.addEventListener(
+        "click",
+        closeAppointmentModalFunc
+      );
+    if (cancelAppointmentBtn)
+      cancelAppointmentBtn.addEventListener("click", closeAppointmentModalFunc);
 
-    saveAppointmentBtn.addEventListener("click", function () {
-      // التحقق من صحة النموذج
-      const appointmentForm = document.getElementById("appointmentForm");
-      if (!appointmentForm.checkValidity()) {
-        alert("يرجى ملء جميع الحقول المطلوبة");
-        return;
-      }
-
-      // محاكاة حفظ البيانات
-      showNotification("تم إضافة الموعد بنجاح", "success");
-      closeAppointmentModalFunc();
-      appointmentForm.reset();
-
-      // تحديث الجدول (محاكاة)
-      updateAppointmentsTable();
-    });
+    if (saveAppointmentBtn) {
+      saveAppointmentBtn.addEventListener("click", function () {
+        const form = document.getElementById("appointmentForm");
+        if (form.checkValidity()) {
+          showNotification("تم إضافة الموعد بنجاح", "success");
+          closeAppointmentModalFunc();
+          // إضافة الصف إلى الجدول
+          addAppointmentToTable({
+            donor: document.getElementById("appDonor").value,
+            bloodType: document.getElementById("appBloodType").value,
+            center: document.getElementById("appCenter").value,
+            date: document.getElementById("appDate").value,
+            time: document.getElementById("appTime").value,
+            status: document.getElementById("appStatus").value,
+          });
+        } else {
+          showNotification("يرجى ملء جميع الحقول المطلوبة", "error");
+        }
+      });
+    }
   }
 
-  // ========== إدارة النوافذ المنبثقة ==========
+  // نافذة إضافة متبرع
+  const addDonorBtn = document.getElementById("addDonorBtn");
+  const addDonorModal = document.getElementById("addDonorModal");
+  const closeDonorModal = document.getElementById("closeDonorModal");
+  const cancelDonorBtn = document.getElementById("cancelDonorBtn");
+  const saveDonorBtn = document.getElementById("saveDonorBtn");
+
+  if (addDonorBtn && addDonorModal) {
+    addDonorBtn.addEventListener("click", function () {
+      addDonorModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+
+    function closeDonorModalFunc() {
+      addDonorModal.classList.remove("active");
+      document.body.style.overflow = "";
+      document.getElementById("donorForm").reset();
+    }
+
+    if (closeDonorModal)
+      closeDonorModal.addEventListener("click", closeDonorModalFunc);
+    if (cancelDonorBtn)
+      cancelDonorBtn.addEventListener("click", closeDonorModalFunc);
+
+    if (saveDonorBtn) {
+      saveDonorBtn.addEventListener("click", function () {
+        const form = document.getElementById("donorForm");
+        if (form.checkValidity()) {
+          showNotification("تم إضافة المتبرع بنجاح", "success");
+          closeDonorModalFunc();
+          // إضافة الصف إلى الجدول
+          addDonorToTable({
+            name: document.getElementById("donorName").value,
+            bloodType: document.getElementById("donorBloodType").value,
+            phone: document.getElementById("donorPhone").value,
+            id: document.getElementById("donorId").value,
+            email: document.getElementById("donorEmail").value,
+            birthDate: document.getElementById("donorBirthDate").value,
+            gender: document.getElementById("donorGender").value,
+            weight: document.getElementById("donorWeight").value,
+          });
+        } else {
+          showNotification("يرجى ملء جميع الحقول المطلوبة", "error");
+        }
+      });
+    }
+  }
+
+  // نافذة إضافة مركز
+  const addCenterBtn = document.getElementById("addCenterBtn");
+  const addCenterModal = document.getElementById("addCenterModal");
+  const closeCenterModal = document.getElementById("closeCenterModal");
+  const cancelCenterBtn = document.getElementById("cancelCenterBtn");
+  const saveCenterBtn = document.getElementById("saveCenterBtn");
+
+  if (addCenterBtn && addCenterModal) {
+    addCenterBtn.addEventListener("click", function () {
+      addCenterModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+
+    function closeCenterModalFunc() {
+      addCenterModal.classList.remove("active");
+      document.body.style.overflow = "";
+      document.getElementById("centerForm").reset();
+    }
+
+    if (closeCenterModal)
+      closeCenterModal.addEventListener("click", closeCenterModalFunc);
+    if (cancelCenterBtn)
+      cancelCenterBtn.addEventListener("click", closeCenterModalFunc);
+
+    if (saveCenterBtn) {
+      saveCenterBtn.addEventListener("click", function () {
+        const form = document.getElementById("centerForm");
+        if (form.checkValidity()) {
+          showNotification("تم إضافة المركز بنجاح", "success");
+          closeCenterModalFunc();
+          // إضافة الصف إلى الجدول
+          addCenterToTable({
+            name: document.getElementById("centerName").value,
+            type: document.getElementById("centerType").value,
+            governorate: document.getElementById("centerGovernorate").value,
+            phone: document.getElementById("centerPhone").value,
+            address: document.getElementById("centerAddress").value,
+            email: document.getElementById("centerEmail").value,
+            status: document.getElementById("centerStatus").value,
+          });
+        } else {
+          showNotification("يرجى ملء جميع الحقول المطلوبة", "error");
+        }
+      });
+    }
+  }
+
   // إغلاق النوافذ عند النقر خارجها
-  window.addEventListener("click", function (e) {
+  document.addEventListener("click", function (e) {
     if (e.target.classList.contains("modal")) {
       e.target.classList.remove("active");
       document.body.style.overflow = "";
@@ -234,7 +320,23 @@ document.addEventListener("DOMContentLoaded", function () {
     updateBloodTypesGrid();
   }
 
-  // دالة تحديث شبكة فصائل الدم
+  // زر تحديث المخزون
+  const updateInventoryBtn = document.getElementById("updateInventoryBtn");
+  if (updateInventoryBtn) {
+    updateInventoryBtn.addEventListener("click", function () {
+      this.disabled = true;
+      const originalHTML = this.innerHTML;
+      this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحديث...';
+
+      setTimeout(() => {
+        updateBloodTypesGrid();
+        showNotification("تم تحديث بيانات المخزون بنجاح", "success");
+        this.disabled = false;
+        this.innerHTML = originalHTML;
+      }, 1500);
+    });
+  }
+
   function updateBloodTypesGrid() {
     const bloodTypes = [
       { type: "A+", count: 153, status: "good" },
@@ -271,162 +373,300 @@ document.addEventListener("DOMContentLoaded", function () {
       const card = document.createElement("div");
       card.className = "blood-type-card";
       card.innerHTML = `
-        <div class="blood-type">${blood.type}</div>
-        <div class="blood-count">${blood.count} كيس</div>
-        <div class="blood-status ${statusClass}">${statusText}</div>
-      `;
+                <div class="blood-type">${blood.type}</div>
+                <div class="blood-count">${blood.count} كيس</div>
+                <div class="blood-status ${statusClass}">${statusText}</div>
+            `;
 
       bloodTypesGrid.appendChild(card);
     });
   }
 
-  // ========== تحديث الجداول ==========
-  // دالة تحديث جدول المواعيد (محاكاة)
-  function updateAppointmentsTable() {
-    const appointmentsTable = document.querySelector(
-      "#appointments-management tbody"
+  // ========== وظائف إضافة بيانات للجداول ==========
+  function addBloodToTable(data) {
+    const table = document.querySelector("#blood-management tbody");
+    if (!table) return;
+
+    const newRow = document.createElement("tr");
+    const formattedDate = new Date(data.donationDate).toLocaleDateString(
+      "ar-SA"
     );
-    if (appointmentsTable) {
-      // يمكنك هنا جلب البيانات من الخادم وتحديث الجدول
-      console.log("Updating appointments table...");
-    }
+    const formattedExpiry = new Date(data.expiryDate).toLocaleDateString(
+      "ar-SA"
+    );
+
+    newRow.innerHTML = `
+            <td>${data.bagNumber}</td>
+            <td>${data.bloodType}</td>
+            <td>${formattedDate}</td>
+            <td>${formattedExpiry}</td>
+            <td>${data.center}</td>
+            <td>${data.donor}</td>
+            <td><span class="status-badge status-approved">متاح</span></td>
+            <td>
+                <div class="action-buttons">
+                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                </div>
+            </td>
+        `;
+
+    table.prepend(newRow);
   }
 
-  // دالة تحديث جدول الدم (محاكاة)
-  function updateBloodTable() {
-    const bloodTable = document.querySelector("#blood-management tbody");
-    if (bloodTable) {
-      // يمكنك هنا جلب البيانات من الخادم وتحديث الجدول
-      console.log("Updating blood table...");
-    }
+  function addAppointmentToTable(data) {
+    const table = document.querySelector("#appointments-management tbody");
+    if (!table) return;
+
+    const statusMap = {
+      pending: "قيد الانتظار",
+      approved: "مؤكد",
+      cancelled: "ملغى",
+    };
+
+    const statusClassMap = {
+      pending: "status-pending",
+      approved: "status-approved",
+      cancelled: "status-rejected",
+    };
+
+    const newRow = document.createElement("tr");
+    const appointmentId = `APT-${Date.now().toString().slice(-6)}`;
+
+    newRow.innerHTML = `
+            <td>${appointmentId}</td>
+            <td>${data.donor}</td>
+            <td>${data.bloodType}</td>
+            <td>${data.center}</td>
+            <td>${data.date}</td>
+            <td>${data.time}</td>
+            <td><span class="status-badge ${statusClassMap[data.status]}">${
+      statusMap[data.status]
+    }</span></td>
+            <td>
+                <div class="action-buttons">
+                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                </div>
+            </td>
+        `;
+
+    table.prepend(newRow);
   }
 
-  // ========== إدارة أزرار الإجراءات في الجداول ==========
+  function addDonorToTable(data) {
+    const table = document.querySelector("#donors-management tbody");
+    if (!table) return;
+
+    const newRow = document.createElement("tr");
+    const formattedDate = new Date().toLocaleDateString("ar-SA");
+
+    newRow.innerHTML = `
+            <td>${data.name}</td>
+            <td>${data.bloodType}</td>
+            <td>${data.phone}</td>
+            <td>${formattedDate}</td>
+            <td>0</td>
+            <td><span class="status-badge status-approved">نشط</span></td>
+            <td>
+                <div class="action-buttons">
+                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                </div>
+            </td>
+        `;
+
+    table.prepend(newRow);
+  }
+
+  function addCenterToTable(data) {
+    const table = document.querySelector("#centers-management tbody");
+    if (!table) return;
+
+    const newRow = document.createElement("tr");
+
+    newRow.innerHTML = `
+            <td>${data.name}</td>
+            <td>${data.governorate}</td>
+            <td>${data.address}</td>
+            <td>${data.phone}</td>
+            <td>08:00 ص - 04:00 م</td>
+            <td><span class="status-badge status-approved">نشط</span></td>
+            <td>
+                <div class="action-buttons">
+                    <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
+                    <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
+                    <button class="btn-icon btn-delete"><i class="fas fa-trash"></i></button>
+                </div>
+            </td>
+        `;
+
+    table.prepend(newRow);
+  }
+
+  // ========== إدارة أزرار الإجراءات ==========
   document.addEventListener("click", function (e) {
-    // حذف عنصر
+    // حذف صف
     if (
       e.target.closest(".btn-delete") ||
       e.target.classList.contains("fa-trash")
     ) {
       const row = e.target.closest("tr");
-      if (row && confirm("هل أنت متأكد من حذف هذا العنصر؟")) {
-        row.style.opacity = "0.5";
-        setTimeout(() => {
-          row.remove();
-          showNotification("تم الحذف بنجاح", "success");
-        }, 300);
+      if (row) {
+        if (confirm("هل أنت متأكد من حذف هذا العنصر؟")) {
+          row.style.opacity = "0.5";
+          setTimeout(() => {
+            row.remove();
+            showNotification("تم الحذف بنجاح", "success");
+          }, 300);
+        }
       }
     }
 
-    // تعديل عنصر
+    // تحرير صف
     if (
       e.target.closest(".btn-edit") ||
       e.target.classList.contains("fa-edit")
     ) {
-      const row = e.target.closest("tr");
-      if (row) {
-        showNotification("فتح نموذج التعديل للعنصر المحدد", "info");
-        // هنا يمكنك فتح نموذج التعديل مع بيانات الصف
-      }
+      showNotification("تم تفعيل وضع التحرير", "info");
     }
 
-    // عرض تفاصيل العنصر
+    // عرض تفاصيل
     if (
       e.target.closest(".btn-view") ||
       e.target.classList.contains("fa-eye")
     ) {
-      const row = e.target.closest("tr");
-      if (row) {
-        showNotification("عرض تفاصيل العنصر", "info");
-        // هنا يمكنك عرض تفاصيل الصف
-      }
+      showNotification("جاري تحميل التفاصيل...", "info");
     }
   });
 
-  // ========== وظائف مساعدة ==========
-  // دالة لعرض الإشعارات
-  function showNotification(message, type = "info") {
-    // إنشاء عنصر الإشعار
-    const notification = document.createElement("div");
-    notification.className = `notification notification--${type}`;
-    notification.innerHTML = `
-      <span>${message}</span>
-      <button class="notification-close">&times;</button>
-    `;
+  // ========== البحث في الجداول ==========
+  document.querySelectorAll(".table-search input").forEach((input) => {
+    input.addEventListener("input", function () {
+      const searchTerm = this.value.toLowerCase().trim();
+      const table = this.closest(".data-table");
+      const rows = table.querySelectorAll("tbody tr");
 
-    // إضافة أنماط CSS للإشعار
-    if (!document.querySelector("#notification-styles")) {
-      const styles = document.createElement("style");
-      styles.id = "notification-styles";
-      styles.textContent = `
-        .notification {
-          position: fixed;
-          top: 20px;
-          left: 20px;
-          padding: 1rem 1.5rem;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          z-index: 9999;
-          animation: slideInLeft 0.3s ease;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          min-width: 300px;
-          max-width: 500px;
-        }
-        .notification--success {
-          background: var(--color-admin-success);
-          color: white;
-        }
-        .notification--error {
-          background: var(--color-admin-danger);
-          color: white;
-        }
-        .notification--info {
-          background: var(--color-admin-secondary);
-          color: white;
-        }
-        .notification--warning {
-          background: var(--color-admin-warning);
-          color: white;
-        }
-        .notification-close {
-          background: none;
-          border: none;
-          color: white;
-          font-size: 1.5rem;
-          cursor: pointer;
-          margin-right: 0.5rem;
-        }
-        @keyframes slideInLeft {
-          from {
-            transform: translateX(-100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-      `;
-      document.head.appendChild(styles);
-    }
+      let visibleCount = 0;
 
-    // إضافة الإشعار إلى الصفحة
-    document.body.appendChild(notification);
-
-    // إضافة مستمع حدث للإغلاق
-    notification
-      .querySelector(".notification-close")
-      .addEventListener("click", () => {
-        notification.remove();
+      rows.forEach((row) => {
+        const text = row.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+          row.style.display = "";
+          visibleCount++;
+        } else {
+          row.style.display = "none";
+        }
       });
 
-    // إزالة الإشعار تلقائيًا بعد 5 ثوانٍ
+      // عرض رسالة إذا لم توجد نتائج
+      const noResults = table.querySelector(".no-results");
+      if (visibleCount === 0 && searchTerm !== "") {
+        if (!noResults) {
+          const message = document.createElement("div");
+          message.className = "no-results";
+          message.innerHTML = `<p style="text-align: center; padding: 2rem; color: var(--color-admin-text-light);">لا توجد نتائج مطابقة</p>`;
+          table.querySelector("tbody").appendChild(message);
+        }
+      } else if (noResults) {
+        noResults.remove();
+      }
+    });
+  });
+
+  // ========== الفلاتر ==========
+  document.querySelectorAll(".table-actions select").forEach((select) => {
+    select.addEventListener("change", function () {
+      const filterValue = this.value;
+      const table = this.closest(".data-table");
+      const rows = table.querySelectorAll("tbody tr");
+
+      rows.forEach((row) => {
+        const statusCell = row.querySelector(".status-badge");
+        if (filterValue === "all" || !statusCell) {
+          row.style.display = "";
+        } else {
+          const statusText = statusCell.textContent.toLowerCase();
+          const filterText = filterValue.toLowerCase();
+          row.style.display = statusText.includes(filterText) ? "" : "none";
+        }
+      });
+    });
+  });
+
+  // ========== وظائف مساعدة ==========
+  function showNotification(message, type = "info") {
+    // إزالة الإشعارات القديمة
+    document.querySelectorAll(".notification").forEach((n) => n.remove());
+
+    // إنشاء الإشعار الجديد
+    const notification = document.createElement("div");
+    notification.className = `notification notification--${type}`;
+
+    // تحديد لون الإشعار
+    let bgColor, textColor;
+    switch (type) {
+      case "success":
+        bgColor = "var(--color-admin-secondary)";
+        textColor = "white";
+        break;
+      case "error":
+        bgColor = "var(--color-admin-danger)";
+        textColor = "white";
+        break;
+      case "warning":
+        bgColor = "var(--color-admin-warning)";
+        textColor = "white";
+        break;
+      default:
+        bgColor = "var(--color-admin-primary-light)";
+        textColor = "white";
+    }
+
+    notification.innerHTML = `
+            <div style="
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                padding: 1rem 1.5rem;
+                background: ${bgColor};
+                color: ${textColor};
+                border-radius: var(--radius-md);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 9999;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                min-width: 300px;
+                max-width: 500px;
+                animation: slideInLeft 0.3s ease;
+            ">
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()" style="
+                    background: none;
+                    border: none;
+                    color: ${textColor};
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    margin-right: 0.5rem;
+                    padding: 0;
+                ">
+                    &times;
+                </button>
+            </div>
+        `;
+
+    document.body.appendChild(notification);
+
+    // إزالة تلقائية بعد 5 ثوانٍ
     setTimeout(() => {
       if (notification.parentNode) {
         notification.style.opacity = "0";
         notification.style.transform = "translateX(-100%)";
+        notification.style.transition = "all 0.3s ease";
         setTimeout(() => {
           if (notification.parentNode) {
             notification.remove();
@@ -434,73 +674,67 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 300);
       }
     }, 5000);
-  }
 
-  // ========== تهيئة البحث في الجداول ==========
-  document.querySelectorAll(".table-search input").forEach((input) => {
-    input.addEventListener("input", function () {
-      const searchTerm = this.value.toLowerCase();
-      const table = this.closest(".data-table");
-      const rows = table.querySelectorAll("tbody tr");
-
-      rows.forEach((row) => {
-        const text = row.textContent.toLowerCase();
-        if (text.includes(searchTerm)) {
-          row.style.display = "";
-        } else {
-          row.style.display = "none";
-        }
-      });
-    });
-  });
-
-  // ========== تهيئة الفلاتر ==========
-  document.querySelectorAll(".table-actions select").forEach((select) => {
-    select.addEventListener("change", function () {
-      const value = this.value;
-      const table = this.closest(".data-table");
-      const rows = table.querySelectorAll("tbody tr");
-
-      if (value === "all") {
-        rows.forEach((row) => (row.style.display = ""));
-      } else {
-        rows.forEach((row) => {
-          const statusCell = row.querySelector(".status-badge");
-          if (statusCell && statusCell.textContent.includes(value)) {
-            row.style.display = "";
-          } else {
-            row.style.display = "none";
-          }
-        });
-      }
-    });
-  });
-
-  // ========== تهيئة زر تحديث المخزون ==========
-  const updateInventoryBtn = document.getElementById("updateInventoryBtn");
-  if (updateInventoryBtn) {
-    updateInventoryBtn.addEventListener("click", function () {
-      this.disabled = true;
-      this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحديث...';
-
-      // محاكاة تحديث البيانات من الخادم
-      setTimeout(() => {
-        updateBloodTypesGrid();
-        showNotification("تم تحديث بيانات المخزون بنجاح", "success");
-        this.disabled = false;
-        this.innerHTML = '<i class="fas fa-sync-alt"></i> تحديث المخزون';
-      }, 1500);
-    });
+    // إضافة أنماط الحركة إذا لم تكن موجودة
+    if (!document.querySelector("#notification-animations")) {
+      const style = document.createElement("style");
+      style.id = "notification-animations";
+      style.textContent = `
+                @keyframes slideInLeft {
+                    from { transform: translateX(-100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+      document.head.appendChild(style);
+    }
   }
 
   // ========== إدارة التنبيهات ==========
   const notificationIcon = document.querySelector(".notification-icon");
   if (notificationIcon) {
     notificationIcon.addEventListener("click", function () {
-      showNotification("فتح قائمة التنبيهات", "info");
-      // هنا يمكنك فتح قائمة التنبيهات
+      showNotification("عرض قائمة التنبيهات", "info");
+      // هنا يمكنك إضافة منطق لعرض التنبيهات
     });
   }
 
-  console.log("Dashboard JavaScript loaded successfully!");
+  // ========== تكييف مع تغيير حجم النافذة ==========
+  function handleResize() {
+    if (
+      window.innerWidth > 1024 &&
+      sidebar &&
+      sidebar.classList.contains("active")
+    ) {
+      sidebar.classList.remove("active");
+      sidebarToggle.classList.remove("active");
+      const icon = sidebarToggle.querySelector("i");
+      if (icon) {
+        icon.classList.remove("fa-times");
+        icon.classList.add("fa-bars");
+      }
+    }
+
+    // إضافة أو إزالة نص التعليمات للجداول
+    const tableContainers = document.querySelectorAll(".table-container");
+    const isMobile = window.innerWidth <= 768;
+
+    tableContainers.forEach((container) => {
+      let scrollHint = container.querySelector(".scroll-hint");
+
+      if (isMobile && !scrollHint) {
+        scrollHint = document.createElement("div");
+        scrollHint.className = "scroll-hint";
+        scrollHint.innerHTML =
+          '<span><i class="fas fa-arrow-left"></i> اسحب لليمين لمشاهدة بقية الجدول</span>';
+        container.parentNode.insertBefore(scrollHint, container);
+      } else if (!isMobile && scrollHint) {
+        scrollHint.remove();
+      }
+    });
+  }
+
+  window.addEventListener("resize", handleResize);
+  handleResize(); // تشغيل مرة أولى
+
+  console.log("لوحة التحكم تم تحميلها بنجاح!");
 });
