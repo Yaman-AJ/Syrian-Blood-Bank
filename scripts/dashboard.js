@@ -16,9 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (sidebar.classList.contains("active")) {
         icon.classList.remove("fa-bars");
         icon.classList.add("fa-times");
+        // منع التمرير عند فتح الشريط الجانبي
+        document.body.style.overflow = "hidden";
       } else {
         icon.classList.remove("fa-times");
         icon.classList.add("fa-bars");
+        // إعادة التمرير عند إغلاق الشريط الجانبي
+        document.body.style.overflow = "";
       }
     });
 
@@ -30,7 +34,15 @@ document.addEventListener("DOMContentLoaded", function () {
         !sidebarToggle.contains(e.target) &&
         window.innerWidth <= 1024
       ) {
-        sidebar.classList.remove("active");
+        closeSidebar();
+      }
+    });
+  }
+
+  function closeSidebar() {
+    if (sidebar && sidebar.classList.contains("active")) {
+      sidebar.classList.remove("active");
+      if (sidebarToggle) {
         sidebarToggle.classList.remove("active");
         const icon = sidebarToggle.querySelector("i");
         if (icon) {
@@ -38,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function () {
           icon.classList.add("fa-bars");
         }
       }
-    });
+      document.body.style.overflow = "";
+    }
   }
 
   // ========== إدارة تبويبات الصفحة ==========
@@ -67,19 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       // إغلاق الشريط الجانبي على الجوال
-      if (
-        window.innerWidth <= 1024 &&
-        sidebar &&
-        sidebar.classList.contains("active")
-      ) {
-        sidebar.classList.remove("active");
-        sidebarToggle.classList.remove("active");
-        const icon = sidebarToggle.querySelector("i");
-        if (icon) {
-          icon.classList.remove("fa-times");
-          icon.classList.add("fa-bars");
-        }
-      }
+      closeSidebar();
 
       return true;
     }
@@ -396,14 +397,14 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     newRow.innerHTML = `
-            <td>${data.bagNumber}</td>
-            <td>${data.bloodType}</td>
-            <td>${formattedDate}</td>
-            <td>${formattedExpiry}</td>
-            <td>${data.center}</td>
-            <td>${data.donor}</td>
-            <td><span class="status-badge status-approved">متاح</span></td>
-            <td>
+            <td data-label="رقم الكيس">${data.bagNumber}</td>
+            <td data-label="فصيلة الدم">${data.bloodType}</td>
+            <td data-label="تاريخ التبرع">${formattedDate}</td>
+            <td data-label="تاريخ الانتهاء">${formattedExpiry}</td>
+            <td data-label="المركز">${data.center}</td>
+            <td data-label="المتبرع">${data.donor}</td>
+            <td data-label="الحالة"><span class="status-badge status-approved">متاح</span></td>
+            <td data-label="الإجراءات">
                 <div class="action-buttons">
                     <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
                     <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
@@ -435,16 +436,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const appointmentId = `APT-${Date.now().toString().slice(-6)}`;
 
     newRow.innerHTML = `
-            <td>${appointmentId}</td>
-            <td>${data.donor}</td>
-            <td>${data.bloodType}</td>
-            <td>${data.center}</td>
-            <td>${data.date}</td>
-            <td>${data.time}</td>
-            <td><span class="status-badge ${statusClassMap[data.status]}">${
-      statusMap[data.status]
-    }</span></td>
-            <td>
+            <td data-label="رقم الحجز">${appointmentId}</td>
+            <td data-label="المتبرع">${data.donor}</td>
+            <td data-label="فصيلة الدم">${data.bloodType}</td>
+            <td data-label="المركز">${data.center}</td>
+            <td data-label="التاريخ">${data.date}</td>
+            <td data-label="الوقت">${data.time}</td>
+            <td data-label="الحالة"><span class="status-badge ${
+              statusClassMap[data.status]
+            }">${statusMap[data.status]}</span></td>
+            <td data-label="الإجراءات">
                 <div class="action-buttons">
                     <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
                     <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
@@ -464,13 +465,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const formattedDate = new Date().toLocaleDateString("ar-SA");
 
     newRow.innerHTML = `
-            <td>${data.name}</td>
-            <td>${data.bloodType}</td>
-            <td>${data.phone}</td>
-            <td>${formattedDate}</td>
-            <td>0</td>
-            <td><span class="status-badge status-approved">نشط</span></td>
-            <td>
+            <td data-label="الاسم">${data.name}</td>
+            <td data-label="فصيلة الدم">${data.bloodType}</td>
+            <td data-label="الهاتف">${data.phone}</td>
+            <td data-label="آخر تبرع">${formattedDate}</td>
+            <td data-label="عدد التبرعات">0</td>
+            <td data-label="الحالة"><span class="status-badge status-approved">نشط</span></td>
+            <td data-label="الإجراءات">
                 <div class="action-buttons">
                     <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
                     <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
@@ -489,13 +490,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const newRow = document.createElement("tr");
 
     newRow.innerHTML = `
-            <td>${data.name}</td>
-            <td>${data.governorate}</td>
-            <td>${data.address}</td>
-            <td>${data.phone}</td>
-            <td>08:00 ص - 04:00 م</td>
-            <td><span class="status-badge status-approved">نشط</span></td>
-            <td>
+            <td data-label="اسم المركز">${data.name}</td>
+            <td data-label="المحافظة">${data.governorate}</td>
+            <td data-label="العنوان">${data.address}</td>
+            <td data-label="الهاتف">${data.phone}</td>
+            <td data-label="ساعات العمل">08:00 ص - 04:00 م</td>
+            <td data-label="الحالة"><span class="status-badge status-approved">نشط</span></td>
+            <td data-label="الإجراءات">
                 <div class="action-buttons">
                     <button class="btn-icon btn-view"><i class="fas fa-eye"></i></button>
                     <button class="btn-icon btn-edit"><i class="fas fa-edit"></i></button>
@@ -698,43 +699,109 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ========== تكييف مع تغيير حجم النافذة ==========
-  function handleResize() {
-    if (
-      window.innerWidth > 1024 &&
-      sidebar &&
-      sidebar.classList.contains("active")
-    ) {
-      sidebar.classList.remove("active");
-      sidebarToggle.classList.remove("active");
-      const icon = sidebarToggle.querySelector("i");
-      if (icon) {
-        icon.classList.remove("fa-times");
-        icon.classList.add("fa-bars");
+  // ========== تحسينات التوافق مع الشاشات ==========
+  function optimizeForScreenSize() {
+    const isMobile = window.innerWidth <= 768;
+    const adminContent = document.querySelector(".admin-content");
+
+    if (isMobile) {
+      // تحسين للشاشات الصغيرة
+      if (adminContent) {
+        adminContent.style.width = "100vw";
+        adminContent.style.maxWidth = "100vw";
+        adminContent.style.overflowX = "hidden";
       }
+
+      // تحويل الجداول إلى عرض بطاقات إذا كانت صغيرة جداً
+      if (window.innerWidth <= 480) {
+        document.querySelectorAll(".data-table").forEach((table) => {
+          table.classList.add("mobile-card-view");
+        });
+      } else {
+        document.querySelectorAll(".data-table").forEach((table) => {
+          table.classList.remove("mobile-card-view");
+        });
+      }
+    } else {
+      // تحسين للشاشات الكبيرة
+      if (adminContent) {
+        adminContent.style.width = "";
+        adminContent.style.maxWidth = "";
+        adminContent.style.overflowX = "";
+      }
+
+      document.querySelectorAll(".data-table").forEach((table) => {
+        table.classList.remove("mobile-card-view");
+      });
     }
 
-    // إضافة أو إزالة نص التعليمات للجداول
-    const tableContainers = document.querySelectorAll(".table-container");
-    const isMobile = window.innerWidth <= 768;
+    // إغلاق الشريط الجانبي إذا كانت الشاشة كبيرة
+    if (window.innerWidth > 1024) {
+      closeSidebar();
+    }
+  }
 
-    tableContainers.forEach((container) => {
-      let scrollHint = container.querySelector(".scroll-hint");
+  // ========== تكييف مع تغيير حجم النافذة ==========
+  function handleResize() {
+    optimizeForScreenSize();
 
-      if (isMobile && !scrollHint) {
-        scrollHint = document.createElement("div");
-        scrollHint.className = "scroll-hint";
-        scrollHint.innerHTML =
-          '<span><i class="fas fa-arrow-left"></i> اسحب لليمين لمشاهدة بقية الجدول</span>';
-        container.parentNode.insertBefore(scrollHint, container);
-      } else if (!isMobile && scrollHint) {
-        scrollHint.remove();
+    // إغلاق الشريط الجانبي عند توسيع الشاشة
+    if (window.innerWidth > 1024) {
+      closeSidebar();
+    }
+
+    // تحسين عرض الجداول
+    document.querySelectorAll(".table-container").forEach((container) => {
+      const table = container.querySelector("table");
+      if (table) {
+        const tableWidth = table.scrollWidth;
+        const containerWidth = container.clientWidth;
+
+        if (tableWidth > containerWidth && window.innerWidth > 768) {
+          container.style.boxShadow =
+            "inset -10px 0 10px -10px rgba(0,0,0,0.1)";
+        } else {
+          container.style.boxShadow = "none";
+        }
       }
     });
   }
 
+  // تطبيق التحسينات عند تحميل الصفحة
+  optimizeForScreenSize();
+
+  // إضافة مستمع حدث تغيير الحجم
   window.addEventListener("resize", handleResize);
-  handleResize(); // تشغيل مرة أولى
+
+  // إضافة مستمع حدث تحميل الصفحة بالكامل
+  window.addEventListener("load", function () {
+    setTimeout(handleResize, 100);
+    setTimeout(optimizeForScreenSize, 200);
+  });
+
+  // تحسين شريط التمرير للجداول
+  function initTableScroll() {
+    document.querySelectorAll(".table-container").forEach((container) => {
+      container.addEventListener("scroll", function () {
+        const scrollLeft = this.scrollLeft;
+        const scrollWidth = this.scrollWidth;
+        const clientWidth = this.clientWidth;
+
+        if (scrollLeft > 0 && scrollLeft + clientWidth < scrollWidth) {
+          this.style.boxShadow =
+            "inset -10px 0 10px -10px rgba(0,0,0,0.1), inset 10px 0 10px -10px rgba(0,0,0,0.1)";
+        } else if (scrollLeft > 0) {
+          this.style.boxShadow = "inset 10px 0 10px -10px rgba(0,0,0,0.1)";
+        } else if (scrollLeft + clientWidth < scrollWidth) {
+          this.style.boxShadow = "inset -10px 0 10px -10px rgba(0,0,0,0.1)";
+        } else {
+          this.style.boxShadow = "none";
+        }
+      });
+    });
+  }
+
+  initTableScroll();
 
   console.log("لوحة التحكم تم تحميلها بنجاح!");
 });

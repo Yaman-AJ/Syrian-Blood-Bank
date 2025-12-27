@@ -28,6 +28,9 @@
     background: var(--color-admin-bg);
     direction: rtl;
     font-family: "Tajawal", sans-serif;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
 }
 
 /* ========== الشريط الجانبي ========== */
@@ -41,11 +44,14 @@
     z-index: 1000;
     transition: transform 0.3s ease;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    right: 0;
+    top: 0;
 }
 
 .sidebar-header {
     padding: 1.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-logo {
@@ -164,6 +170,9 @@
     margin-right: var(--sidebar-width);
     min-height: 100vh;
     transition: margin-right 0.3s ease;
+    width: 100%;
+    position: relative;
+    background: var(--color-admin-bg);
 }
 
 /* شريط القمة */
@@ -179,6 +188,7 @@
     top: 0;
     z-index: 999;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
 }
 
 .topbar-left {
@@ -270,6 +280,9 @@
 /* ========== محتوى الداشبورد ========== */
 .admin-content {
     padding: 2rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* الإحصائيات السريعة */
@@ -278,6 +291,7 @@
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .stat-card-admin {
@@ -290,6 +304,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--color-admin-border);
+    width: 100%;
 }
 
 .stat-card-admin:hover {
@@ -305,6 +320,7 @@
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
+    flex-shrink: 0;
 }
 
 .stat-icon.blood {
@@ -327,6 +343,11 @@
     color: var(--color-admin-warning);
 }
 
+.stat-info {
+    flex: 1;
+    min-width: 0;
+}
+
 .stat-info h3 {
     font-size: 1.8rem;
     margin: 0 0 0.25rem 0;
@@ -338,6 +359,9 @@
     margin: 0 0 0.25rem 0;
     color: var(--color-admin-text-light);
     font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .stat-info small {
@@ -350,10 +374,11 @@
 .data-table {
     background: var(--color-admin-card);
     border-radius: var(--radius-lg);
-    overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     margin-bottom: 2rem;
     border: 1px solid var(--color-admin-border);
+    width: 100%;
+    overflow: hidden;
 }
 
 .table-header {
@@ -364,6 +389,7 @@
     border-bottom: 1px solid var(--color-admin-border);
     flex-wrap: wrap;
     gap: 1rem;
+    width: 100%;
 }
 
 .table-header h3 {
@@ -371,6 +397,7 @@
     color: var(--color-admin-text);
     font-size: 1.25rem;
     font-weight: 600;
+    flex-shrink: 0;
 }
 
 .table-actions {
@@ -378,11 +405,14 @@
     gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
+    flex: 1;
+    justify-content: flex-end;
 }
 
 .table-search {
     position: relative;
     min-width: 250px;
+    max-width: 100%;
 }
 
 .table-search input {
@@ -393,6 +423,7 @@
     font-family: "Tajawal", sans-serif;
     font-size: 0.9rem;
     transition: border 0.3s ease;
+    max-width: 100%;
 }
 
 .table-search input:focus {
@@ -411,43 +442,24 @@
 
 .table-container {
     overflow-x: auto;
-    position: relative;
+    width: 100%;
     -webkit-overflow-scrolling: touch;
+    padding: 0;
+    margin: 0;
 }
 
-.scroll-hint {
-    background: var(--color-admin-primary-light);
-    color: white;
-    text-align: center;
-    padding: 0.5rem;
-    font-size: 0.85rem;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-    display: none;
-}
-
-.scroll-hint i {
-    margin-left: 0.5rem;
-    animation: bounceRight 1s infinite;
-}
-
-@keyframes bounceRight {
-    0%, 100% {
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(-5px);
-    }
-}
-
-table {
+.table-container table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 800px;
+    min-width: 100%;
+    table-layout: auto;
 }
 
 thead {
     background: var(--color-admin-bg);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 th {
@@ -457,6 +469,8 @@ th {
     color: var(--color-admin-text);
     border-bottom: 2px solid var(--color-admin-border);
     font-size: 0.9rem;
+    white-space: nowrap;
+    min-width: 120px;
 }
 
 td {
@@ -464,6 +478,8 @@ td {
     border-bottom: 1px solid var(--color-admin-border);
     color: var(--color-admin-text);
     font-size: 0.9rem;
+    min-width: 120px;
+    word-wrap: break-word;
 }
 
 tr:hover {
@@ -479,6 +495,7 @@ tr:hover {
     display: inline-block;
     min-width: 80px;
     text-align: center;
+    white-space: nowrap;
 }
 
 .status-pending {
@@ -509,7 +526,8 @@ tr:hover {
 .action-buttons {
     display: flex;
     gap: 0.5rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
 }
 
 .btn-icon {
@@ -524,6 +542,7 @@ tr:hover {
     transition: all 0.3s ease;
     background: none;
     color: var(--color-admin-text-light);
+    flex-shrink: 0;
 }
 
 .btn-icon:hover {
@@ -559,6 +578,8 @@ tr:hover {
     cursor: pointer;
     transition: all 0.3s ease;
     gap: 0.5rem;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .btn--primary {
@@ -587,12 +608,14 @@ tr:hover {
 /* ========== محتوى التبويبات ========== */
 .tab-content {
     display: none;
+    width: 100%;
 }
 
 .tab-content.active {
     display: block;
     animation: fadeIn 0.3s ease;
-    padding: 10px 20px;
+    padding: 0;
+    width: 100%;
 }
 
 @keyframes fadeIn {
@@ -611,6 +634,7 @@ tr:hover {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1rem;
     margin-top: 1.5rem;
+    width: 100%;
 }
 
 .blood-type-card {
@@ -621,6 +645,7 @@ tr:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     border: 1px solid var(--color-admin-border);
+    width: 100%;
 }
 
 .blood-type-card:hover {
@@ -648,6 +673,7 @@ tr:hover {
     font-size: 0.8rem;
     font-weight: 600;
     display: inline-block;
+    white-space: nowrap;
 }
 
 .blood-status--good {
@@ -773,10 +799,12 @@ tr:hover {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 .form-group {
     margin-bottom: 1.5rem;
+    width: 100%;
 }
 
 .form-group label {
@@ -795,6 +823,7 @@ tr:hover {
     font-family: "Tajawal", sans-serif;
     font-size: 0.9rem;
     transition: border 0.3s ease;
+    box-sizing: border-box;
 }
 
 .form-control:focus {
@@ -824,6 +853,7 @@ textarea.form-control {
     gap: 0.5rem;
     cursor: pointer;
     margin-bottom: 0.5rem;
+    width: 100%;
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -837,29 +867,19 @@ textarea.form-control {
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 .hours-input {
     margin-top: 0.5rem;
+    width: 100%;
 }
 
 .hours-row {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-}
-
-.facilities-checkboxes .checkbox-label {
-    background: var(--color-admin-bg);
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--color-admin-border);
-    transition: all 0.3s ease;
-}
-
-.facilities-checkboxes .checkbox-label:hover {
-    background: rgba(59, 130, 246, 0.1);
-    border-color: var(--color-admin-primary-light);
+    width: 100%;
 }
 
 /* ========== التجاوب ========== */
@@ -868,6 +888,8 @@ textarea.form-control {
 @media (max-width: 1024px) {
     .admin-sidebar {
         transform: translateX(100%);
+        width: 300px;
+        right: 0;
     }
 
     .admin-sidebar.active {
@@ -876,6 +898,7 @@ textarea.form-control {
 
     .admin-main {
         margin-right: 0;
+        width: 100vw;
     }
 
     .sidebar-toggle {
@@ -884,10 +907,24 @@ textarea.form-control {
 
     .admin-content {
         padding: 1.5rem;
+        width: 100vw;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .quick-stats {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        width: 100%;
+    }
+
+    .table-container {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: auto;
+    }
+
+    .table-container table {
+        min-width: 900px;
     }
 }
 
@@ -895,28 +932,43 @@ textarea.form-control {
 @media (max-width: 768px) {
     .admin-topbar {
         padding: 0 1rem;
+        width: 100vw;
+        box-sizing: border-box;
     }
 
     .topbar-left h1 {
         font-size: 1.25rem;
+        max-width: 200px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .admin-content {
         padding: 1rem;
+        width: 100vw;
+        max-width: 100vw;
+        overflow-x: hidden;
     }
 
     .quick-stats {
         grid-template-columns: 1fr;
+        gap: 1rem;
+        width: 100%;
     }
 
     .stat-card-admin {
         padding: 1.25rem;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .table-header {
         flex-direction: column;
         align-items: stretch;
         gap: 1rem;
+        padding: 1rem;
+        width: 100%;
     }
 
     .table-actions {
@@ -927,6 +979,7 @@ textarea.form-control {
 
     .table-search {
         min-width: 100%;
+        width: 100%;
     }
 
     .table-actions select {
@@ -935,18 +988,17 @@ textarea.form-control {
 
     .blood-types-grid {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        width: 100%;
     }
 
     .modal-content {
         margin: 0.5rem;
-    }
-
-    .scroll-hint {
-        display: block;
+        max-width: calc(100vw - 1rem);
     }
 
     .form-row {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
 
     .facilities-checkboxes {
@@ -960,18 +1012,39 @@ textarea.form-control {
     .hours-row span {
         display: none;
     }
+
+    /* تحسين عرض الجداول على الشاشات الصغيرة */
+    .table-container table {
+        min-width: 700px;
+    }
+
+    th, td {
+        padding: 0.75rem 0.5rem;
+        min-width: 110px;
+    }
+
+    .action-buttons {
+        flex-wrap: wrap;
+        gap: 0.3rem;
+    }
+
+    .btn-icon {
+        width: 32px;
+        height: 32px;
+    }
 }
 
 /* للهواتف */
 @media (max-width: 480px) {
     :root {
-        --sidebar-width: 250px;
+        --sidebar-width: 280px;
         --topbar-height: 60px;
     }
 
     .admin-topbar {
         height: var(--topbar-height);
         padding: 0 0.75rem;
+        width: 100vw;
     }
 
     .sidebar-toggle {
@@ -991,6 +1064,8 @@ textarea.form-control {
 
     .admin-content {
         padding: 0.75rem;
+        width: 100vw;
+        max-width: 100vw;
     }
 
     .stat-card-admin {
@@ -998,6 +1073,7 @@ textarea.form-control {
         text-align: center;
         gap: 1rem;
         padding: 1rem;
+        width: 100%;
     }
 
     .stat-icon {
@@ -1017,6 +1093,7 @@ textarea.form-control {
     .modal-footer {
         padding: 1rem;
         flex-direction: column;
+        width: 100%;
     }
 
     .modal-footer .btn {
@@ -1025,20 +1102,24 @@ textarea.form-control {
 
     .blood-types-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
     }
 
     .table-container {
         border-radius: var(--radius-md);
         overflow: hidden;
+        width: 100%;
     }
 
     th, td {
         padding: 0.75rem 0.5rem;
         font-size: 0.85rem;
+        min-width: 100px;
     }
 
     .action-buttons {
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .btn-icon {
@@ -1048,13 +1129,16 @@ textarea.form-control {
 
     .modal {
         padding: 0;
+        width: 100vw;
     }
 
     .modal-content {
         margin: 0;
         border-radius: 0;
+        width: 100vw;
         height: 100vh;
         max-height: 100vh;
+        max-width: 100vw;
     }
 
     .modal-header {
@@ -1108,18 +1192,139 @@ textarea.form-control {
         font-size: 1rem;
     }
 
-    .scroll-hint {
+    .table-container table {
+        min-width: 600px;
+    }
+
+    th, td {
+        padding: 0.6rem 0.4rem;
+        font-size: 0.8rem;
+        min-width: 90px;
+    }
+
+    .status-badge {
         font-size: 0.75rem;
-        padding: 0.4rem;
+        padding: 0.2rem 0.5rem;
+        min-width: 70px;
+    }
+}
+
+/* ========== إصلاحات التوافق الشاملة ========== */
+
+/* إصلاح مشكلة التمرير الأفقي */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+.admin-dashboard,
+.admin-main,
+.admin-content {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* تحسين شريط التمرير للجداول */
+.table-container::-webkit-scrollbar {
+    height: 6px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: var(--color-admin-bg);
+    border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: var(--color-admin-primary-light);
+    border-radius: 3px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: var(--color-admin-primary);
+}
+
+/* عرض بديل للجداول على الشاشات الصغيرة جداً */
+@media (max-width: 400px) {
+    .table-container {
+        border: 1px solid var(--color-admin-border);
+        border-radius: var(--radius-md);
+    }
+
+    .table-container table {
+        min-width: 550px;
+    }
+
+    .admin-topbar {
+        padding: 0 0.5rem;
+    }
+
+    .topbar-right {
+        gap: 0.75rem;
+    }
+
+    .blood-types-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* تحسينات للأجهزة اللوحية الكبيرة */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .admin-content {
+        padding: 1.5rem;
+        width: 100%;
+    }
+
+    .quick-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .data-table {
+        margin-bottom: 1.5rem;
+    }
+
+    .table-container table {
+        min-width: 900px;
+    }
+}
+
+/* تحسينات للعرض الأفقي */
+@media (orientation: landscape) and (max-height: 600px) {
+    .admin-topbar {
+        height: 60px;
+        padding: 0 1rem;
+    }
+
+    .admin-content {
+        padding: 1rem;
+    }
+
+    .quick-stats {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-card-admin {
+        padding: 1rem;
+    }
+
+    .stat-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+    }
+
+    .table-header {
+        padding: 1rem;
     }
 }
 
 /* Reduced motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
     * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        animation: none !important;
+        transition: none !important;
     }
 
     .stat-card-admin:hover,
@@ -1127,5 +1332,87 @@ textarea.form-control {
     .btn:hover,
     .btn-icon:hover {
         transform: none;
+    }
+}
+
+/* ضمان أن كل العناصر لا تتجاوز العرض */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+img, table, .table-container, .data-table, .admin-content {
+    max-width: 100%;
+}
+
+/* إصلاح تخطيط الصفحة بالكامل */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* عرض الجداول كبطاقات على الشاشات الصغيرة جداً */
+@media (max-width: 480px) {
+    .mobile-card-view {
+        display: block;
+        width: 100%;
+    }
+
+    .mobile-card-view .table-container {
+        overflow: visible;
+    }
+
+    .mobile-card-view table {
+        display: block;
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .mobile-card-view thead {
+        display: none;
+    }
+
+    .mobile-card-view tbody {
+        display: block;
+        width: 100%;
+    }
+
+    .mobile-card-view tr {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border: 1px solid var(--color-admin-border);
+        border-radius: var(--radius-md);
+        background: var(--color-admin-card);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .mobile-card-view td {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0;
+        border: none;
+        text-align: right;
+        position: relative;
+        padding-right: 50%;
+    }
+
+    .mobile-card-view td::before {
+        content: attr(data-label);
+        position: absolute;
+        right: 0;
+        font-weight: bold;
+        color: var(--color-admin-primary);
+    }
+
+    .mobile-card-view .action-buttons {
+        justify-content: flex-start;
+        margin-top: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--color-admin-border);
     }
 }
