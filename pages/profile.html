@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>الملف الشخصي — بنك الدم السوري</title>
+
+    <link rel="icon" type="image/x-icon" href="../images/logo 1.png">
+
+    <!-- Google font for Arabic readability -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet">
+
+    <!-- main css -->
+    <link rel="stylesheet" href="../styles/main.css">
+    <!-- profile page css -->
+    <link rel="stylesheet" href="../styles/profile.css">
+
+  </head>
+  <body class="page">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header__inner container">
+        <div class="logo_with_nav">
+          <div class="header__brand">
+            <img src="../images/logo 1.png" alt="شعار بنك الدم السوري">
+          </div>
+
+          <!-- القائمة الرئيسية للشاشات الكبيرة -->
+          <nav class="nav nav--desktop" aria-label="القائمة الرئيسية">
+            <ul class="nav__list">
+              <li><a class="nav__link" href="../index.html">الرئيسية</a></li>
+              <li><a class="nav__link" href="Bloodtype.html">البحث عن
+                  فصيلة</a></li>
+              <li><a class="nav__link" href="Map.html">المراكز</a></li>
+              <li><a class="nav__link" href="Date.html">حجز موعد</a></li>
+              <li><a class="nav__link nav__link--active" href="profile.html">الملف الشخصي</a></li>
+              <li><a class="nav__link" href="Contactus.html">تواصل معنا</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <!-- عناصر المستخدم -->
+        <div class="user-actions">
+          <!-- حالة تسجيل الدخول -->
+          <div class="user-profile" id="userProfile">
+            <div class="user-avatar">
+              <span class="user-initial" id="userInitial">م</span>
+              <div class="user-dropdown">
+                <a href="profile.html" class="dropdown-item">الملف الشخصي</a>
+                <a href="#" class="dropdown-item" id="donationHistory">التبرعات السابقة</a>
+                <a href="#" class="dropdown-item">الإعدادات</a>
+                <a href="#" class="dropdown-item dropdown-item--logout">تسجيل
+                  الخروج</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- زر القائمة للشاشات الصغيرة -->
+        <button class="header__menu" id="mobileMenuBtn" aria-label="menu"
+          aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- القائمة المنزلقة للشاشات الصغيرة -->
+      <nav class="nav nav--mobile" id="mobileNav"
+        aria-label="القائمة الرئيسية للجوال">
+        <ul class="nav__list nav__list--mobile">
+          <li><a class="nav__link" href="../index.html">الرئيسية</a></li>
+          <li><a class="nav__link" href="Bloodtype.html">البحث عن فصيلة</a></li>
+          <li><a class="nav__link" href="Map.html">المراكز</a></li>
+          <li><a class="nav__link" href="Date.html">حجز موعد</a></li>
+          <li><a class="nav__link nav__link--active" href="profile.html">الملف الشخصي</a></li>
+          <li><a class="nav__link" href="Contactus.html">تواصل معنا</a></li>
+          <li class="nav__auth-mobile">
+            <a href="login.html" class="btn btn--login btn--block">تسجيل
+              الدخول</a>
+            <a href="signup.html" class="btn btn--signup btn--block">إنشاء
+              حساب</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main container profile-page">
+      <section class="page-hero">
+        <h1 class="page-hero__title">الملف الشخصي</h1>
+        <p class="page-hero__subtitle">مرحباً بك في صفحة ملفك الشخصي. هنا يمكنك عرض وتعديل معلوماتك الشخصية ومتابعة تاريخ تبرعاتك.</p>
+      </section>
+
+      <div class="profile-grid">
+        <!-- معلومات المستخدم -->
+        <div class="profile-card user-info-card">
+          <div class="card-header">
+            <h2 class="card-title">معلومات المستخدم</h2>
+            <button class="btn-edit" id="editProfileBtn">تعديل</button>
+          </div>
+          
+          <div class="user-avatar-large">
+            <div class="avatar-circle" id="profileAvatar">
+              <span class="avatar-initial">م</span>
+            </div>
+            <div class="avatar-status">
+              <span class="status-dot active"></span>
+              <span class="status-text">متاح للتبرع</span>
+            </div>
+          </div>
+
+          <form id="profileForm" class="profile-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">الاسم الكامل</label>
+                <input type="text" class="form-input" id="fullName" name="fullName" value="محمد أحمد" disabled>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">رقم الهوية الوطنية</label>
+                <input type="text" class="form-input" id="nationalId" name="nationalId" value="1234567890" disabled>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">فصيلة الدم</label>
+                <div class="blood-type-display">
+                  <span class="blood-type-value" id="bloodTypeValue">O+</span>
+                  <div class="blood-type-select" style="display: none;">
+                    <select class="form-select" id="bloodTypeSelect" name="bloodType">
+                      <option value="A+">A+</option>
+                      <option value="A-">A-</option>
+                      <option value="B+">B+</option>
+                      <option value="B-">B-</option>
+                      <option value="AB+">AB+</option>
+                      <option value="AB-">AB-</option>
+                      <option value="O+">O+</option>
+                      <option value="O-">O-</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">العمر</label>
+                <input type="number" class="form-input" id="age" name="age" value="32" disabled>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">الجنس</label>
+                <div class="gender-display">
+                  <span class="gender-value" id="genderValue">ذكر</span>
+                  <div class="gender-select" style="display: none;">
+                    <select class="form-select" id="genderSelect" name="gender">
+                      <option value="ذكر">ذكر</option>
+                      <option value="أنثى">أنثى</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">البريد الإلكتروني</label>
+                <input type="email" class="form-input" id="email" name="email" value="mohamed@email.com" disabled>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">رقم الهاتف</label>
+                <input type="tel" class="form-input" id="phone" name="phone" value="0991547822" disabled>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">المحافظة</label>
+                <input type="text" class="form-input" id="province" name="province" value="دمشق" disabled>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">العنوان</label>
+                <textarea class="form-textarea" id="address" name="address" disabled>دمشق، شارع العابد</textarea>
+              </div>
+            </div>
+
+            <div class="form-actions" id="formActions" style="display: none;">
+              <button type="button" class="btn btn--secondary" id="cancelEditBtn">إلغاء</button>
+              <button type="submit" class="btn btn--primary" id="saveProfileBtn">حفظ التغييرات</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- إحصائيات التبرع -->
+        <div class="profile-card stats-card">
+          <div class="card-header">
+            <h2 class="card-title">إحصائيات التبرع</h2>
+          </div>
+          
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-icon total-donations">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <div class="stat-content">
+                <h3 class="stat-value" id="totalDonations">7</h3>
+                <p class="stat-label">إجمالي التبرعات</p>
+              </div>
+            </div>
+            
+            <div class="stat-item">
+              <div class="stat-icon last-donation">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/>
+                </svg>
+              </div>
+              <div class="stat-content">
+                <h3 class="stat-value" id="lastDonationDate">15-12-2023</h3>
+                <p class="stat-label">آخر تبرع</p>
+              </div>
+            </div>
+            
+            <div class="stat-item">
+              <div class="stat-icon next-donation">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                </svg>
+              </div>
+              <div class="stat-content">
+                <h3 class="stat-value" id="nextDonationDate">15-03-2024</h3>
+                <p class="stat-label">الموعد القادم</p>
+              </div>
+            </div>
+            
+            <div class="stat-item">
+              <div class="stat-icon saved-lives">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </div>
+              <div class="stat-content">
+                <h3 class="stat-value" id="savedLives">21</h3>
+                <p class="stat-label">حياة تم إنقاذها</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="donation-progress">
+            <h3 class="progress-title">المستوى التالي</h3>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 70%"></div>
+            </div>
+            <div class="progress-info">
+              <span class="progress-current">7 تبرعات</span>
+              <span class="progress-target">10 تبرعات للمستوى الذهبي</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- التبرعات السابقة -->
+        <div class="profile-card donations-card">
+          <div class="card-header">
+            <h2 class="card-title">سجل التبرعات</h2>
+            <a href="#" class="btn-view-all">عرض الكل</a>
+          </div>
+          
+          <div class="donations-list" id="donationsList">
+            <!-- سيتم ملء هذه القائمة ديناميكياً -->
+            <div class="donation-item">
+              <div class="donation-date">15 ديسمبر 2023</div>
+              <div class="donation-center">مركز دمشق للتبرع بالدم</div>
+              <div class="donation-status completed">مكتمل</div>
+              <div class="donation-amount">450 مل</div>
+            </div>
+            
+            <div class="donation-item">
+              <div class="donation-date">15 سبتمبر 2023</div>
+              <div class="donation-center">مشفى المواساة</div>
+              <div class="donation-status completed">مكتمل</div>
+              <div class="donation-amount">450 مل</div>
+            </div>
+            
+            <div class="donation-item">
+              <div class="donation-date">15 يونيو 2023</div>
+              <div class="donation-center">مشفى الأسد الجامعي</div>
+              <div class="donation-status completed">مكتمل</div>
+              <div class="donation-amount">450 مل</div>
+            </div>
+          </div>
+          
+          <div class="empty-state" id="emptyDonations" style="display: none;">
+            <div class="empty-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-4.86 8.86l-3 3.87L9 13.14 6 17h12l-3.86-5.14z"/>
+              </svg>
+            </div>
+            <h3>لا توجد تبرعات سابقة</h3>
+            <p>قم بحجز أول موعد للتبرع بالدم</p>
+            <a href="Date.html" class="btn btn--primary">حجز موعد للتبرع</a>
+          </div>
+        </div>
+
+        <!-- الشهادات والمكافآت -->
+        <div class="profile-card awards-card">
+          <div class="card-header">
+            <h2 class="card-title">الشهادات والمكافآت</h2>
+          </div>
+          
+          <div class="awards-grid">
+            <div class="award-item">
+              <div class="award-icon gold">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L8 8l-6 1 4 5-1 6 6-3 6 3-1-6 4-5-6-1-4-6z"/>
+                </svg>
+              </div>
+              <div class="award-content">
+                <h3>متبرع نشط</h3>
+                <p>5+ تبرعات</p>
+              </div>
+            </div>
+            
+            <div class="award-item">
+              <div class="award-icon silver">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 1L9 9l-8 3 5 6-1 8 7-4 7 4-1-8 5-6-8-3-3-8z"/>
+                </svg>
+              </div>
+              <div class="award-content">
+                <h3>بطل الإنقاذ</h3>
+                <p>ساهم في إنقاذ 10+ أشخاص</p>
+              </div>
+            </div>
+            
+            <div class="award-item">
+              <div class="award-icon bronze">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2L6 10l-4 1 3 6-1 7 8-5 8 5-1-7 3-6-4-1-6-8z"/>
+                </svg>
+              </div>
+              <div class="award-content">
+                <h3>متبرع موسمي</h3>
+                <p>تبرع في 3 مواسم مختلفة</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="certificate-section">
+            <h3>شهادات التقدير</h3>
+            <div class="certificate-list">
+              <button class="certificate-item" onclick="viewCertificate('cert1')">
+                <span>شهادة المتبرع الذهبي 2023</span>
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                </svg>
+              </button>
+              <button class="certificate-item" onclick="viewCertificate('cert2')">
+                <span>شهادة بطل الإنسانية</span>
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer__wave">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path
+            d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+            opacity=".25" class="shape-fill"></path>
+          <path
+            d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+            opacity=".5" class="shape-fill"></path>
+          <path
+            d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+            class="shape-fill"></path>
+        </svg>
+      </div>
+
+      <div class="footer__main">
+        <div class="container">
+          <div class="footer__grid">
+            <!-- قسم المعلومات -->
+            <div class="footer__info">
+              <div class="footer__brand">
+                <img src="../images/logo 1.png" alt="بنك الدم السوري"
+                  class="footer__logo">
+                <h3 class="footer__title">بنك الدم السوري</h3>
+              </div>
+              <p class="footer__description">
+                نسعى لإنقاذ الأرواح من خلال توفير الدم الآمن للمحتاجين.
+                انضم إلينا في رحلة العطاء والإنسانية.
+              </p>
+              <div class="footer__contact">
+                <div class="contact__item">
+                  <svg class="contact__icon" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                  </svg>
+                  <span>info@bloodbank.sy</span>
+                </div>
+                <div class="contact__item">
+                  <svg class="contact__icon" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path
+                      d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                  </svg>
+                  <span>+963 11 123 4567</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- روابط سريعة -->
+            <div class="footer__links">
+              <h4 class="footer__heading">روابط سريعة</h4>
+              <ul class="footer__list">
+                <li><a href="../index.html"
+                    class="footer__link">الرئيسية</a></li>
+                <li><a href="Bloodtype.html" class="footer__link">البحث عن
+                    فصيلة</a></li>
+                <li><a href="Map.html" class="footer__link">مراكز
+                    التبرع</a></li>
+                <li><a href="Date.html" class="footer__link">حجز موعد</a></li>
+                <li><a href="profile.html" class="footer__link">الملف الشخصي</a></li>
+                <li><a href="Contactus.html" class="footer__link">تواصل
+                    معنا</a></li>
+              </ul>
+            </div>
+
+            <!-- اشتراك في النشرة البريدية -->
+            <div class="footer__newsletter">
+              <h4 class="footer__heading">النشرة البريدية</h4>
+              <p class="footer__text">اشترك لتصلك آخر الأخبار والعروض</p>
+              <form class="newsletter__form">
+                <div class="input__group">
+                  <input type="email" class="newsletter__input"
+                    placeholder="بريدك الإلكتروني" required>
+                  <button type="submit" class="newsletter__btn">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- القسم السفلي -->
+      <div class="footer__bottom">
+        <div class="container">
+          <div class="footer__bottom-content">
+            <div class="footer__social">
+              <a href="#" class="social__link" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                </svg>
+              </a>
+              <a href="#" class="social__link" aria-label="Twitter">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                </svg>
+              </a>
+              <a href="#" class="social__link" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.014 5.367 18.647.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.208 14.806 3.718 13.655 3.718 12.36s.49-2.448 1.408-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.918.875 1.408 2.026 1.408 3.323s-.49 2.448-1.408 3.323c-.875.807-2.026 1.297-3.323 1.297z" />
+                </svg>
+              </a>
+              <a href="#" class="social__link" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="footer__copyright">
+              <p>&copy; 2026 بنك الدم السوري. جميع الحقوق محفوظة.</p>
+              <div class="footer__legal">
+                <a href="#" class="legal__link">سياسة الخصوصية</a>
+                <span class="separator">|</span>
+                <a href="#" class="legal__link">شروط الاستخدام</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../scripts/main.js"></script>
+    <script>
+      // دالة لجلب بيانات المستخدم من localStorage
+      function getUserData() {
+        // بيانات افتراضية إذا لم تكن موجودة في localStorage
+        const defaultData = {
+          fullName: "محمد أحمد",
+          nationalId: "1234567890",
+          bloodType: "O+",
+          age: "32",
+          gender: "ذكر",
+          email: "mohamed@email.com",
+          phone: "0991547822",
+          province: "دمشق",
+          address: "دمشق، شارع العابد",
+          totalDonations: 7,
+          lastDonationDate: "15-12-2023",
+          nextDonationDate: "15-03-2024",
+          savedLives: 21
+        };
+
+        // محاولة جلب البيانات من localStorage
+        const savedData = localStorage.getItem('userProfileData');
+        if (savedData) {
+          return JSON.parse(savedData);
+        }
+        
+        // إذا لم تكن هناك بيانات محفوظة، احفظ البيانات الافتراضية
+        localStorage.setItem('userProfileData', JSON.stringify(defaultData));
+        return defaultData;
+      }
+
+      // دالة لتحديث عرض البيانات
+      function updateProfileDisplay() {
+        const userData = getUserData();
+        
+        // تحديث البيانات الشخصية
+        document.getElementById('fullName').value = userData.fullName;
+        document.getElementById('nationalId').value = userData.nationalId;
+        document.getElementById('bloodTypeValue').textContent = userData.bloodType;
+        document.getElementById('bloodTypeSelect').value = userData.bloodType;
+        document.getElementById('age').value = userData.age;
+        document.getElementById('genderValue').textContent = userData.gender;
+        document.getElementById('genderSelect').value = userData.gender;
+        document.getElementById('email').value = userData.email;
+        document.getElementById('phone').value = userData.phone;
+        document.getElementById('province').value = userData.province;
+        document.getElementById('address').value = userData.address;
+        
+        // تحديث الأحرف الأولى للأفاتار
+        const nameParts = userData.fullName.split(' ');
+        const firstName = nameParts[0] || 'م';
+        const initial = firstName.charAt(0);
+        document.getElementById('profileAvatar').querySelector('.avatar-initial').textContent = initial;
+        document.getElementById('userInitial').textContent = initial;
+        
+        // تحديث الإحصائيات
+        document.getElementById('totalDonations').textContent = userData.totalDonations;
+        document.getElementById('lastDonationDate').textContent = userData.lastDonationDate;
+        document.getElementById('nextDonationDate').textContent = userData.nextDonationDate;
+        document.getElementById('savedLives').textContent = userData.savedLives;
+        
+        // تحديث شريط التقدم
+        const progressPercentage = (userData.totalDonations / 10) * 100;
+        document.querySelector('.progress-fill').style.width = `${progressPercentage}%`;
+        document.querySelector('.progress-current').textContent = `${userData.totalDonations} تبرعات`;
+      }
+
+      // دالة لتفعيل/إلغاء وضع التحرير
+      let isEditing = false;
+      document.getElementById('editProfileBtn').addEventListener('click', function() {
+        isEditing = !isEditing;
+        const inputs = document.querySelectorAll('.profile-form input, .profile-form textarea, .profile-form select');
+        const formActions = document.getElementById('formActions');
+        const bloodTypeDisplay = document.querySelector('.blood-type-display');
+        const bloodTypeSelect = document.querySelector('.blood-type-select');
+        const genderDisplay = document.querySelector('.gender-display');
+        const genderSelect = document.querySelector('.gender-select');
+        
+        if (isEditing) {
+          // تفعيل وضع التحرير
+          inputs.forEach(input => {
+            input.disabled = false;
+            input.classList.add('editing');
+          });
+          
+          // إظهار حقل اختيار فصيلة الدم وإخفاء العرض
+          if (bloodTypeDisplay && bloodTypeSelect) {
+            bloodTypeDisplay.style.display = 'none';
+            bloodTypeSelect.style.display = 'block';
+          }
+          
+          // إظهار حقل اختيار الجنس وإخفاء العرض
+          if (genderDisplay && genderSelect) {
+            genderDisplay.style.display = 'none';
+            genderSelect.style.display = 'block';
+          }
+          
+          // إظهار أزرار الحفظ والإلغاء
+          formActions.style.display = 'flex';
+          
+          // تغيير نص زر التحرير
+          this.textContent = 'إلغاء التحرير';
+          this.classList.add('editing');
+          
+        } else {
+          // إلغاء وضع التحرير
+          inputs.forEach(input => {
+            input.disabled = true;
+            input.classList.remove('editing');
+          });
+          
+          // إخفاء حقل اختيار فصيلة الدم وإظهار العرض
+          if (bloodTypeDisplay && bloodTypeSelect) {
+            bloodTypeDisplay.style.display = 'block';
+            bloodTypeSelect.style.display = 'none';
+          }
+          
+          // إخفاء حقل اختيار الجنس وإظهار العرض
+          if (genderDisplay && genderSelect) {
+            genderDisplay.style.display = 'block';
+            genderSelect.style.display = 'none';
+          }
+          
+          // إخفاء أزرار الحفظ والإلغاء
+          formActions.style.display = 'none';
+          
+          // إعادة تعيين نص زر التحرير
+          this.textContent = 'تعديل';
+          this.classList.remove('editing');
+          
+          // إعادة تحميل البيانات الأصلية
+          updateProfileDisplay();
+        }
+      });
+
+      // دالة لحفظ البيانات
+      document.getElementById('profileForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const userData = {
+          fullName: document.getElementById('fullName').value,
+          nationalId: document.getElementById('nationalId').value,
+          bloodType: document.getElementById('bloodTypeSelect').value,
+          age: document.getElementById('age').value,
+          gender: document.getElementById('genderSelect').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          province: document.getElementById('province').value,
+          address: document.getElementById('address').value,
+          totalDonations: parseInt(document.getElementById('totalDonations').textContent),
+          lastDonationDate: document.getElementById('lastDonationDate').textContent,
+          nextDonationDate: document.getElementById('nextDonationDate').textContent,
+          savedLives: parseInt(document.getElementById('savedLives').textContent)
+        };
+        
+        // حفظ البيانات في localStorage
+        localStorage.setItem('userProfileData', JSON.stringify(userData));
+        
+        // تحديث العرض
+        updateProfileDisplay();
+        
+        // الخروج من وضع التحرير
+        document.getElementById('editProfileBtn').click();
+        
+        // إظهار رسالة نجاح
+        alert('تم حفظ التغييرات بنجاح!');
+      });
+
+      // زر الإلغاء
+      document.getElementById('cancelEditBtn').addEventListener('click', function() {
+        document.getElementById('editProfileBtn').click();
+      });
+
+      // دالة لعرض الشهادات
+      function viewCertificate(certId) {
+        alert(`عرض الشهادة: ${certId}\n\nفي التطبيق الحقيقي، ستفتح هذه الوظيفة نافذة معاينة أو تحميل للشهادة.`);
+      }
+
+      // تهيئة الصفحة عند التحميل
+      document.addEventListener('DOMContentLoaded', function() {
+        // التحقق من تسجيل الدخول
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+        if (!isLoggedIn) {
+          window.location.href = 'login.html';
+          return;
+        }
+        
+        // تحديث بيانات الملف الشخصي
+        updateProfileDisplay();
+        
+        // تحميل بيانات التبرعات من localStorage إذا كانت موجودة
+        const savedDonations = localStorage.getItem('userDonations');
+        if (savedDonations) {
+          const donations = JSON.parse(savedDonations);
+          if (donations.length > 0) {
+            updateDonationsList(donations);
+          }
+        }
+        
+        // ربط زر التبرعات السابقة
+        document.getElementById('donationHistory').addEventListener('click', function(e) {
+          e.preventDefault();
+          document.querySelector('.donations-card').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      // دالة لتحديث قائمة التبرعات
+      function updateDonationsList(donations) {
+        const donationsList = document.getElementById('donationsList');
+        const emptyState = document.getElementById('emptyDonations');
+        
+        if (donations.length === 0) {
+          donationsList.style.display = 'none';
+          emptyState.style.display = 'block';
+          return;
+        }
+        
+        donationsList.innerHTML = '';
+        donations.forEach(donation => {
+          const donationItem = document.createElement('div');
+          donationItem.className = 'donation-item';
+          donationItem.innerHTML = `
+            <div class="donation-date">${donation.date}</div>
+            <div class="donation-center">${donation.center}</div>
+            <div class="donation-status ${donation.status}">${donation.status === 'completed' ? 'مكتمل' : 'ملغي'}</div>
+            <div class="donation-amount">${donation.amount} مل</div>
+          `;
+          donationsList.appendChild(donationItem);
+        });
+        
+        emptyState.style.display = 'none';
+        donationsList.style.display = 'block';
+      }
+    </script>
+  </body>
+</html>
